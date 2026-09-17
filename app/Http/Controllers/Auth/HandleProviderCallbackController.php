@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
+use SocialiteProviders\Steam\OpenIDValidationException;
 
 class HandleProviderCallbackController extends Controller
 {
@@ -21,26 +22,16 @@ class HandleProviderCallbackController extends Controller
     {
         abort_unless($provider->isEnabled(), 404);
 
-        if ($request->has('error')) {
-            $intent = session()->pull('socialite_intent', 'login');
-
-            $destination = $intent === 'link' && Auth::check()
-                ? to_route('users.edit', Auth::user())
-                : to_route('login');
-
-            return $destination->with('error', 'Authentication with '.$provider->label().' was cancelled or failed.');
+        if ($request->has('error') || in_array($request->input('openid.mode', $request->input('openid_mode')), ['cancel', 'error'], true)) {
+            return $this->failedProviderRedirect('Authentication with '.$provider->label().' was cancelled or failed.');
         }
 
         try {
-            $socialiteUser = Socialite::driver($provider->driver())->user();
-        } catch (ClientException) {
-            $intent = session()->pull('socialite_intent', 'login');
-
-            $destination = $intent === 'link' && Auth::check()
-                ? to_route('users.edit', Auth::user())
-                : to_route('login');
-
-            return $destination->with('error', 'Failed to authenticate with '.$provider->label().'. Please try again.');
+            $socialiteUser = Socialite::driver($provider->driver())
+                ->redirectUrl(route('auth.provider.callback', $provider->value))
+                ->user();
+        } catch (ClientException|OpenIDValidationException) {
+            return $this->failedProviderRedirect('Failed to authenticate with '.$provider->label().'. Please try again.');
         }
 
         $intent = session()->pull('socialite_intent', 'login');
@@ -58,6 +49,17 @@ class HandleProviderCallbackController extends Controller
         }
 
         return $this->loginOrRegister($provider, $socialiteUser->getId(), $providerData);
+    }
+
+    private function failedProviderRedirect(string $message): RedirectResponse
+    {
+        $intent = session()->pull('socialite_intent', 'login');
+
+        $destination = $intent === 'link' && Auth::check()
+            ? to_route('users.edit', Auth::user())
+            : to_route('login');
+
+        return $destination->with('error', $message);
     }
 
     /**

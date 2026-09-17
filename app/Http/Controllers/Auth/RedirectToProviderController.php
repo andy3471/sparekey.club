@@ -18,6 +18,8 @@ class RedirectToProviderController extends Controller
 
         session(['socialite_intent' => auth()->check() ? 'link' : 'login']);
 
-        return Socialite::driver($provider->driver())->redirect();
+        return Socialite::driver($provider->driver())
+            ->redirectUrl(route('auth.provider.callback', $provider->value))
+            ->redirect();
     }
 }

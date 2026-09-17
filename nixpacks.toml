@@ -1,5 +1,6 @@
 [variables]
 NIXPACKS_NODE_VERSION = "22"
+NIXPACKS_PHP_VERSION = "8.3"
 NIXPACKS_PHP_ROOT_DIR = "/app/public"
 
 [phases.setup]
