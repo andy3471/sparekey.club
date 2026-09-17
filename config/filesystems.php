@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 return [
+    'default' => env('FILESYSTEM_DISK', 'public'),
 
     'disks' => [
         'local' => [
@@ -19,7 +20,6 @@ return [
             'url'                     => env('AWS_URL'),
             'endpoint'                => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'cdn_endpoint'            => env('AWS_CDN_ENDPOINT'),
             'visibility'              => 'public',
             'throw'                   => false,
         ],

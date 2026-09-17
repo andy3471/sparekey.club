@@ -1,0 +1,16 @@
+[variables]
+NIXPACKS_NODE_VERSION = "22"
+NIXPACKS_PHP_ROOT_DIR = "/app/public"
+
+[phases.setup]
+aptPkgs = ["...", "supervisor"]
+
+[phases.build]
+cmds = [
+    "php artisan wayfinder:generate --no-interaction",
+    "...",
+    "chmod +x /app/docker/production/start.sh",
+]
+
+[start]
+cmd = "/app/docker/production/start.sh"
