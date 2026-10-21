@@ -8,6 +8,7 @@
         "php": "^8.3",
         "ext-exif": "*",
         "ext-gd": "*",
+        "ext-intl": "*",
         "ext-pdo_mysql": "*",
         "ext-redis": "*",
         "ext-zip": "*",
