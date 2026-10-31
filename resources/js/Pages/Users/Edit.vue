@@ -6,9 +6,10 @@ import FormInput from '@/Components/ui/FormInput.vue';
 import FormTextarea from '@/Components/ui/FormTextarea.vue';
 import AvatarUpload from '@/Components/shared/AvatarUpload.vue';
 import LoadingSpinner from '@/Components/ui/LoadingSpinner.vue';
-import { UserData } from '@/Types/generated';
-import type { LinkedAccountProvider } from '@/Types/generated';
+import { UserData } from '@/types/generated';
+import type { LinkedAccountProvider } from '@/types/generated';
 import users from '@/routes/users';
+import linkedAccounts from '@/routes/linked-accounts';
 
 interface ProviderInfo {
   name: LinkedAccountProvider;
@@ -44,7 +45,7 @@ const submit = () => {
 };
 
 const unlinkAccount = (providerName: string) => {
-  router.delete(`/linked-accounts/${providerName}`, {
+  router.delete(linkedAccounts.destroy.url(providerName), {
     preserveScroll: true,
   });
 };

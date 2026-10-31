@@ -63,7 +63,7 @@ redirect.head = (args: { provider: string | number } | [provider: string | numbe
 
 /**
 * @see \App\Http\Controllers\Auth\HandleProviderCallbackController::__invoke
-* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:20
+* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:21
 * @route '/auth/{provider}/callback'
 */
 export const callback = (args: { provider: string | number } | [provider: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -78,7 +78,7 @@ callback.definition = {
 
 /**
 * @see \App\Http\Controllers\Auth\HandleProviderCallbackController::__invoke
-* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:20
+* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:21
 * @route '/auth/{provider}/callback'
 */
 callback.url = (args: { provider: string | number } | [provider: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -105,7 +105,7 @@ callback.url = (args: { provider: string | number } | [provider: string | number
 
 /**
 * @see \App\Http\Controllers\Auth\HandleProviderCallbackController::__invoke
-* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:20
+* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:21
 * @route '/auth/{provider}/callback'
 */
 callback.get = (args: { provider: string | number } | [provider: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -115,7 +115,7 @@ callback.get = (args: { provider: string | number } | [provider: string | number
 
 /**
 * @see \App\Http\Controllers\Auth\HandleProviderCallbackController::__invoke
-* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:20
+* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:21
 * @route '/auth/{provider}/callback'
 */
 callback.head = (args: { provider: string | number } | [provider: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({

@@ -6,13 +6,13 @@ import LoadingSpinner from '@/Components/ui/LoadingSpinner.vue';
 import SocialLoginButtons from '@/Components/auth/SocialLoginButtons.vue';
 import type { SocialProvider } from '@/Components/auth/SocialLoginButtons.vue';
 import PendingInviteBanner from '@/Components/onboarding/PendingInviteBanner.vue';
-import type { PendingGroup } from '@/Types/onboarding';
+import type { PendingGroupData } from '@/types/generated';
 import { login as loginRoute, register } from '@/routes';
 import password from '@/routes/password';
 
 interface Props {
   providers: SocialProvider[];
-  pendingGroup: PendingGroup | null;
+  pendingGroup: PendingGroupData | null;
 }
 
 defineProps<Props>();

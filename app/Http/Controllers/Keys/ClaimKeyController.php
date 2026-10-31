@@ -15,7 +15,9 @@ class ClaimKeyController extends Controller
     {
         $this->authorize('claim', $key);
 
-        $key->claim(auth()->user());
+        if (! $key->claim($request->user())) {
+            return back()->with('error', __('keys.alreadyclaimederror'));
+        }
 
         return back()->with('message', __('keys.claimsuccess'));
     }

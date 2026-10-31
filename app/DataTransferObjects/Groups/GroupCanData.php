@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\DataTransferObjects\Groups;
 
+use App\Enums\GroupRole;
 use App\Models\Group;
-use Illuminate\Support\Facades\Gate;
 use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
@@ -22,12 +22,28 @@ class GroupCanData extends Data
 
     public static function fromModel(Group $group): self
     {
+        $user = auth()->user();
+
+        if (! $user) {
+            return new self(
+                update: false,
+                delete: false,
+                leave: false,
+                manageMembers: false,
+                invite: false,
+            );
+        }
+
+        $role       = $group->memberRole($user);
+        $isOwner    = $group->owner_id === $user->id;
+        $isAdminish = $role            === GroupRole::Owner || $role === GroupRole::Admin;
+
         return new self(
-            update: Gate::allows('update', $group),
-            delete: Gate::allows('delete', $group),
-            leave: Gate::allows('leave', $group),
-            manageMembers: Gate::allows('manageMembers', $group),
-            invite: Gate::allows('invite', $group),
+            update: $isAdminish,
+            delete: $isOwner,
+            leave: $role !== null && ! $isOwner,
+            manageMembers: $isAdminish,
+            invite: $isAdminish,
         );
     }
 }

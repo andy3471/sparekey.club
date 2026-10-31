@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use App\DataTransferObjects\Groups\GroupData;
+use App\DataTransferObjects\Shared\AuthData;
+use App\DataTransferObjects\Shared\FlashData;
 use App\DataTransferObjects\Users\UserData;
 use App\Models\Group;
 use Closure;
@@ -23,27 +25,22 @@ class HandleInertiaRequests extends Middleware
         return parent::handle($request, $next);
     }
 
-    public function version(Request $request): ?string
-    {
-        return parent::version($request);
-    }
-
     /** @return array<string, mixed> */
     public function share(Request $request): array
     {
         $user = auth()->user();
 
         return array_merge(parent::share($request), [
-            'auth' => [
-                'user' => $user ? UserData::from($user) : null,
-            ],
-            'flash' => [
+            'auth' => AuthData::from([
+                'user' => $user ? UserData::fromModel($user) : null,
+            ]),
+            'flash' => FlashData::from([
                 'message' => $request->session()->get('message'),
                 'error'   => $request->session()->get('error'),
                 'status'  => $request->session()->get('status'),
-            ],
-            'activeGroup'  => fn (): ?\App\DataTransferObjects\Groups\GroupData => $this->getActiveGroup($request),
-            'userGroups'   => fn () => $user
+            ]),
+            'activeGroup' => fn (): ?GroupData => $this->getActiveGroup($request),
+            'userGroups'  => fn () => $user
                 ? $user->groups()->withCount('members')->with('media')->get()->map(fn (Group $group): GroupData => GroupData::fromModel($group, $group->pivot->role))
                 : [],
         ]);

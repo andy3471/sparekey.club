@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import ImageGalleryModal from '@/Components/shared/ImageGalleryModal.vue';
-import { ScreenshotData } from '@/Types/generated';
+import { ScreenshotData } from '@/types/generated';
 
 interface Props {
   screenshots: ScreenshotData[];

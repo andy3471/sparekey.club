@@ -3,7 +3,7 @@ interface Props {
   id: string;
   label?: string;
   type?: string;
-  modelValue: string | number;
+  modelValue: string | number | null;
   error?: string;
   hint?: string;
   required?: boolean;
@@ -28,7 +28,7 @@ withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string | number];
+  'update:modelValue': [value: string | number | null];
 }>();
 
 </script>

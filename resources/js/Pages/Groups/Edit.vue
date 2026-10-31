@@ -11,7 +11,7 @@ import KarmaRequirementSection from '@/Components/groups/KarmaRequirementSection
 import ClaimCooldownSection from '@/Components/groups/ClaimCooldownSection.vue';
 import DangerZone from '@/Components/groups/DangerZone.vue';
 import { update as updateRoute, destroy as destroyRoute } from '@/routes/groups';
-import { GroupData } from '@/Types/generated';
+import { GroupData } from '@/types/generated';
 
 interface Props {
   group: GroupData;

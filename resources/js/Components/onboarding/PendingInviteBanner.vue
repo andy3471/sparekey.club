@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { PendingGroup } from '@/Types/onboarding';
+import type { PendingGroupData } from '@/types/generated';
 
 defineProps<{
-  group: PendingGroup;
+  group: PendingGroupData;
 }>();
 </script>
 

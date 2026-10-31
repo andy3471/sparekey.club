@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/vue3';
 import GameImagePlaceholder from '@/Components/shared/GameImagePlaceholder.vue';
 import PlatformIcon from '@/Components/shared/PlatformIcon.vue';
 import games from '@/routes/games';
-import { GameData } from '@/Types/generated';
+import { GameData } from '@/types/generated';
 import { StarIcon } from '@heroicons/vue/24/solid';
 
 interface Props {

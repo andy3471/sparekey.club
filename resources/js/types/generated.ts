@@ -1,0 +1,172 @@
+export type AuthData = {
+user: UserData | null,
+};
+export type AutocompleteGameData = {
+id: string,
+name: string,
+};
+export type ClaimDeniedReason = 'already_claimed' | 'own_key' | 'not_in_group' | 'karma_too_low' | 'cooldown_active' | 'already_owns_game';
+export type CursorPaginatedDataCollection<TKey, TValue> = CursorPaginator<TKey, TValue>;
+export type CursorPaginator<TKey, TValue> = {
+data: TKey extends string ? Record<TKey, TValue> : TValue[],
+links: {
+url: string | null,
+label: string,
+active: boolean,
+}[],
+meta: {
+path: string,
+per_page: number,
+next_cursor: string | null,
+next_page_url: string | null,
+prev_cursor: string | null,
+prev_page_url: string | null,
+},
+};
+export type CursorPaginatorInterface<TKey, TValue> = CursorPaginator<TKey, TValue>;
+export type FlashData = {
+message: string | null,
+error: string | null,
+status: string | null,
+};
+export type GameData = {
+id: string,
+name: string,
+genres?: GenreData[],
+screenshots?: ScreenshotData[],
+aggregated_rating?: number,
+aggregated_rating_count?: number,
+description: string | null,
+image: string | null,
+keyCount?: number,
+platforms?: PlatformData[],
+};
+export type GameShowData = {
+game: GameData,
+keys: KeyData[],
+dlcCount: number | null,
+dlcUrl: string | null,
+genres: GenreData[] | null,
+screenshots: ScreenshotData[] | null,
+};
+export type GenreData = {
+id: number,
+name: string,
+};
+export type GroupCanData = {
+update: boolean,
+delete: boolean,
+leave: boolean,
+manageMembers: boolean,
+invite: boolean,
+};
+export type GroupData = {
+id: string,
+name: string,
+slug: string,
+description: string | null,
+owner_id: string | null,
+is_public: boolean | null,
+invite_code: string | null,
+member_count: number | null,
+role: string | null,
+avatar: string | null,
+discord_webhook_url: string | null,
+min_karma: number | null,
+claim_cooldown_minutes: number | null,
+can: GroupCanData | null,
+};
+export type GroupMemberData = {
+id: string,
+name: string,
+avatar: string | null,
+role: string,
+joined_at: string | null,
+};
+export type GroupRole = 'owner' | 'admin' | 'member';
+export type KeyCanData = {
+view: boolean,
+claim: boolean,
+delete: boolean,
+feedback: boolean,
+claimDeniedReason: ClaimDeniedReason | null,
+cooldownEndsAt: string | null,
+ownedKeyId: string | null,
+};
+export type KeyData = {
+id: string,
+key: string | null,
+message: string | null,
+feedback: KeyFeedback | null,
+platform: PlatformData | null,
+createdUser: PublicUserData | null,
+claimedUser: PublicUserData | null,
+game: GameData | null,
+can: KeyCanData | null,
+group: GroupData | null,
+};
+export type KeyFeedback = 'worked' | 'did_not_work';
+export type LengthAwarePaginator<TKey, TValue> = {
+data: TKey extends string ? Record<TKey, TValue> : TValue[],
+links: {
+url: string | null,
+label: string,
+active: boolean,
+}[],
+meta: {
+total: number,
+current_page: number,
+first_page_url: string,
+from: number | null,
+last_page: number,
+last_page_url: string,
+next_page_url: string | null,
+path: string,
+per_page: number,
+prev_page_url: string | null,
+to: number | null,
+},
+};
+export type LengthAwarePaginatorInterface<TKey, TValue> = LengthAwarePaginator<TKey, TValue>;
+export type LinkedAccountProvider = 'steam' | 'twitch' | 'discord' | 'xbox';
+export type OnboardingStep = 'set_credentials' | 'join_group' | 'complete';
+export type PaginatedDataCollection<TKey, TValue> = LengthAwarePaginator<TKey, TValue>;
+export type PendingGroupData = {
+name: string,
+avatar: string | null,
+};
+export type PlatformData = {
+id: string,
+name: string,
+icon: string,
+};
+export type ProviderData = {
+name: LinkedAccountProvider,
+label: string,
+color: string,
+url: string,
+linked: boolean,
+providerUserId: string | null,
+};
+export type PublicUserData = {
+id: string,
+name: string,
+avatar: string | null,
+bio: string | null,
+karma: number | null,
+karma_colour: string | null,
+};
+export type ScreenshotData = {
+id: number,
+image_id: string,
+};
+export type UserData = {
+id: string,
+name: string,
+email: string | null,
+avatar: string | null,
+bio: string | null,
+karma: number | null,
+karma_colour: string | null,
+is_admin: boolean | null,
+};

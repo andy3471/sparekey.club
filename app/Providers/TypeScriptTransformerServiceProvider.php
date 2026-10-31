@@ -19,7 +19,7 @@ class TypeScriptTransformerServiceProvider extends TypeScriptTransformerApplicat
     protected function configure(TypeScriptTransformerConfigFactory $config): void
     {
         $config
-            ->outputDirectory(resource_path('js/Types'))
+            ->outputDirectory(resource_path('js/types'))
             ->writer(new FlatModuleWriter('generated.ts'))
             ->extension(new LaravelDataTypeScriptTransformerExtension())
             ->transformer(new EnumTransformer())

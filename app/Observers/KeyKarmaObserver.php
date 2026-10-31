@@ -16,39 +16,30 @@ class KeyKarmaObserver
     {
         if ($key->wasChanged('owned_user_id') && $key->owned_user_id !== null) {
             if ($sharer = $key->createdUser) {
-                $this->karmaService->incrementKarma($sharer);
+                $this->karmaService->adjustKarma($sharer, 1);
             }
 
             if ($claimer = $key->claimedUser) {
-                $this->karmaService->decrementKarma($claimer);
+                $this->karmaService->adjustKarma($claimer, -1);
             }
         }
 
-        if ($key->wasChanged('feedback')) {
-            $sharer = $key->createdUser;
+        if (! $key->wasChanged('feedback')) {
+            return;
+        }
 
-            if (! $sharer) {
-                return;
-            }
+        $sharer = $key->createdUser;
 
-            $originalFeedback = $key->getOriginal('feedback');
-            $newFeedback      = $key->feedback;
+        if (! $sharer) {
+            return;
+        }
 
-            if ($newFeedback === KeyFeedback::DidNotWork && $originalFeedback !== KeyFeedback::DidNotWork) {
-                $this->karmaService->decrementKarma($sharer);
-            }
+        $rawOriginal = $key->getRawOriginal('feedback');
+        $from        = is_string($rawOriginal) ? KeyFeedback::tryFrom($rawOriginal) : null;
+        $delta       = KeyFeedback::sharerKarmaDeltaBetween($from, $key->feedback);
 
-            if ($originalFeedback === KeyFeedback::DidNotWork && $newFeedback !== KeyFeedback::DidNotWork) {
-                $this->karmaService->incrementKarma($sharer);
-            }
-
-            if ($newFeedback === KeyFeedback::Worked && $originalFeedback !== KeyFeedback::Worked) {
-                $this->karmaService->incrementKarma($sharer);
-            }
-
-            if ($originalFeedback === KeyFeedback::Worked && $newFeedback !== KeyFeedback::Worked) {
-                $this->karmaService->decrementKarma($sharer);
-            }
+        if ($delta !== 0) {
+            $this->karmaService->adjustKarma($sharer, $delta);
         }
     }
 }

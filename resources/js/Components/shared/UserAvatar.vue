@@ -4,8 +4,8 @@ import KarmaBadge from './KarmaBadge.vue';
 interface Props {
   avatar?: string | null;
   name: string;
-  karma?: number;
-  karmaColour?: string;
+  karma?: number | null;
+  karmaColour?: string | null;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   showKarma?: boolean;
   tooltipPosition?: 'above' | 'below';

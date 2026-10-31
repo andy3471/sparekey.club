@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue';
 import { router } from '@inertiajs/vue3';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
-import { PlatformData } from '@/Types/generated';
+import { PlatformData } from '@/types/generated';
 import games from '@/routes/games';
 import PlatformIcon from '@/Components/shared/PlatformIcon.vue';
 import { ChevronDownIcon, XMarkIcon } from '@heroicons/vue/20/solid';

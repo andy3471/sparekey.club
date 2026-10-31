@@ -23,12 +23,14 @@ it('lets a user store a key', function (): void {
         'group_id'    => $group->id,
     ])->assertRedirect();
 
-    $this->assertDatabaseHas('keys', [
-        'key'             => 'ABCD-EFGH-IJKL',
-        'platform_id'     => $platform->id,
-        'created_user_id' => $user->id,
-        'group_id'        => $group->id,
-    ]);
+    $key = Key::query()
+        ->where('platform_id', $platform->id)
+        ->where('created_user_id', $user->id)
+        ->where('group_id', $group->id)
+        ->first();
+
+    expect($key)->not->toBeNull()
+        ->and($key->key)->toBe('ABCD-EFGH-IJKL');
 });
 
 it('lets a group member view a key', function (): void {

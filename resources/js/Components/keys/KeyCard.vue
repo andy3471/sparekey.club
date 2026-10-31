@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { KeyData } from '@/Types/generated';
+import { KeyData } from '@/types/generated';
 import keyRoutes from '@/routes/keys';
 import UserAvatar from '@/Components/shared/UserAvatar.vue';
 import GroupAvatar from '@/Components/shared/GroupAvatar.vue';
@@ -28,8 +28,8 @@ defineProps<Props>();
         {{ keyData.platform?.name || 'Unknown Platform' }}
       </span>
       <KeyStatusBadge
-        :can-claim="keyData.can.claim"
-        :claim-denied-reason="keyData.can.claimDeniedReason"
+        :can-claim="keyData.can?.claim ?? false"
+        :claim-denied-reason="keyData.can?.claimDeniedReason ?? null"
       />
     </div>
 

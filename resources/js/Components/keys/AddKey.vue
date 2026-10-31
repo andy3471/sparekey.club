@@ -6,11 +6,12 @@ import AppListbox from '@/Components/ui/AppListbox.vue';
 import FormInput from '@/Components/ui/FormInput.vue';
 import FormTextarea from '@/Components/ui/FormTextarea.vue';
 import LoadingSpinner from '@/Components/ui/LoadingSpinner.vue';
-import { AutocompleteGameData, GroupData, PlatformData } from '@/Types/generated';
+import { AutocompleteGameData, GroupData, PlatformData } from '@/types/generated';
 import keys from '@/routes/keys';
 import PlatformIcon from '@/Components/shared/PlatformIcon.vue';
 import { UsersIcon, KeyIcon, PlusIcon, TicketIcon } from '@heroicons/vue/24/outline';
 import type { ComboboxItem } from '@/types/ui';
+import { autocomplete } from '@/routes';
 
 interface Props {
   platforms: PlatformData[];
@@ -123,7 +124,7 @@ const handleGameSelect = (item: ComboboxItem | null) => {
               :model-value="selectedGame"
               name="igdb_id"
               placeholder="Search for a game or DLC..."
-              url="/autocomplete"
+              :url="autocomplete.url()"
               @update:model-value="handleGameSelect"
             />
             <p class="mt-2 text-xs text-gray-500">

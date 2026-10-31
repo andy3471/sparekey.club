@@ -6,8 +6,7 @@ import GameBanner from '@/Components/shared/GameBanner.vue';
 import KeyFeedbackSection from '@/Components/keys/KeyFeedbackSection.vue';
 import SharedByCard from '@/Components/keys/SharedByCard.vue';
 import ConfirmModal from '@/Components/ui/ConfirmModal.vue';
-import { KeyData, KeyFeedback } from '@/Types/generated';
-import type { FlashProps } from '@/types/global';
+import { KeyData, KeyFeedback } from '@/types/generated';
 import { claim as claimRoute, feedback as feedbackRoute, show as showRoute } from '@/routes/keys';
 import { useCountdown } from '@/Composables/useCountdown';
 import PlatformIcon from '@/Components/shared/PlatformIcon.vue';
@@ -20,7 +19,7 @@ interface Props {
 const props = defineProps<Props>();
 const keyData = computed(() => props.keyData);
 const page = usePage();
-const flash = (page.props.flash as FlashProps | undefined) ?? {};
+const flash = page.props.flash;
 const copied = ref(false);
 
 const form = useForm({ id: keyData.value.id });

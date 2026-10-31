@@ -1,0 +1,805 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Game\:\:\$cover\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/DataTransferObjects/Games/GameData.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Game\:\:\$genres\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/DataTransferObjects/Games/GameData.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Game\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/DataTransferObjects/Games/GameData.php
+
+		-
+			message: '#^Cannot call method all\(\) on array\<App\\DataTransferObjects\\Games\\GenreData\>\|Illuminate\\Contracts\\Pagination\\CursorPaginator\|Illuminate\\Contracts\\Pagination\\Paginator\|Illuminate\\Pagination\\AbstractCursorPaginator\|Illuminate\\Pagination\\AbstractPaginator\|Illuminate\\Support\\Enumerable\<\(int\|string\), App\\DataTransferObjects\\Games\\GenreData\>\|Spatie\\LaravelData\\CursorPaginatedDataCollection\<\(int\|string\), App\\DataTransferObjects\\Games\\GenreData\>\|Spatie\\LaravelData\\DataCollection\<\(int\|string\), App\\DataTransferObjects\\Games\\GenreData\>\|Spatie\\LaravelData\\PaginatedDataCollection\<\(int\|string\), App\\DataTransferObjects\\Games\\GenreData\>\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/DataTransferObjects/Games/GameData.php
+
+		-
+			message: '#^Parameter \#1 \$user of static method App\\Support\\ActiveGroup\:\:userGroupIds\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/DataTransferObjects/Games/GameData.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Genre\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/DataTransferObjects/Games/GenreData.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Genre\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/DataTransferObjects/Games/GenreData.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Screenshot\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/DataTransferObjects/Games/ScreenshotData.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Screenshot\:\:\$image_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/DataTransferObjects/Games/ScreenshotData.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>update" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/DataTransferObjects/Groups/GroupData.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Game\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/DataTransferObjects/Search/AutocompleteGameData.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between int and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: app/DataTransferObjects/Users/PublicUserData.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between int and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: app/DataTransferObjects/Users/UserData.php
+
+		-
+			message: '#^Call to an undefined method Laravel\\Socialite\\Contracts\\Provider\:\:redirectUrl\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Auth/HandleProviderCallbackController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Http\\Controllers\\Auth\\HandleProviderCallbackController\:\:linkAccount\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Auth/HandleProviderCallbackController.php
+
+		-
+			message: '#^Parameter \#1 \$user of static method Illuminate\\Support\\Facades\\Auth\:\:login\(\) expects Illuminate\\Contracts\\Auth\\Authenticatable, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Auth/HandleProviderCallbackController.php
+
+		-
+			message: '#^Property App\\Http\\Controllers\\Auth\\LoginController\:\:\$redirectTo has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Http/Controllers/Auth/LoginController.php
+
+		-
+			message: '#^Call to an undefined method Laravel\\Socialite\\Contracts\\Provider\:\:redirectUrl\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Auth/RedirectToProviderController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Auth\\RegisterController\:\:create\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Controllers/Auth/RegisterController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Auth\\RegisterController\:\:validator\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/Auth/RegisterController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Auth\\RegisterController\:\:validator\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Controllers/Auth/RegisterController.php
+
+		-
+			message: '#^Property App\\Http\\Controllers\\Auth\\RegisterController\:\:\$redirectTo has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Http/Controllers/Auth/RegisterController.php
+
+		-
+			message: '#^Property App\\Http\\Controllers\\Auth\\ResetPasswordController\:\:\$redirectTo has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Http/Controllers/Auth/ResetPasswordController.php
+
+		-
+			message: '#^Property App\\Http\\Controllers\\Auth\\VerificationController\:\:\$redirectTo has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Http/Controllers/Auth/VerificationController.php
+
+		-
+			message: '#^Anonymous function should return \(Illuminate\\Contracts\\Pagination\\CursorPaginator&Spatie\\LaravelData\\DataCollection\)\|\(Illuminate\\Contracts\\Pagination\\Paginator&Spatie\\LaravelData\\DataCollection\)\|\(Illuminate\\Support\\Enumerable\<\(int\|string\), App\\DataTransferObjects\\Keys\\KeyData\>&Spatie\\LaravelData\\DataCollection\)\|Spatie\\LaravelData\\DataCollection\<\(int\|string\), App\\DataTransferObjects\\Keys\\KeyData\> but returns Illuminate\\Contracts\\Pagination\\CursorPaginator\|Illuminate\\Contracts\\Pagination\\Paginator\|Illuminate\\Support\\Enumerable\<\(int\|string\), App\\DataTransferObjects\\Keys\\KeyData\>\|Spatie\\LaravelData\\DataCollection\<\(int\|string\), App\\DataTransferObjects\\Keys\\KeyData\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Http/Controllers/Games/GameController.php
+
+		-
+			message: '#^Cannot call method loadMissing\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: app/Http/Controllers/Games/GameController.php
+
+		-
+			message: '#^Parameter \#1 \$user of static method App\\Support\\ActiveGroup\:\:userGroupIds\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Http/Controllers/Games/GameController.php
+
+		-
+			message: '#^Cannot access property \$onboarded_at on App\\Models\\User\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Http/Controllers/Groups/AcceptGroupInviteController.php
+
+		-
+			message: '#^Cannot call method loadMissing\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Groups/AcceptGroupInviteController.php
+
+		-
+			message: '#^Cannot call method onboardingStep\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Groups/AcceptGroupInviteController.php
+
+		-
+			message: '#^Parameter \#1 \$route of function to_route expects BackedEnum\|string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Groups/AcceptGroupInviteController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Models\\Group\:\:hasMember\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Groups/AcceptGroupInviteController.php
+
+		-
+			message: '#^Cannot access property \$onboarded_at on App\\Models\\User\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Http/Controllers/Groups/ConfirmGroupInviteController.php
+
+		-
+			message: '#^Cannot call method onboardingStep\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Groups/ConfirmGroupInviteController.php
+
+		-
+			message: '#^Parameter \#1 \$route of function to_route expects BackedEnum\|string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Groups/ConfirmGroupInviteController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Models\\Group\:\:hasMember\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Groups/ConfirmGroupInviteController.php
+
+		-
+			message: '#^Parameter \#2 \$user of method App\\Actions\\Groups\\JoinGroup\:\:handle\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Http/Controllers/Groups/ConfirmGroupInviteController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Group\:\:\$pivot\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Anonymous function never returns Illuminate\\Pagination\\AbstractCursorPaginator so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Anonymous function never returns Illuminate\\Pagination\\AbstractPaginator so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Anonymous function never returns Spatie\\LaravelData\\CursorPaginatedDataCollection so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Anonymous function never returns Spatie\\LaravelData\\DataCollection so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Anonymous function never returns Spatie\\LaravelData\\PaginatedDataCollection so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Anonymous function never returns array so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 2
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Cannot access property \$onboarded_at on App\\Models\\User\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Cannot call method groups\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Cannot call method loadMissing\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Cannot call method update\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Models\\Group\:\:addMember\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Models\\Group\:\:hasMember\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Models\\Group\:\:memberRole\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Group\>\:\:whereNotMember\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Groups/GroupController.php
+
+		-
+			message: '#^Cannot access property \$onboarded_at on App\\Models\\User\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Http/Controllers/Groups/JoinGroupController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Models\\Group\:\:hasMember\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Groups/JoinGroupController.php
+
+		-
+			message: '#^Parameter \#2 \$user of method App\\Actions\\Groups\\JoinGroup\:\:handle\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Groups/JoinGroupController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Group\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Group\>\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/Groups/SwitchGroupController.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\Group\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Group\>\:\:hasMember\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Groups/SwitchGroupController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Models\\Key\:\:claim\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Keys/ClaimKeyController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Group\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Group\>\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/Keys/KeyController.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\Group\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Group\>\:\:hasMember\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Keys/KeyController.php
+
+		-
+			message: '#^Cannot access property \$id on App\\Models\\Game\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Http/Controllers/Keys/KeyController.php
+
+		-
+			message: '#^Cannot call method can\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Keys/KeyController.php
+
+		-
+			message: '#^Cannot call method groups\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Keys/KeyController.php
+
+		-
+			message: '#^Cannot call method loadMissing\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Keys/KeyController.php
+
+		-
+			message: '#^Cannot call method sharedKeys\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Keys/KeyController.php
+
+		-
+			message: '#^Anonymous function never returns array so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Http/Controllers/Keys/ListClaimedKeysController.php
+
+		-
+			message: '#^Cannot call method claimedKeys\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Keys/ListClaimedKeysController.php
+
+		-
+			message: '#^Cannot call method loadMissing\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Keys/ListClaimedKeysController.php
+
+		-
+			message: '#^Anonymous function never returns array so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Http/Controllers/Keys/ListSharedKeysController.php
+
+		-
+			message: '#^Cannot call method loadMissing\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Keys/ListSharedKeysController.php
+
+		-
+			message: '#^Cannot call method sharedKeys\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Keys/ListSharedKeysController.php
+
+		-
+			message: '#^Cannot access property \$name on App\\Models\\User\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Http/Controllers/Onboarding/OnboardingCredentialsController.php
+
+		-
+			message: '#^Cannot call method onboardingStep\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: app/Http/Controllers/Onboarding/OnboardingCredentialsController.php
+
+		-
+			message: '#^Cannot call method update\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Onboarding/OnboardingCredentialsController.php
+
+		-
+			message: '#^Parameter \#1 \$route of function to_route expects BackedEnum\|string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Onboarding/OnboardingCredentialsController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Actions\\Groups\\JoinPendingInvite\:\:consume\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Onboarding/OnboardingCredentialsController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Http\\Controllers\\Onboarding\\OnboardingCredentialsController\:\:redirectToCurrentStep\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Onboarding/OnboardingCredentialsController.php
+
+		-
+			message: '#^Cannot call method groups\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php
+
+		-
+			message: '#^Cannot call method onboardingStep\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Actions\\Groups\\JoinPendingInvite\:\:consume\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Group\>\:\:whereNotMember\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php
+
+		-
+			message: '#^Cannot call method update\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Onboarding/SkipOnboardingGroupController.php
+
+		-
+			message: '#^Cannot call method loadMissing\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Users/UserController.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Models\\Group\:\:hasMember\(\) expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Users/UserController.php
+
+		-
+			message: '#^Parameter \#1 \$route of function to_route expects BackedEnum\|string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Middleware/EnsureOnboardingComplete.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Group\:\:\$pivot\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Middleware/HandleInertiaRequests.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\Group\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Group\>\:\:hasMember\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Middleware/HandleInertiaRequests.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\Group\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Group\>\:\:memberRole\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Middleware/HandleInertiaRequests.php
+
+		-
+			message: '#^Parameter \#1 \$group of static method App\\DataTransferObjects\\Groups\\GroupData\:\:fromModel\(\) expects App\\Models\\Group, App\\Models\\Group\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Group\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Middleware/HandleInertiaRequests.php
+
+		-
+			message: '#^Method App\\Http\\Requests\\Auth\\LoginRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Requests/Auth/LoginRequest.php
+
+		-
+			message: '#^Method App\\Http\\Requests\\Groups\\StoreGroupRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Requests/Groups/StoreGroupRequest.php
+
+		-
+			message: '#^Method App\\Http\\Requests\\Groups\\UpdateGroupRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Requests/Groups/UpdateGroupRequest.php
+
+		-
+			message: '#^Method App\\Http\\Requests\\KeyFeedbackRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Requests/KeyFeedbackRequest.php
+
+		-
+			message: '#^Cannot access property \$id on App\\Models\\User\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Http/Requests/Onboarding/StoreOnboardingCredentialsRequest.php
+
+		-
+			message: '#^Method App\\Http\\Requests\\ProfileUpdateRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Requests/ProfileUpdateRequest.php
+
+		-
+			message: '#^Method App\\Http\\Requests\\StoreGameKeyRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Requests/StoreGameKeyRequest.php
+
+		-
+			message: '#^Method App\\Http\\Requests\\UpdateUserRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Requests/UpdateUserRequest.php
+
+		-
+			message: '#^Method App\\Mail\\ResetPassword\:\:__construct\(\) has parameter \$demo with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Mail/ResetPassword.php
+
+		-
+			message: '#^Parameter \#1 \$view of method Illuminate\\Mail\\Mailable\:\:view\(\) expects view\-string, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Mail/ResetPassword.php
+
+		-
+			message: '#^Property App\\Mail\\ResetPassword\:\:\$demo has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Mail/ResetPassword.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Game\:\:\$aggregated_rating\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Game.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Game\:\:\$aggregated_rating_count\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Game.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Game\:\:\$cover\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Game.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Game\:\:\$genres\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Game.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Game\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Models/Game.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Game\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Game.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Game\:\:\$parent_game\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Game.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Game\:\:\$screenshots\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Game.php
+
+		-
+			message: '#^Access to an undefined property MarcReichel\\IGDBLaravel\\Models\\Game\:\:\$summary\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Game.php
+
+		-
+			message: '#^Dead catch \- MarcReichel\\IGDBLaravel\\Exceptions\\AuthenticationException is never thrown in the try block\.$#'
+			identifier: catch.neverThrown
+			count: 1
+			path: app/Models/Game.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Group\:\:\$pivot\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Group.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Relations\\Pivot\:\:\$role\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Group.php
+
+		-
+			message: '#^Class App\\Models\\Group uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Group.php
+
+		-
+			message: '#^Cannot call method isPast\(\) on string\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Models/GroupInvitation.php
+
+		-
+			message: '#^Class App\\Models\\GroupInvitation uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/GroupInvitation.php
+
+		-
+			message: '#^Class App\\Models\\Key uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Key.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Models/Media.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between int and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: app/Models/Media.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Relations\\Pivot\:\:\$role\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Class App\\Models\\User uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Notifications\\Notification\:\:toDiscordWebhook\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Notifications/Channels/DiscordWebhookChannel.php
+
+		-
+			message: '#^Call to an undefined method object\:\:getKey\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Notifications/Channels/DiscordWebhookChannel.php
+
+		-
+			message: '#^Call to an undefined method object\:\:routeNotificationForDiscordWebhook\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Notifications/Channels/DiscordWebhookChannel.php
+
+		-
+			message: '#^Cannot access property \$name on App\\Models\\Platform\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Notifications/KeyAdded.php
+
+		-
+			message: '#^Cannot access property \$name on App\\Models\\Platform\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Notifications/KeyClaimed.php
+
+		-
+			message: '#^Parameter \#2 \$claimedBy of class App\\Notifications\\KeyClaimed constructor expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Observers/KeyNotificationObserver.php
+
+		-
+			message: '#^Parameter \#2 \$user of class App\\Notifications\\KeyAdded constructor expects App\\Models\\User, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Observers/KeyNotificationObserver.php
+
+		-
+			message: '#^Parameter \#3 \$game of class App\\Notifications\\KeyAdded constructor expects App\\Models\\Game, App\\Models\\Game\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Observers/KeyNotificationObserver.php
+
+		-
+			message: '#^Parameter \#3 \$game of class App\\Notifications\\KeyClaimed constructor expects App\\Models\\Game, App\\Models\\Game\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Observers/KeyNotificationObserver.php
+
+		-
+			message: '#^Cannot access property \$claim_cooldown_minutes on App\\Models\\Group\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Policies/KeyPolicy.php
+
+		-
+			message: '#^Cannot access property \$min_karma on App\\Models\\Group\|null\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: app/Policies/KeyPolicy.php
+
+		-
+			message: '#^Parameter \#1 \$group of method App\\Models\\User\:\:isMemberOf\(\) expects App\\Models\\Group, App\\Models\\Group\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Policies/KeyPolicy.php
+
+		-
+			message: '#^Parameter \#2 \$group of method App\\Policies\\KeyPolicy\:\:cooldownEndsAt\(\) expects App\\Models\\Group, App\\Models\\Group\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Policies/KeyPolicy.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between string and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: app/Policies/KeyPolicy.php

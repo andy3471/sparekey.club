@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppLayout from '@/Layouts/AppLayout.vue';
 import GameList from '@/Components/games/GameList.vue';
-import { GameData } from '@/Types/generated';
+import { GameData } from '@/types/generated';
 import type { Paginated } from '@/types/global';
 
 interface Props {

@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Groups;
 
+use App\Actions\Groups\JoinGroup;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
 use Illuminate\Http\RedirectResponse;
 
 class JoinGroupController extends Controller
 {
-    public function __invoke(Group $group): RedirectResponse
+    public function __invoke(Group $group, JoinGroup $joinGroup): RedirectResponse
     {
         $user = auth()->user();
 
@@ -22,9 +23,7 @@ class JoinGroupController extends Controller
             return back()->with('error', 'This group is private. You need an invitation to join.');
         }
 
-        $group->addMember($user);
-
-        session(['active_group_id' => $group->id]);
+        $joinGroup->handle($group, $user);
 
         if (! $user->onboarded_at) {
             return back()->with('message', 'You joined '.$group->name.'!');

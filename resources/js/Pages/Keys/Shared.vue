@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import UserKeyCard from '@/Components/keys/UserKeyCard.vue';
 import EmptyState from '@/Components/shared/EmptyState.vue';
-import { KeyData } from '@/Types/generated';
+import { KeyData } from '@/types/generated';
 import type { Paginated } from '@/types/global';
 import { TicketIcon } from '@heroicons/vue/24/outline';
 

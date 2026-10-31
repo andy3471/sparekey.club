@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Auth\HandleProviderCallbackController::__invoke
-* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:20
+* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:21
 * @route '/auth/{provider}/callback'
 */
 const HandleProviderCallbackController = (args: { provider: string | number } | [provider: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ HandleProviderCallbackController.definition = {
 
 /**
 * @see \App\Http\Controllers\Auth\HandleProviderCallbackController::__invoke
-* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:20
+* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:21
 * @route '/auth/{provider}/callback'
 */
 HandleProviderCallbackController.url = (args: { provider: string | number } | [provider: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -43,7 +43,7 @@ HandleProviderCallbackController.url = (args: { provider: string | number } | [p
 
 /**
 * @see \App\Http\Controllers\Auth\HandleProviderCallbackController::__invoke
-* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:20
+* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:21
 * @route '/auth/{provider}/callback'
 */
 HandleProviderCallbackController.get = (args: { provider: string | number } | [provider: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -53,7 +53,7 @@ HandleProviderCallbackController.get = (args: { provider: string | number } | [p
 
 /**
 * @see \App\Http\Controllers\Auth\HandleProviderCallbackController::__invoke
-* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:20
+* @see app/Http/Controllers/Auth/HandleProviderCallbackController.php:21
 * @route '/auth/{provider}/callback'
 */
 HandleProviderCallbackController.head = (args: { provider: string | number } | [provider: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({

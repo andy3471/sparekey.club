@@ -16,5 +16,13 @@ frankenphp
 frankenphp-worker.php
 /config/composer
 /data
-
 **/caddy
+/.idea
+/_ide_helper.php
+/_ide_helper_models.php
+/.phpstorm.meta.php
+/config/psysh
+/config/caddy/autosave.json
+.phpunit.cache
+/tests/Browser/screenshots
+/tests/Browser/console

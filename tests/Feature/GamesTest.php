@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 use App\Models\Game;
 use App\Models\User;
+use Illuminate\Support\Facades\Http;
 
 it('lets an authenticated user view a game page', function (): void {
+    Http::fake();
+
     $game = Game::create(['igdb_id' => fake()->unique()->randomNumber(5)]);
 
     $this->actingAs(User::factory()->create())

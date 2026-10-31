@@ -3,7 +3,7 @@ import { Head, Link, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import UserAvatar from '@/Components/shared/UserAvatar.vue';
 import GroupAvatar from '@/Components/shared/GroupAvatar.vue';
-import { UserData, GroupData } from '@/Types/generated';
+import { UserData, PublicUserData, GroupData } from '@/types/generated';
 import type { AuthUser } from '@/types/global';
 import users from '@/routes/users';
 import keys from '@/routes/keys';
@@ -16,7 +16,7 @@ import {
 } from '@heroicons/vue/24/outline';
 
 interface Props {
-  user: UserData;
+  user: UserData | PublicUserData;
   groups: GroupData[];
 }
 

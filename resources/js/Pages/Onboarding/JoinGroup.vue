@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { Head, Link, router } from '@inertiajs/vue3';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
+import groups from '@/routes/groups';
+import onboardingGroup from '@/routes/onboarding/group';
 
 interface PublicGroup {
   id: string;
@@ -19,13 +21,13 @@ interface Props {
 const props = defineProps<Props>();
 
 const joinGroup = (groupId: string) => {
-  router.post(`/groups/${groupId}/join`, {}, {
+  router.post(groups.join.url(groupId), {}, {
     preserveScroll: true,
   });
 };
 
 const finish = () => {
-  router.post('/onboarding/group/skip');
+  router.post(onboardingGroup.skip.url());
 };
 </script>
 
@@ -130,7 +132,7 @@ const finish = () => {
       </button>
 
       <Link
-        href="/groups/create"
+        :href="groups.create.url()"
         class="block w-full text-center bg-dark-700 hover:bg-dark-600 text-white font-medium py-2.5 rounded-lg border border-dark-600 transition-colors text-sm"
       >
         Create a Group

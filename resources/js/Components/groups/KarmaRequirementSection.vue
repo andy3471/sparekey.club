@@ -3,14 +3,14 @@ import FormInput from '@/Components/ui/FormInput.vue';
 import { BoltIcon } from '@heroicons/vue/24/outline';
 
 interface Props {
-  modelValue: number | string;
+  modelValue: number | string | null;
   error?: string;
 }
 
 defineProps<Props>();
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string | number];
+  'update:modelValue': [value: string | number | null];
 }>();
 </script>
 

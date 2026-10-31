@@ -19,16 +19,17 @@ class DiscordWebhookChannel
             return;
         }
 
-        /** @var \App\Notifications\Contracts\DiscordWebhookNotification $notification */
-        $payload = $notification->toDiscordWebhook($notifiable);
+        /** @var array<string, mixed> $payload */
+        $payload                     = $notification->toDiscordWebhook($notifiable);
+        $payload['allowed_mentions'] = ['parse' => []];
 
         $response = Http::post($webhookUrl, $payload);
 
         if ($response->failed()) {
             Log::warning('Discord webhook notification failed', [
-                'status'  => $response->status(),
-                'url'     => $webhookUrl,
-                'payload' => $payload,
+                'status'          => $response->status(),
+                'notifiable_type' => $notifiable::class,
+                'notifiable_id'   => $notifiable->getKey(),
             ]);
         }
     }

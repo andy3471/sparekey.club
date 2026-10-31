@@ -94,15 +94,35 @@ it('prevents a user from joining a private group', function (): void {
     expect($group->fresh()->hasMember($user->fresh()))->toBeFalse();
 });
 
-it('lets a user join via invite code', function (): void {
+it('shows a confirm page for invite links without joining on GET', function (): void {
     $user  = User::factory()->create();
     $group = Group::factory()->private()->create();
 
     $this->actingAs($user)
         ->get("/invite/{$group->invite_code}")
+        ->assertOk()
+        ->assertInertia(fn ($page) => $page->component('Groups/ConfirmInvite'));
+
+    expect($group->fresh()->hasMember($user->fresh()))->toBeFalse();
+});
+
+it('lets a user join via invite code on POST', function (): void {
+    $user  = User::factory()->create();
+    $group = Group::factory()->private()->create();
+
+    $this->actingAs($user)
+        ->post("/invite/{$group->invite_code}")
         ->assertRedirect();
 
     expect($group->fresh()->hasMember($user->fresh()))->toBeTrue();
+});
+
+it('stores a pending invite for guests on GET', function (): void {
+    $group = Group::factory()->private()->create();
+
+    $this->get("/invite/{$group->invite_code}")
+        ->assertRedirect('/register')
+        ->assertSessionHas('pending_invite_code', $group->invite_code);
 });
 
 it('lets a member leave a group', function (): void {

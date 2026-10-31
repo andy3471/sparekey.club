@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\DataTransferObjects\Groups;
 
 use App\Models\Group;
+use Illuminate\Support\Facades\Gate;
 use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
@@ -30,6 +31,9 @@ class GroupData extends Data
 
     public static function fromModel(Group $group, ?string $role = null): self
     {
+        $can       = auth()->check() ? GroupCanData::fromModel($group) : null;
+        $canManage = $can?->update ?? Gate::allows('update', $group);
+
         return new self(
             id: (string) $group->id,
             name: $group->name,
@@ -37,14 +41,14 @@ class GroupData extends Data
             description: $group->description,
             owner_id: (string) $group->owner_id,
             is_public: $group->is_public,
-            invite_code: $group->invite_code,
+            invite_code: $canManage ? $group->invite_code : null,
             member_count: array_key_exists('members_count', $group->getAttributes()) ? (int) $group->members_count : null,
             role: $role,
             avatar: $group->avatar_url,
-            discord_webhook_url: $group->discord_webhook_url,
+            discord_webhook_url: $canManage ? $group->discord_webhook_url : null,
             min_karma: $group->min_karma,
             claim_cooldown_minutes: $group->claim_cooldown_minutes,
-            can: auth()->check() ? GroupCanData::fromModel($group) : null,
+            can: $can,
         );
     }
 }

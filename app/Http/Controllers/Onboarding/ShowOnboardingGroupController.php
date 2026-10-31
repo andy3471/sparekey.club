@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Onboarding;
 
+use App\Actions\Groups\JoinPendingInvite;
 use App\Enums\OnboardingStep;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
@@ -14,7 +15,7 @@ use Inertia\Response;
 
 class ShowOnboardingGroupController extends Controller
 {
-    public function __invoke(Request $request): Response|RedirectResponse
+    public function __invoke(Request $request, JoinPendingInvite $joinPendingInvite): Response|RedirectResponse
     {
         $user = $request->user();
 
@@ -26,8 +27,7 @@ class ShowOnboardingGroupController extends Controller
             return to_route('onboarding.credentials');
         }
 
-        // If there's a pending invite, auto-join and complete onboarding
-        if (($redirect = $this->tryJoinPendingInvite($user)) instanceof RedirectResponse) {
+        if (($redirect = $joinPendingInvite->consume($user)) instanceof RedirectResponse) {
             return $redirect;
         }
 
@@ -52,31 +52,5 @@ class ShowOnboardingGroupController extends Controller
             'publicGroups'     => $publicGroups,
             'joinedGroupCount' => $user->groups()->count(),
         ]);
-    }
-
-    /** If there's a pending invite code in session, join that group and mark onboarding complete. */
-    private function tryJoinPendingInvite(\App\Models\User $user): ?RedirectResponse
-    {
-        $code = session()->pull('pending_invite_code');
-
-        if (! $code) {
-            return null;
-        }
-
-        $group = Group::where('invite_code', $code)->first();
-
-        if (! $group) {
-            return null;
-        }
-
-        if (! $group->hasMember($user)) {
-            $group->addMember($user);
-        }
-
-        session(['active_group_id' => $group->id]);
-        $user->update(['onboarded_at' => now()]);
-
-        return to_route('groups.show', $group)
-            ->with('message', 'Welcome to Sparekey! You joined '.$group->name.'.');
     }
 }

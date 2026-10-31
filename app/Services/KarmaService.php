@@ -43,20 +43,27 @@ class KarmaService
 
     public function incrementKarma(User $user): void
     {
-        if (Cache::has(self::CACHE_PREFIX.$user->id)) {
-            Cache::increment(self::CACHE_PREFIX.$user->id);
-        } else {
-            Cache::put(self::CACHE_PREFIX.$user->id, $this->calculateKarma($user), self::CACHE_TTL_SECONDS);
-        }
+        $this->adjustKarma($user, 1);
     }
 
     public function decrementKarma(User $user): void
     {
-        if (Cache::has(self::CACHE_PREFIX.$user->id)) {
-            Cache::decrement(self::CACHE_PREFIX.$user->id);
-        } else {
-            Cache::put(self::CACHE_PREFIX.$user->id, $this->calculateKarma($user), self::CACHE_TTL_SECONDS);
+        $this->adjustKarma($user, -1);
+    }
+
+    public function adjustKarma(User $user, int $delta): void
+    {
+        if ($delta === 0) {
+            return;
         }
+
+        if (Cache::has(self::CACHE_PREFIX.$user->id)) {
+            Cache::increment(self::CACHE_PREFIX.$user->id, $delta);
+
+            return;
+        }
+
+        Cache::put(self::CACHE_PREFIX.$user->id, $this->calculateKarma($user), self::CACHE_TTL_SECONDS);
     }
 
     public function recalculateKarma(User $user): int

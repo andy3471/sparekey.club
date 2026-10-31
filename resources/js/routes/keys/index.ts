@@ -162,40 +162,6 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \App\Http\Controllers\Keys\KeyController::store
-* @see app/Http/Controllers/Keys/KeyController.php:43
-* @route '/keys'
-*/
-export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: store.url(options),
-    method: 'post',
-})
-
-store.definition = {
-    methods: ["post"],
-    url: '/keys',
-} satisfies RouteDefinition<["post"]>
-
-/**
-* @see \App\Http\Controllers\Keys\KeyController::store
-* @see app/Http/Controllers/Keys/KeyController.php:43
-* @route '/keys'
-*/
-store.url = (options?: RouteQueryOptions) => {
-    return store.definition.url + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\Keys\KeyController::store
-* @see app/Http/Controllers/Keys/KeyController.php:43
-* @route '/keys'
-*/
-store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: store.url(options),
-    method: 'post',
-})
-
-/**
 * @see \App\Http\Controllers\Keys\KeyController::show
 * @see app/Http/Controllers/Keys/KeyController.php:68
 * @route '/keys/{key}'
@@ -264,6 +230,40 @@ show.head = (args: { key: string | { id: string } } | [key: string | { id: strin
 })
 
 /**
+* @see \App\Http\Controllers\Keys\KeyController::store
+* @see app/Http/Controllers/Keys/KeyController.php:43
+* @route '/keys'
+*/
+export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: store.url(options),
+    method: 'post',
+})
+
+store.definition = {
+    methods: ["post"],
+    url: '/keys',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\Keys\KeyController::store
+* @see app/Http/Controllers/Keys/KeyController.php:43
+* @route '/keys'
+*/
+store.url = (options?: RouteQueryOptions) => {
+    return store.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Keys\KeyController::store
+* @see app/Http/Controllers/Keys/KeyController.php:43
+* @route '/keys'
+*/
+store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: store.url(options),
+    method: 'post',
+})
+
+/**
 * @see \App\Http\Controllers\Keys\KeyController::destroy
 * @see app/Http/Controllers/Keys/KeyController.php:80
 * @route '/keys/{key}'
@@ -327,8 +327,8 @@ const keys = {
     claimed: Object.assign(claimed, claimed),
     shared: Object.assign(shared, shared),
     create: Object.assign(create, create),
-    store: Object.assign(store, store),
     show: Object.assign(show, show),
+    store: Object.assign(store, store),
     destroy: Object.assign(destroy, destroy),
 }
 

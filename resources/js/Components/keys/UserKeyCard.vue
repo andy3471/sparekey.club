@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { KeyData } from '@/Types/generated';
+import { KeyData } from '@/types/generated';
 import keyRoutes from '@/routes/keys';
 import GroupAvatar from '@/Components/shared/GroupAvatar.vue';
 import GameImagePlaceholder from '@/Components/shared/GameImagePlaceholder.vue';
@@ -66,6 +66,7 @@ defineProps<Props>();
           class="flex items-center gap-2"
         >
           <img
+            v-if="keyData.claimedUser.avatar"
             :src="keyData.claimedUser.avatar"
             :alt="keyData.claimedUser.name"
             class="w-5 h-5 rounded-full flex-shrink-0"
@@ -79,6 +80,7 @@ defineProps<Props>();
           class="flex items-center gap-2"
         >
           <img
+            v-if="keyData.createdUser.avatar"
             :src="keyData.createdUser.avatar"
             :alt="keyData.createdUser.name"
             class="w-5 h-5 rounded-full flex-shrink-0"

@@ -4,11 +4,12 @@ import AuthLayout from '@/Layouts/AuthLayout.vue';
 import FormInput from '@/Components/ui/FormInput.vue';
 import LoadingSpinner from '@/Components/ui/LoadingSpinner.vue';
 import PendingInviteBanner from '@/Components/onboarding/PendingInviteBanner.vue';
-import type { PendingGroup } from '@/Types/onboarding';
+import type { PendingGroupData } from '@/types/generated';
+import credentials from '@/routes/onboarding/credentials';
 
 interface Props {
   name: string;
-  pendingGroup: PendingGroup | null;
+  pendingGroup: PendingGroupData | null;
 }
 
 defineProps<Props>();
@@ -20,7 +21,7 @@ const form = useForm({
 });
 
 const submit = () => {
-  form.post('/onboarding/credentials', {
+  form.post(credentials.store.url(), {
     onFinish: () => form.reset('password', 'password_confirmation'),
   });
 };

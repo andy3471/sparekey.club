@@ -6,4 +6,5 @@ export interface ComboboxItem {
 export interface ListboxOptionItem {
   id: string;
   name: string;
+  icon?: string;
 }

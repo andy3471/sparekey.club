@@ -179,10 +179,8 @@ it('lets an owner update the group discord webhook url', function (): void {
             'discord_webhook_url' => 'https://discord.com/api/webhooks/123456/abcdef',
         ])->assertRedirect();
 
-    $this->assertDatabaseHas('groups', [
-        'id'                  => $group->id,
-        'discord_webhook_url' => 'https://discord.com/api/webhooks/123456/abcdef',
-    ]);
+    expect($group->fresh()->discord_webhook_url)
+        ->toBe('https://discord.com/api/webhooks/123456/abcdef');
 });
 
 it('lets an owner clear the discord webhook url', function (): void {

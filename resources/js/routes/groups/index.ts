@@ -1,8 +1,9 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
+import joinViaCodeFc3e59 from './join-via-code'
 import members from './members'
 /**
 * @see \App\Http\Controllers\Groups\AcceptGroupInviteController::__invoke
-* @see app/Http/Controllers/Groups/AcceptGroupInviteController.php:14
+* @see app/Http/Controllers/Groups/AcceptGroupInviteController.php:17
 * @route '/invite/{code}'
 */
 export const joinViaCode = (args: { code: string | number } | [code: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -17,7 +18,7 @@ joinViaCode.definition = {
 
 /**
 * @see \App\Http\Controllers\Groups\AcceptGroupInviteController::__invoke
-* @see app/Http/Controllers/Groups/AcceptGroupInviteController.php:14
+* @see app/Http/Controllers/Groups/AcceptGroupInviteController.php:17
 * @route '/invite/{code}'
 */
 joinViaCode.url = (args: { code: string | number } | [code: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -44,7 +45,7 @@ joinViaCode.url = (args: { code: string | number } | [code: string | number ] | 
 
 /**
 * @see \App\Http\Controllers\Groups\AcceptGroupInviteController::__invoke
-* @see app/Http/Controllers/Groups/AcceptGroupInviteController.php:14
+* @see app/Http/Controllers/Groups/AcceptGroupInviteController.php:17
 * @route '/invite/{code}'
 */
 joinViaCode.get = (args: { code: string | number } | [code: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -54,7 +55,7 @@ joinViaCode.get = (args: { code: string | number } | [code: string | number ] | 
 
 /**
 * @see \App\Http\Controllers\Groups\AcceptGroupInviteController::__invoke
-* @see app/Http/Controllers/Groups/AcceptGroupInviteController.php:14
+* @see app/Http/Controllers/Groups/AcceptGroupInviteController.php:17
 * @route '/invite/{code}'
 */
 joinViaCode.head = (args: { code: string | number } | [code: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -655,7 +656,7 @@ switchMethod.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 })
 
 const groups = {
-    joinViaCode: Object.assign(joinViaCode, joinViaCode),
+    joinViaCode: Object.assign(joinViaCode, joinViaCodeFc3e59),
     index: Object.assign(index, index),
     create: Object.assign(create, create),
     store: Object.assign(store, store),

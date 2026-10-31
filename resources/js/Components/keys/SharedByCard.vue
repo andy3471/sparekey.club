@@ -2,10 +2,11 @@
 import { Link } from '@inertiajs/vue3';
 import UserAvatar from '@/Components/shared/UserAvatar.vue';
 import GroupAvatar from '@/Components/shared/GroupAvatar.vue';
-import { UserData, GroupData } from '@/Types/generated';
+import { PublicUserData, GroupData } from '@/types/generated';
+import users from '@/routes/users';
 
 interface Props {
-  user: UserData;
+  user: PublicUserData;
   group?: GroupData | null;
 }
 
@@ -19,7 +20,7 @@ defineProps<Props>();
     </h2>
     <div class="flex flex-col items-center text-center min-w-0">
       <Link
-        :href="`/users/${user.id}`"
+        :href="users.show.url(user.id)"
         class="relative mb-4 flex-shrink-0"
       >
         <UserAvatar
@@ -33,7 +34,7 @@ defineProps<Props>();
       </Link>
       <h3 class="text-lg font-semibold text-white mb-1 max-w-full truncate">
         <Link
-          :href="`/users/${user.id}`"
+          :href="users.show.url(user.id)"
           class="text-accent-400 hover:text-accent-300 transition-colors"
         >
           {{ user.name }}

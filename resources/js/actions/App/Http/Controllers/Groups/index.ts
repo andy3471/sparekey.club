@@ -1,4 +1,5 @@
 import AcceptGroupInviteController from './AcceptGroupInviteController'
+import ConfirmGroupInviteController from './ConfirmGroupInviteController'
 import GroupController from './GroupController'
 import JoinGroupController from './JoinGroupController'
 import LeaveGroupController from './LeaveGroupController'
@@ -8,6 +9,7 @@ import SwitchGroupController from './SwitchGroupController'
 
 const Groups = {
     AcceptGroupInviteController: Object.assign(AcceptGroupInviteController, AcceptGroupInviteController),
+    ConfirmGroupInviteController: Object.assign(ConfirmGroupInviteController, ConfirmGroupInviteController),
     GroupController: Object.assign(GroupController, GroupController),
     JoinGroupController: Object.assign(JoinGroupController, JoinGroupController),
     LeaveGroupController: Object.assign(LeaveGroupController, LeaveGroupController),

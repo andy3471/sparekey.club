@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Users;
 
 use App\DataTransferObjects\Groups\GroupData;
+use App\DataTransferObjects\Users\PublicUserData;
 use App\DataTransferObjects\Users\UserData;
 use App\Enums\LinkedAccountProvider;
 use App\Http\Controllers\Controller;
@@ -78,8 +79,10 @@ class UserController extends Controller
             ->map(fn (\App\Models\Group $group): GroupData => GroupData::fromModel($group))
             ->values();
 
+        $isSelf = auth()->id() === $user->id;
+
         return Inertia::render('Users/Show', [
-            'user'   => UserData::fromModel($user),
+            'user'   => $isSelf ? UserData::fromModel($user) : PublicUserData::fromModel($user),
             'groups' => $groups,
         ]);
     }

@@ -2,7 +2,8 @@
 import { Head, Link } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import AddKey from '@/Components/keys/AddKey.vue';
-import { AutocompleteGameData, GroupData, PlatformData } from '@/Types/generated';
+import { AutocompleteGameData, GroupData, PlatformData } from '@/types/generated';
+import groupRoutes from '@/routes/groups';
 
 interface Props {
   canCreate: boolean;
@@ -52,7 +53,7 @@ defineProps<Props>();
           You need to be a member of at least one group before you can share game keys.
         </p>
         <Link
-          href="/groups"
+          :href="groupRoutes.index.url()"
           class="inline-flex items-center px-5 py-2.5 bg-accent-600 hover:bg-accent-700 text-white font-medium rounded-lg transition-colors text-sm"
         >
           Browse Groups

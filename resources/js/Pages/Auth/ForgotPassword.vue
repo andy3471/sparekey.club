@@ -4,12 +4,11 @@ import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import FormInput from '@/Components/ui/FormInput.vue';
 import LoadingSpinner from '@/Components/ui/LoadingSpinner.vue';
-import type { FlashProps } from '@/types/global';
 import { login as loginRoute } from '@/routes';
 import password from '@/routes/password';
 
 const page = usePage();
-const flash = computed(() => (page.props.flash as FlashProps | undefined) ?? {});
+const flash = computed(() => page.props.flash);
 
 const form = useForm({
   email: '',

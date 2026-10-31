@@ -5,11 +5,21 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\KeyFeedback;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Collection;
 
+/**
+ * @property KeyFeedback|null $feedback
+ * @property string|null $key
+ * @property string|null $owned_user_id
+ * @property string|null $created_user_id
+ * @property string|null $group_id
+ */
 class Key extends Model
 {
     use HasFactory;
@@ -55,18 +65,51 @@ class Key extends Model
         return $this->belongsTo(Group::class);
     }
 
-    public function claim(User $user): self
+    public function claim(User $user): bool
     {
-        $this->owned_user_id = $user->id;
-        $this->save();
+        return $this->getConnection()->transaction(function () use ($user): bool {
+            $locked = static::query()
+                ->whereKey($this->getKey())
+                ->whereNull('owned_user_id')
+                ->lockForUpdate()
+                ->first();
 
-        return $this;
+            if (! $locked instanceof self) {
+                return false;
+            }
+
+            $locked->owned_user_id = $user->id;
+            $locked->save();
+
+            $this->refresh();
+
+            return true;
+        });
+    }
+
+    /**
+     * @param  Builder<self>  $query
+     * @param  Collection<int, string>|list<string>  $userGroupIds
+     */
+    #[Scope]
+    protected function visibleTo(Builder $query, ?string $activeGroupId, mixed $userGroupIds): void
+    {
+        $query->whereNull('owned_user_id');
+
+        if ($activeGroupId) {
+            $query->where('group_id', $activeGroupId);
+
+            return;
+        }
+
+        $query->whereIn('group_id', $userGroupIds);
     }
 
     protected function casts(): array
     {
         return [
             'feedback' => KeyFeedback::class,
+            'key'      => 'encrypted',
         ];
     }
 }

@@ -103,15 +103,9 @@ class GameData extends Data
     /** @return \Illuminate\Database\Eloquent\Relations\HasMany<Key, Game> */
     private static function scopedKeyQuery(Game $game): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        $activeGroupId = session('active_group_id');
-        $userGroupIds  = auth()->check() ? auth()->user()->groups->pluck('id') : collect();
+        $activeGroupId = \App\Support\ActiveGroup::id();
+        $userGroupIds  = auth()->check() ? \App\Support\ActiveGroup::userGroupIds(auth()->user()) : collect();
 
-        return $game->keys()
-            ->whereNull('owned_user_id')
-            ->when(
-                $activeGroupId,
-                fn ($q) => $q->where('group_id', $activeGroupId),
-                fn ($q) => $q->whereIn('group_id', $userGroupIds),
-            );
+        return $game->keys()->visibleTo($activeGroupId, $userGroupIds);
     }
 }

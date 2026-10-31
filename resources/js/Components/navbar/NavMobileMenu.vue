@@ -8,7 +8,8 @@ import games from '@/routes/games';
 import keys from '@/routes/keys';
 import users from '@/routes/users';
 import groupRoutes from '@/routes/groups';
-import { UserData } from '@/Types/generated';
+import { dashboard } from '@/routes/filament/admin/pages';
+import { UserData } from '@/types/generated';
 import type { ComboboxItem } from '@/types/ui';
 
 interface Props {
@@ -108,7 +109,7 @@ const handleSearch = (query: string) => {
       </Link>
       <Link
         v-if="user.is_admin"
-        href="/admin"
+        :href="dashboard.url()"
         class="block text-gray-300 hover:text-white px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-dark-800"
         @click="emit('close')"
       >

@@ -171,7 +171,7 @@ logout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Auth\RegisterController::register
-* @see app/Http/Controllers/Auth/RegisterController.php:27
+* @see app/Http/Controllers/Auth/RegisterController.php:28
 * @route '/register'
 */
 export const register = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -186,7 +186,7 @@ register.definition = {
 
 /**
 * @see \App\Http\Controllers\Auth\RegisterController::register
-* @see app/Http/Controllers/Auth/RegisterController.php:27
+* @see app/Http/Controllers/Auth/RegisterController.php:28
 * @route '/register'
 */
 register.url = (options?: RouteQueryOptions) => {
@@ -195,7 +195,7 @@ register.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Auth\RegisterController::register
-* @see app/Http/Controllers/Auth/RegisterController.php:27
+* @see app/Http/Controllers/Auth/RegisterController.php:28
 * @route '/register'
 */
 register.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -205,7 +205,7 @@ register.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Auth\RegisterController::register
-* @see app/Http/Controllers/Auth/RegisterController.php:27
+* @see app/Http/Controllers/Auth/RegisterController.php:28
 * @route '/register'
 */
 register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

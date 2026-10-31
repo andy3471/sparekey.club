@@ -2,7 +2,7 @@
 import { Link } from '@inertiajs/vue3';
 import PlatformIcon from '@/Components/shared/PlatformIcon.vue';
 import gamesRoute from '@/routes/games';
-import { GameData } from '@/Types/generated';
+import { GameData } from '@/types/generated';
 import { TicketIcon, ExclamationTriangleIcon } from '@heroicons/vue/24/outline';
 
 interface Props {

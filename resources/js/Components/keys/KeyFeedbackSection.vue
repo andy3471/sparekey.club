@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { KeyFeedback } from '@/Types/generated';
+import type { KeyFeedback } from '@/types/generated';
 import { HandThumbUpIcon, HandThumbDownIcon } from '@heroicons/vue/24/outline';
 
 interface Props {

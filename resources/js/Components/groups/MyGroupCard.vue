@@ -2,7 +2,7 @@
 import { Link } from '@inertiajs/vue3';
 import GroupAvatar from '@/Components/shared/GroupAvatar.vue';
 import groups from '@/routes/groups';
-import { GroupData } from '@/Types/generated';
+import { GroupData } from '@/types/generated';
 import { UsersIcon, GlobeAltIcon, LockClosedIcon } from '@heroicons/vue/24/outline';
 
 interface Props {

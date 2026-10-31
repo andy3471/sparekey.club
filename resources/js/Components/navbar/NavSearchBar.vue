@@ -2,6 +2,7 @@
 import AppCombobox from '@/Components/ui/AppCombobox.vue';
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 import type { ComboboxItem } from '@/types/ui';
+import { autocomplete } from '@/routes';
 
 interface Props {
   id: string;
@@ -28,7 +29,7 @@ const handleSelect = (item: ComboboxItem | null) => {
       :id="id"
       name="search"
       placeholder="Search games..."
-      url="/autocomplete"
+      :url="autocomplete.url()"
       :input-class="inputClass"
       @update:model-value="handleSelect"
       @search="emit('search', $event)"

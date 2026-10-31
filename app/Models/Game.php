@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
+use MarcReichel\IGDBLaravel\Exceptions\AuthenticationException;
 use MarcReichel\IGDBLaravel\Models\Game as IgdbGame;
 use MarcReichel\IGDBLaravel\Models\Genre;
+use Throwable;
 
 class Game extends Model
 {
@@ -27,6 +29,10 @@ class Game extends Model
         'igdb_id',
     ];
 
+    private bool $igdbResolved = false;
+
+    private ?IgdbGame $igdbData = null;
+
     public static function fromIgdbId(int $igdbId): ?self
     {
         $existing = self::where('igdb_id', $igdbId)->first();
@@ -35,10 +41,14 @@ class Game extends Model
             return $existing;
         }
 
-        $igdbId = IgdbGame::select(['name', 'summary', 'id', 'parent_game'])->where('id', '=', $igdbId)->first();
+        try {
+            $igdbGame = IgdbGame::select(['name', 'summary', 'id', 'parent_game'])->where('id', '=', $igdbId)->first();
+        } catch (Throwable) {
+            return null;
+        }
 
-        if ($igdbId) {
-            return self::createFromIgdb($igdbId);
+        if ($igdbGame) {
+            return self::createFromIgdb($igdbGame);
         }
 
         return null;
@@ -68,17 +78,29 @@ class Game extends Model
 
     public function getIgdbData(): ?IgdbGame
     {
-        return IgdbGame::select([
-            'name',
-            'summary',
-            'id',
-            'parent_game',
-            'aggregated_rating',
-            'aggregated_rating_count',
-        ])
-            ->with(['cover' => ['image_id'], 'genres', 'screenshots', 'dlcs'])
-            ->where('id', '=', $this->igdb_id)
-            ->first();
+        if ($this->igdbResolved) {
+            return $this->igdbData;
+        }
+
+        $this->igdbResolved = true;
+
+        try {
+            $this->igdbData = IgdbGame::select([
+                'name',
+                'summary',
+                'id',
+                'parent_game',
+                'aggregated_rating',
+                'aggregated_rating_count',
+            ])
+                ->with(['cover' => ['image_id'], 'genres', 'screenshots', 'dlcs'])
+                ->where('id', '=', $this->igdb_id)
+                ->first();
+        } catch (AuthenticationException|Throwable) {
+            $this->igdbData = null;
+        }
+
+        return $this->igdbData;
     }
 
     /** @return Attribute<string, never> */
@@ -91,27 +113,23 @@ class Game extends Model
         );
     }
 
-    /** @return Attribute<string, never> */
+    /** @return Attribute<?string, never> */
     protected function name(): Attribute
     {
-        return Attribute::make(get: function () {
-            $igdb = $this->getIgdbData();
-
-            return $igdb?->name;
+        return Attribute::make(get: function (): ?string {
+            return $this->getIgdbData()?->name;
         });
     }
 
-    /** @return Attribute<string, never> */
+    /** @return Attribute<?string, never> */
     protected function description(): Attribute
     {
-        return Attribute::make(get: function () {
-            $igdb = $this->getIgdbData();
-
-            return $igdb?->summary;
+        return Attribute::make(get: function (): ?string {
+            return $this->getIgdbData()?->summary;
         });
     }
 
-    /** @return Attribute<string, ?string> */
+    /** @return Attribute<?string, never> */
     protected function image(): Attribute
     {
         return Attribute::make(get: function (): ?string {
@@ -124,53 +142,43 @@ class Game extends Model
         });
     }
 
-    /** @return Attribute<array<int, Genre>, never> */
+    /** @return Attribute<?Collection<int, Genre>, never> */
     protected function genres(): Attribute
     {
         return Attribute::make(get: function (): ?Collection {
-            $igdb = $this->getIgdbData();
-
-            return $igdb->genres;
+            return $this->getIgdbData()?->genres;
         });
     }
 
-    /** @return Attribute<array<int, Genre>, never> */
+    /** @return Attribute<?Collection<int, mixed>, never> */
     protected function screenshots(): Attribute
     {
         return Attribute::make(get: function (): ?Collection {
-            $igdb = $this->getIgdbData();
-
-            return $igdb->screenshots;
+            return $this->getIgdbData()?->screenshots;
         });
     }
 
-    /** @return Attribute<int, never> */
+    /** @return Attribute<mixed, never> */
     protected function aggregatedRating(): Attribute
     {
-        return Attribute::make(get: function (): ?string {
-            $igdb = $this->getIgdbData();
-
-            return $igdb->aggregated_rating;
+        return Attribute::make(get: function (): mixed {
+            return $this->getIgdbData()?->aggregated_rating;
         });
     }
 
-    /** @return Attribute<int, never> */
+    /** @return Attribute<mixed, never> */
     protected function aggregatedRatingCount(): Attribute
     {
-        return Attribute::make(get: function (): ?string {
-            $igdb = $this->getIgdbData();
-
-            return $igdb->aggregated_rating_count;
+        return Attribute::make(get: function (): mixed {
+            return $this->getIgdbData()?->aggregated_rating_count;
         });
     }
 
-    /** @return Attribute<int, never> */
+    /** @return Attribute<?int, never> */
     protected function parentGameId(): Attribute
     {
         return Attribute::make(get: function (): ?int {
-            $igdb = $this->getIgdbData();
-
-            return $igdb->parent_game;
+            return $this->getIgdbData()?->parent_game;
         });
     }
 }

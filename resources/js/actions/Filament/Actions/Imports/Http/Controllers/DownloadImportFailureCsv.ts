@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../../wayfinder'
 /**
 * @see \Filament\Actions\Imports\Http\Controllers\DownloadImportFailureCsv::__invoke
-* @see vendor/filament/actions/src/Imports/Http/Controllers/DownloadImportFailureCsv.php:17
+* @see vendor/filament/actions/src/Imports/Http/Controllers/DownloadImportFailureCsv.php:13
 * @route '/filament/imports/{import}/failed-rows/download'
 */
 const DownloadImportFailureCsv = (args: { import: string | number | { id: string | number } } | [importParam: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ DownloadImportFailureCsv.definition = {
 
 /**
 * @see \Filament\Actions\Imports\Http\Controllers\DownloadImportFailureCsv::__invoke
-* @see vendor/filament/actions/src/Imports/Http/Controllers/DownloadImportFailureCsv.php:17
+* @see vendor/filament/actions/src/Imports/Http/Controllers/DownloadImportFailureCsv.php:13
 * @route '/filament/imports/{import}/failed-rows/download'
 */
 DownloadImportFailureCsv.url = (args: { import: string | number | { id: string | number } } | [importParam: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
@@ -49,7 +49,7 @@ DownloadImportFailureCsv.url = (args: { import: string | number | { id: string |
 
 /**
 * @see \Filament\Actions\Imports\Http\Controllers\DownloadImportFailureCsv::__invoke
-* @see vendor/filament/actions/src/Imports/Http/Controllers/DownloadImportFailureCsv.php:17
+* @see vendor/filament/actions/src/Imports/Http/Controllers/DownloadImportFailureCsv.php:13
 * @route '/filament/imports/{import}/failed-rows/download'
 */
 DownloadImportFailureCsv.get = (args: { import: string | number | { id: string | number } } | [importParam: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -59,7 +59,7 @@ DownloadImportFailureCsv.get = (args: { import: string | number | { id: string |
 
 /**
 * @see \Filament\Actions\Imports\Http\Controllers\DownloadImportFailureCsv::__invoke
-* @see vendor/filament/actions/src/Imports/Http/Controllers/DownloadImportFailureCsv.php:17
+* @see vendor/filament/actions/src/Imports/Http/Controllers/DownloadImportFailureCsv.php:13
 * @route '/filament/imports/{import}/failed-rows/download'
 */
 DownloadImportFailureCsv.head = (args: { import: string | number | { id: string | number } } | [importParam: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({

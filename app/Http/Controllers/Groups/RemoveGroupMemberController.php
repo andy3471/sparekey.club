@@ -21,6 +21,10 @@ class RemoveGroupMemberController extends Controller
 
         $group->members()->detach($user->id);
 
+        if (auth()->id() === $user->id && session('active_group_id') === $group->id) {
+            session()->forget('active_group_id');
+        }
+
         return back()->with('message', 'Member removed successfully.');
     }
 }

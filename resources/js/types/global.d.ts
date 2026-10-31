@@ -1,5 +1,5 @@
-import { AxiosInstance } from 'axios';
-import { GroupData, UserData } from '@/Types/generated';
+import type { AxiosInstance } from 'axios';
+import type { AuthData, FlashData, GroupData } from '@/types/generated';
 
 declare global {
   interface Window {
@@ -7,22 +7,25 @@ declare global {
   }
 }
 
-export interface AuthUser {
-  user: UserData | null;
-}
+export type AuthUser = AuthData;
 
-export interface FlashProps {
-  message?: string;
-  error?: string;
-  status?: string;
-}
+export type FlashProps = FlashData;
 
-export interface Paginated<T> {
+export type Paginated<T> = {
   data: T[];
   current_page: number;
   last_page: number;
   per_page: number;
   total: number;
+};
+
+declare module '@inertiajs/core' {
+  export interface PageProps {
+    auth: AuthData;
+    flash: FlashData;
+    activeGroup: GroupData | null;
+    userGroups: GroupData[];
+  }
 }
 
 export {};

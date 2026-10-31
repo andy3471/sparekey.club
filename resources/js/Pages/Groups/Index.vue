@@ -6,7 +6,7 @@ import MyGroupCard from '@/Components/groups/MyGroupCard.vue';
 import PublicGroupCard from '@/Components/groups/PublicGroupCard.vue';
 import EmptyState from '@/Components/shared/EmptyState.vue';
 import groups from '@/routes/groups';
-import { GroupData } from '@/Types/generated';
+import { GroupData } from '@/types/generated';
 import type { Paginated } from '@/types/global';
 import { PlusIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { LinkedAccountProvider } from '@/Types/generated';
+import type { LinkedAccountProvider } from '@/types/generated';
 
 export interface SocialProvider {
   name: LinkedAccountProvider;

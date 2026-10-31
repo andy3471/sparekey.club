@@ -4,7 +4,7 @@ import { computed } from 'vue';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import GroupAvatar from '@/Components/shared/GroupAvatar.vue';
 import groups from '@/routes/groups';
-import { GroupData } from '@/Types/generated';
+import { GroupData } from '@/types/generated';
 import { ChevronDownIcon, CheckIcon, GlobeAltIcon, UsersIcon } from '@heroicons/vue/20/solid';
 
 const page = usePage();

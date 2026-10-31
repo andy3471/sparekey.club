@@ -27,16 +27,16 @@
         "livewire/livewire": "^4.0",
         "marcreichel/igdb-laravel": "^5.3.0",
         "sentry/sentry-laravel": "^4.13",
-        "shuvroroy/filament-spatie-laravel-backup": "*",
-        "socialiteproviders/discord": "*",
-        "socialiteproviders/microsoft": "*",
+        "shuvroroy/filament-spatie-laravel-backup": "^3.3",
+        "socialiteproviders/discord": "^4.2",
+        "socialiteproviders/microsoft": "^4.6",
         "socialiteproviders/steam": "^4.2",
-        "socialiteproviders/twitch": "*",
-        "spatie/laravel-backup": "*",
+        "socialiteproviders/twitch": "^5.3",
+        "spatie/laravel-backup": "^9.3",
         "spatie/laravel-data": "^4.0",
         "spatie/laravel-html": "^3.6",
         "spatie/laravel-medialibrary": "^11.17",
-        "spatie/laravel-typescript-transformer": "^3.0@beta"
+        "spatie/laravel-typescript-transformer": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.12",

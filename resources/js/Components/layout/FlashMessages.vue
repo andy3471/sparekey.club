@@ -4,12 +4,14 @@ import { usePage } from '@inertiajs/vue3';
 import type { FlashProps } from '@/types/global';
 import { CheckCircleIcon, XCircleIcon, XMarkIcon } from '@heroicons/vue/24/outline';
 
+const emptyFlash: FlashProps = { message: null, error: null, status: null };
+
 const page = usePage();
-const flash = ref<FlashProps>({});
+const flash = ref<FlashProps>(emptyFlash);
 const visible = ref(false);
 
-watch(() => page.props.flash as FlashProps | undefined, (newFlash) => {
-  flash.value = newFlash ?? {};
+watch(() => page.props.flash, (newFlash) => {
+  flash.value = newFlash ?? emptyFlash;
   visible.value = (flash.value.message != null && flash.value.message !== '') || (flash.value.error != null && flash.value.error !== '');
 
   if (visible.value) {

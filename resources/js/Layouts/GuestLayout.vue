@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import { login, register } from '@/routes';
+import { login, register, welcome } from '@/routes';
 import type { AuthUser } from '@/types/global';
 import AppFooter from '@/Components/layout/AppFooter.vue';
 
@@ -15,7 +15,7 @@ const appName = 'Sparekey.club';
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <Link
-            href="/"
+            :href="welcome.url()"
             class="text-xl font-display font-bold"
           >
             <span class="bg-gradient-to-r from-accent-400 to-primary-400 bg-clip-text text-transparent">{{ appName }}</span>

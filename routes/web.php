@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RedirectToProviderController;
 use App\Http\Controllers\Auth\UnlinkAccountController;
 use App\Http\Controllers\Games\GameController;
 use App\Http\Controllers\Groups\AcceptGroupInviteController;
+use App\Http\Controllers\Groups\ConfirmGroupInviteController;
 use App\Http\Controllers\Groups\GroupController;
 use App\Http\Controllers\Groups\JoinGroupController;
 use App\Http\Controllers\Groups\LeaveGroupController;
@@ -36,13 +37,16 @@ Route::get('auth/{provider}/redirect', RedirectToProviderController::class)
 Route::get('auth/{provider}/callback', HandleProviderCallbackController::class)
     ->name('auth.provider.callback');
 
-// Invite links -- accessible to guests (stores code in session) and authenticated users
 Route::get('invite/{code}', AcceptGroupInviteController::class)->name('groups.join-via-code');
+Route::post('invite/{code}', ConfirmGroupInviteController::class)
+    ->middleware(['auth', 'throttle:10,1'])
+    ->name('groups.join-via-code.accept');
 
-// Onboarding routes -- auth required but NOT onboarding middleware (to avoid loops)
 Route::middleware(['auth'])->prefix('onboarding')->name('onboarding.')->group(function (): void {
     Route::get('credentials', [OnboardingCredentialsController::class, 'create'])->name('credentials');
-    Route::post('credentials', [OnboardingCredentialsController::class, 'store'])->name('credentials.store');
+    Route::post('credentials', [OnboardingCredentialsController::class, 'store'])
+        ->middleware('throttle:10,1')
+        ->name('credentials.store');
     Route::get('group', ShowOnboardingGroupController::class)->name('group');
     Route::post('group/skip', SkipOnboardingGroupController::class)->name('group.skip');
 });
@@ -54,20 +58,27 @@ Route::middleware(['auth', 'onboarding'])->group(function (): void {
     Route::get('games', [GameController::class, 'index'])->name('games.index');
     Route::get('games/{igdb_id}', [GameController::class, 'show'])->name('games.show');
 
-    Route::get('search', SearchController::class)->name('search.index');
+    Route::get('search', SearchController::class)
+        ->middleware('throttle:30,1')
+        ->name('search.index');
 
-    Route::post('keys/{key}/claim', ClaimKeyController::class)->name('keys.claim');
+    Route::post('keys/{key}/claim', ClaimKeyController::class)
+        ->middleware('throttle:10,1')
+        ->name('keys.claim');
     Route::post('keys/{key}/feedback', SubmitKeyFeedbackController::class)->name('keys.feedback');
     Route::get('keys/claimed', ListClaimedKeysController::class)->name('keys.claimed.index');
     Route::get('keys/shared', ListSharedKeysController::class)->name('keys.shared.index');
-    Route::resource('keys', KeyController::class)->only(['show', 'create', 'store', 'destroy']);
+    Route::get('keys/create', [KeyController::class, 'create'])->name('keys.create');
+    Route::get('keys/{key}', [KeyController::class, 'show'])->name('keys.show');
+    Route::post('keys', [KeyController::class, 'store'])->middleware('throttle:20,1')->name('keys.store');
+    Route::delete('keys/{key}', [KeyController::class, 'destroy'])->name('keys.destroy');
 
-    // TODO: We need a change password process
     Route::resource('users', UserController::class)->only(['show', 'edit', 'update']);
 
-    Route::get('autocomplete', AutocompleteSearchController::class)->name('autocomplete');
+    Route::get('autocomplete', AutocompleteSearchController::class)
+        ->middleware('throttle:30,1')
+        ->name('autocomplete');
 
-    // Groups
     Route::resource('groups', GroupController::class);
     Route::post('groups/{group}/join', JoinGroupController::class)->name('groups.join');
     Route::post('groups/{group}/leave', LeaveGroupController::class)->name('groups.leave');

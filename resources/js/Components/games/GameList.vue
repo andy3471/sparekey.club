@@ -2,7 +2,7 @@
 import { InfiniteScroll, Link } from '@inertiajs/vue3';
 import GameCard from '@/Components/shared/GameCard.vue';
 import EmptyState from '@/Components/shared/EmptyState.vue';
-import { GameData } from '@/Types/generated';
+import { GameData } from '@/types/generated';
 import type { Paginated } from '@/types/global';
 import { FaceFrownIcon, PlusIcon } from '@heroicons/vue/24/outline';
 import { create as createKeyRoute } from '@/routes/keys';

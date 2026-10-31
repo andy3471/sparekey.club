@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Props {
-  karma: number;
-  karmaColour: string;
+  karma: number | null;
+  karmaColour: string | null;
   size?: 'sm' | 'md' | 'lg';
   tooltipPosition?: 'above' | 'below';
 }

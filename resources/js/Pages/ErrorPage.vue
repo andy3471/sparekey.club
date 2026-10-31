@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
 import { computed } from 'vue';
+import games from '@/routes/games';
 
 interface Props {
   status: number;
 }
 
 const props = defineProps<Props>();
+
+const goBack = () => {
+  window.history.back();
+};
 
 const title = computed(() => {
   return (
@@ -114,14 +119,14 @@ const icon = computed(() => {
         <!-- Actions -->
         <div class="flex items-center justify-center gap-3">
           <Link
-            href="/games"
+            :href="games.index.url()"
             class="inline-flex items-center px-5 py-2.5 bg-accent-600 hover:bg-accent-700 text-white font-medium rounded-lg transition-colors text-sm"
           >
             Go Home
           </Link>
           <button
             class="inline-flex items-center px-5 py-2.5 bg-dark-800 hover:bg-dark-700 text-gray-300 font-medium rounded-lg border border-dark-600 transition-colors text-sm"
-            @click="$router?.back() ?? history.back()"
+            @click="goBack"
           >
             Go Back
           </button>

@@ -7,7 +7,7 @@ import GroupAvatar from '@/Components/shared/GroupAvatar.vue';
 import UserAvatar from '@/Components/shared/UserAvatar.vue';
 import groups from '@/routes/groups';
 import users from '@/routes/users';
-import { GroupData, GroupMemberData } from '@/Types/generated';
+import { GroupData, GroupMemberData } from '@/types/generated';
 import {
   Cog6ToothIcon,
   ArrowRightStartOnRectangleIcon,

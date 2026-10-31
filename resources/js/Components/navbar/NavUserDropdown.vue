@@ -6,7 +6,8 @@ import UserAvatar from '@/Components/shared/UserAvatar.vue';
 import { logout as logoutRoute } from '@/routes';
 import keys from '@/routes/keys';
 import users from '@/routes/users';
-import { UserData } from '@/Types/generated';
+import { dashboard } from '@/routes/filament/admin/pages';
+import { UserData } from '@/types/generated';
 import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 
 interface Props {
@@ -59,7 +60,7 @@ const logout = () => {
       as="a"
     >
       <Link
-        href="/admin"
+        :href="dashboard.url()"
         class="block"
       >
         Admin
