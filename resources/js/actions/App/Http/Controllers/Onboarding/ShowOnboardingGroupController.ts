@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Onboarding\ShowOnboardingGroupController::__invoke
-* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:17
+* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:18
 * @route '/onboarding/group'
 */
 const ShowOnboardingGroupController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ ShowOnboardingGroupController.definition = {
 
 /**
 * @see \App\Http\Controllers\Onboarding\ShowOnboardingGroupController::__invoke
-* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:17
+* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:18
 * @route '/onboarding/group'
 */
 ShowOnboardingGroupController.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ ShowOnboardingGroupController.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Onboarding\ShowOnboardingGroupController::__invoke
-* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:17
+* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:18
 * @route '/onboarding/group'
 */
 ShowOnboardingGroupController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ ShowOnboardingGroupController.get = (options?: RouteQueryOptions): RouteDefiniti
 
 /**
 * @see \App\Http\Controllers\Onboarding\ShowOnboardingGroupController::__invoke
-* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:17
+* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:18
 * @route '/onboarding/group'
 */
 ShowOnboardingGroupController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

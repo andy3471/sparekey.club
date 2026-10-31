@@ -449,7 +449,7 @@ destroy.delete = (args: { group: string | { id: string } } | [group: string | { 
 
 /**
 * @see \App\Http\Controllers\Groups\JoinGroupController::__invoke
-* @see app/Http/Controllers/Groups/JoinGroupController.php:13
+* @see app/Http/Controllers/Groups/JoinGroupController.php:14
 * @route '/groups/{group}/join'
 */
 export const join = (args: { group: string | { id: string } } | [group: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -464,7 +464,7 @@ join.definition = {
 
 /**
 * @see \App\Http\Controllers\Groups\JoinGroupController::__invoke
-* @see app/Http/Controllers/Groups/JoinGroupController.php:13
+* @see app/Http/Controllers/Groups/JoinGroupController.php:14
 * @route '/groups/{group}/join'
 */
 join.url = (args: { group: string | { id: string } } | [group: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions) => {
@@ -497,7 +497,7 @@ join.url = (args: { group: string | { id: string } } | [group: string | { id: st
 
 /**
 * @see \App\Http\Controllers\Groups\JoinGroupController::__invoke
-* @see app/Http/Controllers/Groups/JoinGroupController.php:13
+* @see app/Http/Controllers/Groups/JoinGroupController.php:14
 * @route '/groups/{group}/join'
 */
 join.post = (args: { group: string | { id: string } } | [group: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({

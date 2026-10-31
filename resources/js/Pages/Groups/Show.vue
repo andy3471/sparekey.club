@@ -31,7 +31,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const page = usePage();
-const activeGroup = computed(() => page.props.activeGroup as GroupData | null);
+const activeGroup = computed(() => page.props.activeGroup);
 const isActive = computed(() => activeGroup.value?.id === props.group.id);
 
 const showInviteCode = ref(false);

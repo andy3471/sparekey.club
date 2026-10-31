@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const page = usePage();
-const activeGroup = computed(() => page.props.activeGroup as GroupData | null);
+const activeGroup = computed(() => page.props.activeGroup);
 const searchQuery = ref(props.search);
 let debounceTimer: ReturnType<typeof setTimeout>;
 

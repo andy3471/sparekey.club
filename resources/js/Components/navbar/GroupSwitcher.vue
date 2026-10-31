@@ -14,7 +14,7 @@ const userGroups = computed((): GroupData[] => {
   return g ?? [];
 });
 
-const activeGroup = computed(() => page.props.activeGroup as GroupData | null);
+const activeGroup = computed(() => page.props.activeGroup);
 
 const switchToGroup = (groupId: string | null) => {
   router.post(groups.switch.url(), { group_id: groupId }, {

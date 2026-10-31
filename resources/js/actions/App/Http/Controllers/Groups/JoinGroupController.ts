@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Groups\JoinGroupController::__invoke
-* @see app/Http/Controllers/Groups/JoinGroupController.php:13
+* @see app/Http/Controllers/Groups/JoinGroupController.php:14
 * @route '/groups/{group}/join'
 */
 const JoinGroupController = (args: { group: string | { id: string } } | [group: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ JoinGroupController.definition = {
 
 /**
 * @see \App\Http\Controllers\Groups\JoinGroupController::__invoke
-* @see app/Http/Controllers/Groups/JoinGroupController.php:13
+* @see app/Http/Controllers/Groups/JoinGroupController.php:14
 * @route '/groups/{group}/join'
 */
 JoinGroupController.url = (args: { group: string | { id: string } } | [group: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions) => {
@@ -49,7 +49,7 @@ JoinGroupController.url = (args: { group: string | { id: string } } | [group: st
 
 /**
 * @see \App\Http\Controllers\Groups\JoinGroupController::__invoke
-* @see app/Http/Controllers/Groups/JoinGroupController.php:13
+* @see app/Http/Controllers/Groups/JoinGroupController.php:14
 * @route '/groups/{group}/join'
 */
 JoinGroupController.post = (args: { group: string | { id: string } } | [group: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({

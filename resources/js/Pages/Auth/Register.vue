@@ -74,7 +74,7 @@ const submit = () => {
         :error="form.errors.name"
         placeholder="Your display name"
         autocomplete="name"
-            :maxlength="50"
+        :maxlength="50"
         required
       />
 

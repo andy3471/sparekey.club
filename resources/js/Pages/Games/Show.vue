@@ -8,7 +8,7 @@ import GameList from '@/Components/games/GameList.vue';
 import KeyCard from '@/Components/keys/KeyCard.vue';
 import GameImagePlaceholder from '@/Components/shared/GameImagePlaceholder.vue';
 import EmptyState from '@/Components/shared/EmptyState.vue';
-import { GameData, GroupData, KeyData } from '@/types/generated';
+import type { GameData, KeyData } from '@/types/generated';
 import type { AuthUser, Paginated } from '@/types/global';
 import gamesRoute from '@/routes/games';
 import keysRoute from '@/routes/keys';
@@ -26,7 +26,7 @@ const props = defineProps<Props>();
 
 const page = usePage();
 const auth = (page.props.auth as AuthUser | undefined) ?? { user: null };
-const activeGroup = computed(() => page.props.activeGroup as GroupData | null);
+const activeGroup = computed(() => page.props.activeGroup);
 
 const cooldownEndsAt = computed(() => {
   if (!activeGroup.value) return null;

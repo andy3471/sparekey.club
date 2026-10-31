@@ -47,7 +47,7 @@ credentials.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Onboarding\ShowOnboardingGroupController::__invoke
-* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:17
+* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:18
 * @route '/onboarding/group'
 */
 export const group = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -62,7 +62,7 @@ group.definition = {
 
 /**
 * @see \App\Http\Controllers\Onboarding\ShowOnboardingGroupController::__invoke
-* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:17
+* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:18
 * @route '/onboarding/group'
 */
 group.url = (options?: RouteQueryOptions) => {
@@ -71,7 +71,7 @@ group.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Onboarding\ShowOnboardingGroupController::__invoke
-* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:17
+* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:18
 * @route '/onboarding/group'
 */
 group.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -81,7 +81,7 @@ group.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Onboarding\ShowOnboardingGroupController::__invoke
-* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:17
+* @see app/Http/Controllers/Onboarding/ShowOnboardingGroupController.php:18
 * @route '/onboarding/group'
 */
 group.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

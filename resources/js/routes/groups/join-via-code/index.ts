@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Groups\ConfirmGroupInviteController::__invoke
-* @see app/Http/Controllers/Groups/ConfirmGroupInviteController.php:14
+* @see app/Http/Controllers/Groups/ConfirmGroupInviteController.php:15
 * @route '/invite/{code}'
 */
 export const accept = (args: { code: string | number } | [code: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ accept.definition = {
 
 /**
 * @see \App\Http\Controllers\Groups\ConfirmGroupInviteController::__invoke
-* @see app/Http/Controllers/Groups/ConfirmGroupInviteController.php:14
+* @see app/Http/Controllers/Groups/ConfirmGroupInviteController.php:15
 * @route '/invite/{code}'
 */
 accept.url = (args: { code: string | number } | [code: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -43,7 +43,7 @@ accept.url = (args: { code: string | number } | [code: string | number ] | strin
 
 /**
 * @see \App\Http\Controllers\Groups\ConfirmGroupInviteController::__invoke
-* @see app/Http/Controllers/Groups/ConfirmGroupInviteController.php:14
+* @see app/Http/Controllers/Groups/ConfirmGroupInviteController.php:15
 * @route '/invite/{code}'
 */
 accept.post = (args: { code: string | number } | [code: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({

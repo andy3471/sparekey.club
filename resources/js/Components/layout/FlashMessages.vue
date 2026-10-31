@@ -11,7 +11,7 @@ const flash = ref<FlashProps>(emptyFlash);
 const visible = ref(false);
 
 watch(() => page.props.flash, (newFlash) => {
-  flash.value = newFlash ?? emptyFlash;
+  flash.value = newFlash;
   visible.value = (flash.value.message != null && flash.value.message !== '') || (flash.value.error != null && flash.value.error !== '');
 
   if (visible.value) {
