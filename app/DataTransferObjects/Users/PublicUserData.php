@@ -28,7 +28,7 @@ class PublicUserData extends Data
             avatar: $user->avatar,
             bio: $user->bio,
             karma: $user->karma !== null ? (int) $user->karma : null,
-            karma_colour: $user->karma_colour ?? 'bg-primary-600 text-white shadow-primary-600/30',
+            karma_colour: $user->karma_colour ?? 'bg-primary-600 text-white',
         );
     }
 }

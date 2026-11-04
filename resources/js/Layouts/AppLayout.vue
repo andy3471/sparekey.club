@@ -12,7 +12,7 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-dark-950">
+  <div class="min-h-screen flex flex-col">
     <Navbar />
 
     <TitleHeader
@@ -22,7 +22,7 @@ defineProps<Props>();
 
     <FlashMessages />
 
-    <main class="flex-1 mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 max-w-7xl w-full">
+    <main class="flex-1 mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-8 max-w-7xl w-full">
       <slot />
     </main>
 

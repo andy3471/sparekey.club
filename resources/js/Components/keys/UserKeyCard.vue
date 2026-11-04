@@ -19,7 +19,7 @@ defineProps<Props>();
 <template>
   <Link
     :href="keyRoutes.show(keyData.id)"
-    class="group relative bg-dark-800 rounded-lg border border-dark-700 overflow-hidden transition-all duration-300 hover:border-accent-500 hover:shadow-xl hover:shadow-accent-500/20 hover:-translate-y-1"
+    class="group relative surface overflow-hidden transition-colors duration-200 hover:border-white/25 block"
   >
     <div class="flex">
       <div class="flex-shrink-0 w-20 sm:w-24">
@@ -40,7 +40,7 @@ defineProps<Props>();
           <h3 class="text-white font-semibold truncate group-hover:text-accent-400 transition-colors">
             {{ keyData.game?.name || 'Unknown Game' }}
           </h3>
-          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-accent-600/20 text-accent-400 border border-accent-600/30 flex-shrink-0">
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium bg-accent-600/15 text-accent-400 border border-accent-600/25 flex-shrink-0">
             <PlatformIcon
               :icon="keyData.platform?.icon || 'generic'"
               size="xs"

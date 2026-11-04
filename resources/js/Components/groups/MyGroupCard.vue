@@ -20,17 +20,16 @@ const emit = defineEmits<{
 <template>
   <Link
     :href="groups.show.url(group.id)"
-    class="bg-dark-800 rounded-xl p-5 border-2 transition-all group relative"
+    class="surface p-5 transition-colors group relative block"
     :class="isActive
-      ? 'border-accent-500 shadow-lg shadow-accent-500/10'
-      : 'border-dark-700 hover:border-dark-500'"
+      ? 'border-accent-500'
+      : 'hover:border-white/20'"
   >
     <div
       v-if="isActive"
       class="absolute top-3 right-3"
     >
-      <span class="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-accent-600/20 text-accent-400 font-medium">
-        <span class="w-1.5 h-1.5 rounded-full bg-accent-400 animate-pulse" />
+      <span class="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md bg-accent-600/15 text-accent-400 font-medium">
         Active
       </span>
     </div>
@@ -51,11 +50,11 @@ const emit = defineEmits<{
           </h3>
           <span
             v-if="group.role"
-            class="text-xs px-2 py-1 rounded-full font-medium flex-shrink-0"
+            class="text-xs px-2 py-1 rounded-md font-medium flex-shrink-0"
             :class="{
-              'bg-accent-600/20 text-accent-400': group.role === 'owner',
-              'bg-primary-600/20 text-primary-400': group.role === 'admin',
-              'bg-dark-600 text-gray-400': group.role === 'member',
+              'bg-accent-600/15 text-accent-400': group.role === 'owner',
+              'bg-primary-600/15 text-primary-400': group.role === 'admin',
+              'bg-white/5 text-gray-400': group.role === 'member',
             }"
           >
             {{ group.role }}
@@ -94,7 +93,7 @@ const emit = defineEmits<{
       </div>
       <button
         v-if="!isActive"
-        class="text-xs px-3 py-1.5 rounded-lg bg-dark-700 hover:bg-accent-600 text-gray-400 hover:text-white font-medium transition-colors"
+        class="text-xs px-3 py-1.5 rounded-lg border border-white/10 bg-transparent hover:bg-accent-600 hover:border-accent-600 text-gray-400 hover:text-white font-medium transition-colors"
         @click="emit('switchTo', group.id, $event)"
       >
         Set Active

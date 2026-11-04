@@ -24,8 +24,9 @@ const declineInvite = () => {
 <template>
   <AppLayout title="Join Group">
     <Head title="Join Group" />
-    <div class="max-w-lg mx-auto px-4 py-12">
-      <div class="bg-dark-800 rounded-xl border border-dark-700 p-8 text-center space-y-6">
+
+    <div class="max-w-lg mx-auto">
+      <div class="surface p-6 sm:p-8 text-center space-y-5">
         <GroupAvatar
           :avatar="group.avatar"
           :name="group.name"
@@ -33,33 +34,24 @@ const declineInvite = () => {
           class="mx-auto"
         />
         <div>
-          <h1 class="text-2xl font-display font-bold text-white mb-2">
+          <h1 class="text-xl font-semibold text-white mb-1.5">
             Join {{ group.name }}?
           </h1>
-          <p
-            v-if="group.description"
-            class="text-gray-400"
-          >
-            {{ group.description }}
-          </p>
-          <p
-            v-else
-            class="text-gray-400"
-          >
-            You have been invited to join this group.
+          <p class="text-sm text-white/55">
+            {{ group.description || 'You have been invited to join this group.' }}
           </p>
         </div>
-        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <div class="flex flex-col sm:flex-row gap-2.5 justify-center">
           <button
             type="button"
-            class="px-6 py-2.5 rounded-lg bg-primary-600 text-white font-medium hover:bg-primary-500 transition"
+            class="btn-primary"
             @click="acceptInvite"
           >
             Join Group
           </button>
           <button
             type="button"
-            class="px-6 py-2.5 rounded-lg bg-dark-700 text-gray-300 font-medium hover:bg-dark-600 transition"
+            class="btn-ghost"
             @click="declineInvite"
           >
             Cancel

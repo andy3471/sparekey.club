@@ -25,7 +25,7 @@ const logout = () => {
 <template>
   <AppMenu>
     <template #trigger>
-      <button class="flex items-center gap-2 text-gray-300 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-dark-800">
+      <button class="flex items-center gap-1.5 text-gray-300 hover:text-white px-2.5 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-white/5">
         <UserAvatar
           :avatar="user.avatar"
           :name="user.name"
@@ -67,7 +67,7 @@ const logout = () => {
       </Link>
     </AppMenuItem>
 
-    <div class="border-t border-dark-700 my-1" />
+    <div class="border-t border-white/10 my-1" />
 
     <AppMenuItem as="a">
       <Link
@@ -86,7 +86,7 @@ const logout = () => {
       </Link>
     </AppMenuItem>
 
-    <div class="border-t border-dark-700 my-1" />
+    <div class="border-t border-white/10 my-1" />
 
     <AppMenuItem>
       <button

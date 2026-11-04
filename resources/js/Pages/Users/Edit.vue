@@ -54,14 +54,10 @@ const unlinkAccount = (providerName: string) => {
 <template>
   <AppLayout title="Edit Profile">
     <Head title="Edit Profile" />
-    <div class="max-w-2xl mx-auto px-4 py-6 space-y-6">
-      <div class="bg-dark-800 rounded-xl p-6 border border-dark-700">
-        <h2 class="text-xl font-display font-bold text-white mb-6">
-          Edit Profile
-        </h2>
-
+    <div class="max-w-2xl mx-auto space-y-5">
+      <div class="surface p-5 sm:p-6">
         <form
-          class="space-y-6"
+          class="space-y-5"
           @submit.prevent="submit"
         >
           <AvatarUpload
@@ -95,16 +91,16 @@ const unlinkAccount = (providerName: string) => {
             </template>
           </FormTextarea>
 
-          <div class="flex justify-end">
+          <div class="flex justify-end pt-1">
             <button
               type="submit"
               :disabled="form.processing"
-              class="inline-flex items-center px-6 py-2.5 bg-accent-600 hover:bg-accent-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors"
+              class="btn-primary"
             >
               <LoadingSpinner
                 v-if="form.processing"
                 size="sm"
-                class="-ml-1 mr-2"
+                class="-ml-0.5 mr-1.5"
               />
               Save Changes
             </button>
@@ -112,23 +108,22 @@ const unlinkAccount = (providerName: string) => {
         </form>
       </div>
 
-      <!-- Linked Accounts Section -->
       <div
         v-if="providers.length"
-        class="bg-dark-800 rounded-xl p-6 border border-dark-700"
+        class="surface p-5 sm:p-6"
       >
-        <h2 class="text-xl font-display font-bold text-white mb-2">
+        <h2 class="text-xs font-medium uppercase tracking-wider text-white/40 mb-1">
           Linked Accounts
         </h2>
-        <p class="text-gray-400 text-sm mb-6">
+        <p class="text-white/45 text-sm mb-4">
           Connect your gaming accounts for quick sign-in.
         </p>
 
-        <div class="space-y-3">
+        <div class="space-y-2">
           <div
             v-for="provider in providers"
             :key="provider.name"
-            class="flex items-center justify-between p-4 rounded-lg border border-dark-600 bg-dark-700/50"
+            class="flex items-center justify-between gap-3 p-3 rounded-lg border border-white/10"
           >
             <div class="flex items-center gap-3">
               <div
@@ -198,14 +193,15 @@ const unlinkAccount = (providerName: string) => {
             <a
               v-if="!provider.linked"
               :href="provider.url"
-              class="inline-flex items-center px-4 py-1.5 text-sm font-medium rounded-lg text-white transition-all duration-200 hover:opacity-90"
+              class="inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-lg text-white transition-colors hover:opacity-90"
               :style="{ backgroundColor: provider.color }"
             >
               Connect
             </a>
             <button
               v-else
-              class="inline-flex items-center px-4 py-1.5 text-sm font-medium rounded-lg border border-dark-500 text-gray-400 hover:text-white hover:border-danger/50 hover:bg-danger/10 transition-all duration-200"
+              type="button"
+              class="btn-ghost text-white/45 hover:text-danger hover:bg-danger/10"
               @click="unlinkAccount(provider.name)"
             >
               Disconnect

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Keys;
 
+use App\DataTransferObjects\Games\GameData;
 use App\DataTransferObjects\Groups\GroupData;
 use App\DataTransferObjects\Keys\KeyData;
 use App\DataTransferObjects\Platforms\PlatformData;
@@ -20,6 +21,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use Inertia\Response;
+use MarcReichel\IGDBLaravel\Models\Game as IgdbGame;
+use Throwable;
 
 class KeyController extends Controller
 {
@@ -73,7 +76,29 @@ class KeyController extends Controller
         $this->authorize('view', $key);
 
         return Inertia::render('Keys/Show', [
-            'keyData' => fn (): KeyData => KeyData::fromModel($key),
+            'keyData'    => fn (): KeyData => KeyData::fromModel($key),
+            'parentGame' => function () use ($key): ?GameData {
+                $parentId = $key->game?->parent_game_id;
+
+                if (! $parentId) {
+                    return null;
+                }
+
+                try {
+                    $igdbParent = IgdbGame::select(['name', 'summary', 'id'])
+                        ->with(['cover' => ['image_id']])
+                        ->where('id', '=', $parentId)
+                        ->first();
+                } catch (Throwable) {
+                    return null;
+                }
+
+                if ($igdbParent) {
+                    return GameData::fromIgdb($igdbParent);
+                }
+
+                return null;
+            },
         ]);
     }
 

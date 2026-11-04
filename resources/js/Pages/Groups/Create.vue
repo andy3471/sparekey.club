@@ -30,14 +30,11 @@ const submit = () => {
 <template>
   <AppLayout title="Create Group">
     <Head title="Create Group" />
-    <div class="max-w-2xl mx-auto px-4 py-6">
-      <div class="bg-dark-800 rounded-xl p-6 border border-dark-700">
-        <h2 class="text-xl font-display font-bold text-white mb-6">
-          Create a New Group
-        </h2>
 
+    <div class="max-w-2xl mx-auto">
+      <div class="surface p-5 sm:p-6">
         <form
-          class="space-y-6"
+          class="space-y-5"
           @submit.prevent="submit"
         >
           <AvatarUpload
@@ -80,16 +77,16 @@ const submit = () => {
             description="Anyone can find and join a public group"
           />
 
-          <div class="flex justify-end">
+          <div class="flex justify-end pt-1">
             <button
               type="submit"
               :disabled="form.processing"
-              class="inline-flex items-center px-6 py-2.5 bg-accent-600 hover:bg-accent-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors"
+              class="btn-primary"
             >
               <LoadingSpinner
                 v-if="form.processing"
                 size="sm"
-                class="-ml-1 mr-2"
+                class="-ml-0.5 mr-1.5"
               />
               Create Group
             </button>

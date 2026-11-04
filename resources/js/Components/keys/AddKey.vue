@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import AppCombobox from '@/Components/ui/AppCombobox.vue';
 import AppListbox from '@/Components/ui/AppListbox.vue';
@@ -9,7 +9,7 @@ import LoadingSpinner from '@/Components/ui/LoadingSpinner.vue';
 import { AutocompleteGameData, GroupData, PlatformData } from '@/types/generated';
 import keys from '@/routes/keys';
 import PlatformIcon from '@/Components/shared/PlatformIcon.vue';
-import { UsersIcon, KeyIcon, PlusIcon, TicketIcon } from '@heroicons/vue/24/outline';
+import { PlusIcon } from '@heroicons/vue/24/outline';
 import type { ComboboxItem } from '@/types/ui';
 import { autocomplete } from '@/routes';
 
@@ -34,6 +34,16 @@ const form = useForm({
 
 const groupOptions = props.groups.map(g => ({ id: g.id, name: g.name }));
 const platformOptions = props.platforms.map(p => ({ id: p.id, name: p.name, icon: p.icon }));
+
+const currentStep = computed(() => {
+  if (!form.group_id) {
+    return 'group';
+  }
+  if (!selectedGame.value || !form.platform_id) {
+    return 'game';
+  }
+  return 'key';
+});
 
 const submit = () => {
   form.igdb_id = selectedGame.value?.id.toString() ?? '';
@@ -63,15 +73,21 @@ const handleGameSelect = (item: ComboboxItem | null) => {
 </script>
 
 <template>
-  <div class="bg-dark-800 rounded-lg border border-dark-700 p-8">
-    <div class="mb-6">
-      <h1 class="text-3xl font-bold text-white mb-2">
-        Add New Key
-      </h1>
-      <p class="text-gray-400">
-        Share a game key with the community
-      </p>
-    </div>
+  <div class="surface p-5 sm:p-6 max-sm:pb-24">
+    <p class="text-sm text-white/55 mb-3">
+      Paste a spare key for a group you’re in.
+    </p>
+
+    <p
+      class="text-xs text-white/40 mb-5"
+      aria-label="Form progress"
+    >
+      <span :class="currentStep === 'group' ? 'text-accent-400' : 'text-white/55'">Group</span>
+      <span class="mx-1.5 text-white/20">→</span>
+      <span :class="currentStep === 'game' ? 'text-accent-400' : 'text-white/55'">Game</span>
+      <span class="mx-1.5 text-white/20">→</span>
+      <span :class="currentStep === 'key' ? 'text-accent-400' : 'text-white/55'">Key</span>
+    </p>
 
     <form
       class="space-y-6"
@@ -79,43 +95,41 @@ const handleGameSelect = (item: ComboboxItem | null) => {
     >
       <div
         v-if="Object.keys(form.errors).length > 0"
-        class="bg-red-900/50 border border-red-700 rounded-lg p-4"
+        class="rounded-lg border border-danger/40 bg-danger/10 p-3"
       >
         <div
           v-for="(error, field) in form.errors"
           :key="field"
-          class="text-red-300 text-sm mb-1"
+          class="text-danger-300 text-sm mb-1 last:mb-0"
         >
           <strong class="capitalize">{{ String(field).replace('_', ' ') }}:</strong> {{ Array.isArray(error) ? error[0] : error }}
         </div>
       </div>
 
-      <div class="bg-dark-700/50 rounded-lg p-6">
-        <h2 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-          <UsersIcon class="w-6 h-6 text-accent-400" />
-          Share With Group
+      <section class="space-y-3">
+        <h2 class="text-xs font-medium uppercase tracking-wider text-white/40">
+          Group
         </h2>
         <AppListbox
           v-model="form.group_id"
           :options="groupOptions"
-          label="Group"
+          label="Share with"
           placeholder="Select a group"
           :error="form.errors.group_id"
-          hint="Choose which group will see this key"
+          hint="Only members of this group can claim the key"
           required
         />
-      </div>
+      </section>
 
-      <div class="bg-dark-700/50 rounded-lg p-6">
-        <h2 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-          <TicketIcon class="w-6 h-6 text-accent-400" />
-          Game Information
+      <section class="space-y-3 border-t border-white/10 pt-5">
+        <h2 class="text-xs font-medium uppercase tracking-wider text-white/40">
+          Game
         </h2>
-        <div class="space-y-4">
+        <div class="space-y-3">
           <div>
             <label
               for="igdb_id"
-              class="block text-sm font-medium text-gray-300 mb-2"
+              class="block text-sm font-medium text-gray-300 mb-1.5"
             >
               Game or DLC <span class="text-red-400">*</span>
             </label>
@@ -125,14 +139,15 @@ const handleGameSelect = (item: ComboboxItem | null) => {
               name="igdb_id"
               placeholder="Search for a game or DLC..."
               :url="autocomplete.url()"
+              aria-label="Search for a game or DLC"
               @update:model-value="handleGameSelect"
             />
-            <p class="mt-2 text-xs text-gray-500">
-              Start typing to search IGDB for games and DLCs
+            <p class="mt-1.5 text-xs text-gray-500">
+              Start typing to search IGDB
             </p>
             <p
               v-if="form.errors.igdb_id"
-              class="mt-2 text-sm text-red-400"
+              class="mt-1 text-sm text-danger-400"
             >
               {{ form.errors.igdb_id }}
             </p>
@@ -162,40 +177,41 @@ const handleGameSelect = (item: ComboboxItem | null) => {
             </template>
           </AppListbox>
         </div>
-      </div>
+      </section>
 
-      <div class="bg-dark-700/50 rounded-lg p-6">
-        <h2 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-          <KeyIcon class="w-6 h-6 text-accent-400" />
-          Key Details
+      <section class="space-y-3 border-t border-white/10 pt-5">
+        <h2 class="text-xs font-medium uppercase tracking-wider text-white/40">
+          Key
         </h2>
-        <div class="space-y-4">
+        <div class="space-y-3">
           <FormInput
             id="key"
             v-model="form.key"
-            label="Key Code"
+            label="Key code"
             placeholder="XXXXX-XXXXX-XXXXX-XXXXX"
             :error="form.errors.key"
-            hint="Enter the game key code"
             required
-            input-class="font-mono text-lg tracking-wider"
+            input-class="font-mono tracking-wider"
           />
           <FormTextarea
             id="message"
             v-model="form.message"
-            label="Message (Optional)"
-            placeholder="Add a message for the person who claims this key..."
+            label="Message"
+            placeholder="Optional note for whoever claims this"
             :error="form.errors.message"
-            hint="Optional message to include with your shared key"
-            :rows="4"
-          />
+            :rows="3"
+          >
+            <template #label-suffix>
+              <span class="text-gray-500 font-normal"> (optional)</span>
+            </template>
+          </FormTextarea>
         </div>
-      </div>
+      </section>
 
-      <div class="flex flex-col sm:flex-row gap-4 pt-4">
+      <div class="hidden sm:block border-t border-white/10 pt-5">
         <button
           type="submit"
-          class="flex-1 bg-accent-600 hover:bg-accent-700 active:bg-accent-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg shadow-accent-600/20 hover:shadow-xl hover:shadow-accent-600/30 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+          class="btn-primary w-auto"
           :disabled="form.processing"
         >
           <span
@@ -203,17 +219,43 @@ const handleGameSelect = (item: ComboboxItem | null) => {
             class="flex items-center justify-center"
           >
             <LoadingSpinner
-              size="md"
-              class="-ml-1 mr-3"
+              size="sm"
+              class="-ml-0.5 mr-2"
             />
-            Adding Key...
+            Adding key...
           </span>
           <span
             v-else
             class="flex items-center justify-center"
           >
-            <PlusIcon class="w-5 h-5 mr-2" />
-            Add Key
+            <PlusIcon class="w-4 h-4" />
+            Add key
+          </span>
+        </button>
+      </div>
+
+      <div class="sm:hidden fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-dark-950/95 backdrop-blur-sm p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <button
+          type="submit"
+          class="btn-primary w-full"
+          :disabled="form.processing"
+        >
+          <span
+            v-if="form.processing"
+            class="flex items-center justify-center"
+          >
+            <LoadingSpinner
+              size="sm"
+              class="-ml-0.5 mr-2"
+            />
+            Adding key...
+          </span>
+          <span
+            v-else
+            class="flex items-center justify-center"
+          >
+            <PlusIcon class="w-4 h-4" />
+            Add key
           </span>
         </button>
       </div>

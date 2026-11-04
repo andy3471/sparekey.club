@@ -1,41 +1,61 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
 import { login, register, welcome } from '@/routes';
+import games from '@/routes/games';
+import groupRoutes from '@/routes/groups';
 import type { AuthUser } from '@/types/global';
 import AppFooter from '@/Components/layout/AppFooter.vue';
+import BrandLogo from '@/Components/ui/BrandLogo.vue';
+import AppButton from '@/Components/ui/AppButton.vue';
 
 const page = usePage();
 const auth = (page.props.auth as AuthUser | undefined) ?? { user: null };
-const appName = 'Sparekey.club';
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-dark-950">
-    <nav class="bg-dark-900/80 backdrop-blur-sm border-b border-dark-800 sticky top-0 z-50">
+  <div class="min-h-screen flex flex-col">
+    <nav class="border-b border-white/10 sticky top-0 z-50 bg-dark-950/90 backdrop-blur-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <Link
-            :href="welcome.url()"
-            class="text-xl font-display font-bold"
-          >
-            <span class="bg-gradient-to-r from-accent-400 to-primary-400 bg-clip-text text-transparent">{{ appName }}</span>
-          </Link>
+        <div class="flex items-center justify-between h-12">
+          <BrandLogo
+            :href="auth?.user ? games.index.url() : welcome.url()"
+            size="sm"
+          />
 
-          <div class="flex items-center space-x-3">
-            <template v-if="!auth?.user">
-              <Link
-                :href="login.url()"
-                class="text-gray-300 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-dark-800"
-              >
-                Login
-              </Link>
-              <Link
-                :href="register.url()"
-                class="bg-accent-600 hover:bg-accent-700 text-white font-semibold py-2 px-5 rounded-lg text-sm transition-all duration-200 shadow-lg shadow-accent-600/20 hover:shadow-xl hover:shadow-accent-600/30 hover:-translate-y-0.5"
-              >
-                Get Started
-              </Link>
-            </template>
+          <div
+            v-if="!auth?.user"
+            class="flex items-center gap-2"
+          >
+            <Link
+              :href="login.url()"
+              class="btn-ghost"
+            >
+              Sign in
+            </Link>
+            <AppButton
+              :href="register.url()"
+              size="sm"
+            >
+              Create account
+            </AppButton>
+          </div>
+
+          <div
+            v-else
+            class="flex items-center gap-1"
+          >
+            <Link
+              :href="games.index.url()"
+              class="nav-chip"
+            >
+              Games
+            </Link>
+            <Link
+              :href="groupRoutes.index.url()"
+              class="nav-chip"
+            >
+              Groups
+            </Link>
           </div>
         </div>
       </div>

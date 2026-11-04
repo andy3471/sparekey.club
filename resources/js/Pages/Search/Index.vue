@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Head } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import GameList from '@/Components/games/GameList.vue';
 import { GameData } from '@/types/generated';
@@ -15,14 +16,14 @@ defineProps<Props>();
 
 <template>
   <AppLayout :title="title">
-    <div class="max-w-7xl mx-auto px-4 py-6">
-      <div
-        v-if="error"
-        class="mb-6 bg-red-900/50 border border-red-700 rounded-lg p-4 text-red-300"
-      >
-        {{ error }}
-      </div>
-      <GameList :games="games" />
+    <Head :title="title" />
+
+    <div
+      v-if="error"
+      class="mb-5 rounded-lg border border-danger/40 bg-danger/10 p-3 text-sm text-danger-300"
+    >
+      {{ error }}
     </div>
+    <GameList :games="games" />
   </AppLayout>
 </template>

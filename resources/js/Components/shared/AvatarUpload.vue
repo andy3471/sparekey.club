@@ -50,7 +50,7 @@ const shapeClasses = () => props.shape === 'round' ? 'rounded-full' : 'rounded-x
       <div class="relative">
         <div
           v-if="displayImage()"
-          class="w-20 h-20 overflow-hidden border-2 border-dark-600"
+          class="w-20 h-20 overflow-hidden border border-white/10"
           :class="shapeClasses()"
         >
           <img
@@ -61,7 +61,7 @@ const shapeClasses = () => props.shape === 'round' ? 'rounded-full' : 'rounded-x
         </div>
         <div
           v-else
-          class="w-20 h-20 bg-accent-600/20 border-2 border-dark-600 flex items-center justify-center"
+          class="w-20 h-20 bg-accent-600/20 border border-white/10 flex items-center justify-center"
           :class="shapeClasses()"
         >
           <span class="text-accent-400 font-bold text-2xl">{{ initials }}</span>

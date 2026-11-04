@@ -60,7 +60,8 @@ it('covers invite confirm then post join', function (): void {
 
     $this->actingAs($invitee)
         ->post("/invite/{$group->invite_code}")
-        ->assertRedirect(route('groups.show', $group));
+        ->assertRedirect(route('groups.show', $group))
+        ->assertSessionHas('message', 'You\'re in '.$group->name.'.');
 
     expect($group->fresh()->hasMember($invitee->fresh()))->toBeTrue();
 });

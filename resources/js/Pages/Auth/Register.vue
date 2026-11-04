@@ -56,10 +56,10 @@ const submit = () => {
       class="relative my-6"
     >
       <div class="absolute inset-0 flex items-center">
-        <div class="w-full border-t border-dark-600" />
+        <div class="w-full border-t border-white/10" />
       </div>
       <div class="relative flex justify-center text-sm">
-        <span class="bg-dark-800 px-3 text-gray-500">or register with email</span>
+        <span class="bg-dark-900 px-3 text-gray-500">or register with email</span>
       </div>
     </div>
 
@@ -114,7 +114,7 @@ const submit = () => {
       <button
         type="submit"
         :disabled="form.processing"
-        class="w-full bg-accent-600 hover:bg-accent-700 active:bg-accent-800 text-white font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg shadow-accent-600/20 disabled:opacity-50 disabled:cursor-not-allowed"
+        class="w-full btn-primary"
       >
         <span
           v-if="form.processing"

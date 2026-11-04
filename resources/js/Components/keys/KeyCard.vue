@@ -17,10 +17,10 @@ defineProps<Props>();
 <template>
   <Link
     :href="keyRoutes.show(keyData.id)"
-    class="group relative bg-dark-800 rounded-lg border border-dark-700 p-4 transition-all duration-300 hover:border-accent-500 hover:shadow-xl hover:shadow-accent-500/20 hover:-translate-y-1"
+    class="group relative surface p-4 transition-colors duration-200 hover:border-white/25 block"
   >
     <div class="flex items-center justify-between mb-3">
-      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold bg-accent-600/20 text-accent-400 border border-accent-600/30">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-medium bg-accent-600/15 text-accent-400 border border-accent-600/25">
         <PlatformIcon
           :icon="keyData.platform?.icon || 'generic'"
           size="sm"

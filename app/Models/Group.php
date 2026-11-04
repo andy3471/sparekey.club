@@ -63,6 +63,10 @@ class Group extends Model implements HasMedia
 
     public function hasMember(User $user): bool
     {
+        if ($user->relationLoaded('groups')) {
+            return $user->groups->contains('id', $this->id);
+        }
+
         return $this->members()->where('user_id', $user->id)->exists();
     }
 

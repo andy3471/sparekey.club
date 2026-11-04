@@ -7,10 +7,12 @@ import { autocomplete } from '@/routes';
 interface Props {
   id: string;
   inputClass?: string;
+  ariaLabel?: string;
 }
 
 withDefaults(defineProps<Props>(), {
-  inputClass: 'w-full pl-10 pr-4 py-2 bg-dark-800 border border-dark-600 text-gray-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-all duration-200 placeholder-gray-500',
+  inputClass: 'w-full pl-9 pr-3 py-1.5 bg-dark-950 border border-white/10 text-gray-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan focus:border-cyan transition-colors placeholder-gray-500',
+  ariaLabel: 'Search games',
 });
 
 const emit = defineEmits<{
@@ -31,6 +33,7 @@ const handleSelect = (item: ComboboxItem | null) => {
       placeholder="Search games..."
       :url="autocomplete.url()"
       :input-class="inputClass"
+      :aria-label="ariaLabel"
       @update:model-value="handleSelect"
       @search="emit('search', $event)"
     />

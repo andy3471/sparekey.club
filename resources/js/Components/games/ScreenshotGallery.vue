@@ -23,17 +23,17 @@ const openModal = (index: number) => {
 </script>
 
 <template>
-  <div class="mt-8">
-    <h2 class="text-2xl font-bold text-white mb-4">
+  <div class="pt-2 space-y-3">
+    <h2 class="text-sm font-medium uppercase tracking-wider text-white/40">
       Screenshots
     </h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
       <img
         v-for="(screenshot, index) in screenshots"
         :key="screenshot.id"
         :src="imageUrls[index]"
         alt="Game Screenshot"
-        class="rounded-lg border border-dark-700 w-full h-auto cursor-pointer hover:border-accent-500 transition-colors"
+        class="rounded-lg border border-white/10 w-full h-auto cursor-pointer hover:border-white/25 transition-colors"
         @click="openModal(index)"
       >
     </div>

@@ -145,13 +145,13 @@ it('revokes bonus karma when positive feedback is changed to negative', function
 });
 
 it('returns correct colour for karma thresholds', function (): void {
-    expect(KarmaService::colour(-1))->toBe('bg-danger text-white shadow-danger/30')
-        ->and(KarmaService::colour(0))->toBe('bg-warning text-white shadow-warning/30')
-        ->and(KarmaService::colour(1))->toBe('bg-warning text-white shadow-warning/30')
-        ->and(KarmaService::colour(2))->toBe('bg-primary-600 text-white shadow-primary-600/30')
-        ->and(KarmaService::colour(14))->toBe('bg-primary-600 text-white shadow-primary-600/30')
-        ->and(KarmaService::colour(15))->toBe('bg-success text-white shadow-success/30')
-        ->and(KarmaService::colour(100))->toBe('bg-success text-white shadow-success/30');
+    expect(KarmaService::colour(-1))->toBe('bg-danger text-white')
+        ->and(KarmaService::colour(0))->toBe('bg-warning text-white')
+        ->and(KarmaService::colour(1))->toBe('bg-warning text-white')
+        ->and(KarmaService::colour(2))->toBe('bg-primary-600 text-white')
+        ->and(KarmaService::colour(14))->toBe('bg-primary-600 text-white')
+        ->and(KarmaService::colour(15))->toBe('bg-success text-white')
+        ->and(KarmaService::colour(100))->toBe('bg-success text-white');
 });
 
 it('caches karma values', function (): void {

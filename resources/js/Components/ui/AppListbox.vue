@@ -39,7 +39,7 @@ const selectedOption = () => {
   <div>
     <label
       v-if="label"
-      class="block text-sm font-medium text-gray-300 mb-2"
+      class="block text-sm font-medium text-gray-300 mb-1.5"
     >
       {{ label }}
       <span
@@ -53,7 +53,7 @@ const selectedOption = () => {
       @update:model-value="emit('update:modelValue', $event)"
     >
       <div class="relative">
-        <ListboxButton class="relative w-full cursor-pointer border border-dark-600 rounded-lg bg-dark-900 text-left px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-all duration-200">
+        <ListboxButton class="relative w-full cursor-pointer border border-white/10 rounded-lg bg-dark-950 text-left px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-cyan focus:border-cyan transition-colors">
           <span
             :class="selectedOption() ? 'text-gray-100' : 'text-gray-500'"
             class="flex items-center gap-2 truncate"
@@ -79,7 +79,7 @@ const selectedOption = () => {
           leave-from-class="opacity-100"
           leave-to-class="opacity-0"
         >
-          <ListboxOptions class="absolute z-50 mt-2 w-full max-h-60 overflow-auto rounded-lg bg-dark-800 border border-dark-600 shadow-xl focus:outline-none">
+          <ListboxOptions class="absolute z-50 mt-2 w-full max-h-60 overflow-auto surface focus:outline-none">
             <ListboxOption
               v-for="option in options"
               :key="option.id"
@@ -88,7 +88,7 @@ const selectedOption = () => {
               as="template"
             >
               <li
-                class="relative cursor-pointer select-none px-4 py-3 transition-colors"
+                class="relative cursor-pointer select-none px-3 py-2 text-sm transition-colors"
                 :class="active ? 'bg-accent-600 text-white' : 'text-gray-300'"
               >
                 <span
@@ -118,13 +118,13 @@ const selectedOption = () => {
 
     <p
       v-if="hint && !error"
-      class="mt-2 text-xs text-gray-500"
+      class="mt-1.5 text-xs text-gray-500"
     >
       {{ hint }}
     </p>
     <p
       v-if="error"
-      class="mt-2 text-sm text-red-400"
+      class="mt-1 text-sm text-danger-400"
     >
       {{ error }}
     </p>

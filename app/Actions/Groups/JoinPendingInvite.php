@@ -52,6 +52,6 @@ class JoinPendingInvite
         $this->joinGroup->handle($group, $user, completeOnboarding: true);
 
         return to_route('groups.show', $group)
-            ->with('message', 'Welcome to Sparekey! You joined '.$group->name.'.');
+            ->with('message', 'You\'re in '.$group->name.'.');
     }
 }

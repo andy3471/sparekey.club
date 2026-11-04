@@ -46,17 +46,18 @@ const switchToGroup = (groupId: string, event: Event) => {
 <template>
   <AppLayout title="Groups">
     <Head title="Groups" />
-    <div class="max-w-7xl mx-auto px-4 py-6 space-y-10">
+
+    <div class="space-y-8">
       <section>
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-2xl font-display font-bold text-white">
+        <div class="flex items-center justify-between gap-3 mb-4">
+          <h2 class="text-sm font-medium uppercase tracking-wider text-white/40">
             My Groups
           </h2>
           <Link
             :href="groups.create.url()"
-            class="inline-flex items-center px-4 py-2 bg-accent-600 hover:bg-accent-500 text-white text-sm font-medium rounded-lg transition-colors"
+            class="btn-primary"
           >
-            <PlusIcon class="w-4 h-4 mr-2" />
+            <PlusIcon class="w-4 h-4" />
             Create Group
           </Link>
         </div>
@@ -69,7 +70,7 @@ const switchToGroup = (groupId: string, event: Event) => {
           <template #action>
             <Link
               :href="groups.create.url()"
-              class="text-accent-400 hover:text-accent-300 font-medium mt-2 inline-block"
+              class="text-accent-400 hover:text-accent-300 text-sm font-medium mt-2 inline-block"
             >
               Create your first group
             </Link>
@@ -78,7 +79,7 @@ const switchToGroup = (groupId: string, event: Event) => {
 
         <div
           v-else
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"
         >
           <MyGroupCard
             v-for="group in myGroups"
@@ -91,17 +92,18 @@ const switchToGroup = (groupId: string, event: Event) => {
       </section>
 
       <section>
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-          <h2 class="text-2xl font-display font-bold text-white">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+          <h2 class="text-sm font-medium uppercase tracking-wider text-white/40">
             Discover Public Groups
           </h2>
-          <div class="relative w-full sm:w-72">
-            <MagnifyingGlassIcon class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+          <div class="relative w-full sm:w-64">
+            <MagnifyingGlassIcon class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none" />
             <input
               v-model="searchQuery"
               type="text"
               placeholder="Search groups..."
-              class="w-full pl-10 pr-4 py-2 bg-dark-800 border border-dark-600 text-gray-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-all duration-200 placeholder-gray-500"
+              aria-label="Search public groups"
+              class="w-full pl-9 pr-3 py-1.5 bg-dark-950 border border-white/10 text-gray-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan focus:border-cyan transition-colors placeholder-gray-500"
             >
           </div>
         </div>
@@ -111,7 +113,7 @@ const switchToGroup = (groupId: string, event: Event) => {
           data="publicGroups"
           preserve-url
         >
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             <PublicGroupCard
               v-for="group in publicGroups.data"
               :key="group.id"
@@ -126,7 +128,7 @@ const switchToGroup = (groupId: string, event: Event) => {
           :message="searchQuery ? '' : 'No public groups available to join right now'"
         >
           <template #icon>
-            <MagnifyingGlassIcon class="w-12 h-12 text-dark-500" />
+            <MagnifyingGlassIcon class="w-10 h-10 text-white/25" />
           </template>
         </EmptyState>
       </section>

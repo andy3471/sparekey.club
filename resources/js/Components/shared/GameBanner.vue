@@ -25,20 +25,20 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="bg-dark-800 rounded-lg border border-dark-700 p-6">
-    <div class="flex flex-col lg:flex-row gap-6">
-      <div class="flex-shrink-0">
+  <div class="surface p-5 sm:p-6">
+    <div class="flex flex-col sm:flex-row gap-5">
+      <div class="shrink-0">
         <component
           :is="linkable ? Link : 'div'"
           v-bind="linkable ? { href: games.show.url(game.id), class: 'block' } : {}"
         >
-          <div class="w-[180px]">
+          <div class="w-[140px]">
             <img
               v-if="game.image"
               :src="game.image"
               :alt="game.name"
-              class="w-full rounded-lg border border-dark-700 object-cover aspect-[2/3]"
-              :class="linkable ? 'hover:border-accent-500 transition-colors' : ''"
+              class="w-full rounded-lg border border-white/10 object-cover aspect-[2/3]"
+              :class="linkable ? 'hover:border-white/25 transition-colors' : ''"
             >
             <div
               v-else
@@ -50,13 +50,13 @@ withDefaults(defineProps<Props>(), {
         </component>
       </div>
 
-      <div class="flex-1">
+      <div class="flex-1 min-w-0">
         <component
           :is="linkable ? Link : 'div'"
-          v-bind="linkable ? { href: games.show.url(game.id), class: 'block mb-4' } : { class: 'mb-2' }"
+          v-bind="linkable ? { href: games.show.url(game.id), class: 'block mb-2' } : { class: 'mb-2' }"
         >
           <h1
-            class="text-3xl font-bold text-white"
+            class="text-xl sm:text-2xl font-semibold tracking-tight text-white break-words"
             :class="linkable ? 'hover:text-accent-400 transition-colors' : ''"
           >
             {{ game.name }}
@@ -65,28 +65,28 @@ withDefaults(defineProps<Props>(), {
 
         <div
           v-if="showRating && game?.aggregated_rating"
-          class="flex items-center gap-2 text-gray-300 mb-3"
+          class="flex items-center gap-1.5 text-sm text-white/60 mb-2"
         >
-          <StarIcon class="w-5 h-5 text-yellow-400" />
-          <span class="font-semibold">{{ game.aggregated_rating }}</span>
-          <span class="text-gray-500">({{ game.aggregated_rating_count }} reviews)</span>
+          <StarIcon class="w-4 h-4 text-warning" />
+          <span class="font-medium text-white">{{ game.aggregated_rating }}</span>
+          <span class="text-white/40">({{ game.aggregated_rating_count }} reviews)</span>
         </div>
 
         <p
           v-if="game.description"
-          class="text-gray-300 text-sm leading-relaxed line-clamp-4 mb-4"
+          class="text-sm text-white/55 leading-relaxed line-clamp-4 mb-3"
         >
           {{ game.description }}
         </p>
 
         <div
           v-if="showGenres && game.genres && game.genres.length > 0"
-          class="flex flex-wrap gap-2"
+          class="flex flex-wrap gap-1.5 mb-3"
         >
           <span
             v-for="genre in game.genres"
             :key="genre.id"
-            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-600/20 text-primary-300 border border-primary-600/30"
+            class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-white/5 text-white/60 border border-white/10"
           >
             {{ genre.name }}
           </span>
@@ -94,14 +94,14 @@ withDefaults(defineProps<Props>(), {
 
         <div
           v-if="platformName"
-          class="inline-flex items-center gap-2 px-4 py-2 bg-primary-600/20 border border-primary-600/30 rounded-lg"
+          class="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-md border border-white/10 bg-white/5"
         >
           <PlatformIcon
             :icon="platformIcon || 'generic'"
-            size="lg"
-            class="text-primary-400"
+            size="sm"
+            class="text-white/70"
           />
-          <span class="text-primary-300 font-semibold text-lg">{{ platformName }}</span>
+          <span class="text-sm font-medium text-white/80">{{ platformName }}</span>
         </div>
       </div>
     </div>

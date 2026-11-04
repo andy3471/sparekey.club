@@ -71,7 +71,7 @@ const finish = () => {
       <div
         v-for="group in publicGroups"
         :key="group.id"
-        class="flex items-center justify-between p-3 rounded-lg border border-dark-600 bg-dark-700/50 hover:border-dark-500 transition-colors"
+        class="flex items-center justify-between p-3 rounded-lg border border-white/10 hover:border-white/20 transition-colors"
       >
         <div class="flex items-center gap-3 min-w-0">
           <div class="w-8 h-8 rounded-lg bg-dark-600 flex items-center justify-center flex-shrink-0 overflow-hidden">
@@ -125,7 +125,7 @@ const finish = () => {
     <div class="mt-6 space-y-3">
       <button
         v-if="props.joinedGroupCount > 0"
-        class="w-full bg-accent-600 hover:bg-accent-700 active:bg-accent-800 text-white font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg shadow-accent-600/20 text-sm"
+        class="w-full btn-primary"
         @click="finish"
       >
         Continue
@@ -133,7 +133,7 @@ const finish = () => {
 
       <Link
         :href="groups.create.url()"
-        class="block w-full text-center bg-dark-700 hover:bg-dark-600 text-white font-medium py-2.5 rounded-lg border border-dark-600 transition-colors text-sm"
+        class="btn-secondary block w-full text-center"
       >
         Create a Group
       </Link>

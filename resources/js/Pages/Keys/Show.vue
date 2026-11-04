@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import { Head, Link, useForm, usePage, router } from '@inertiajs/vue3';
+import { Head, Link, useForm, router } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import GameBanner from '@/Components/shared/GameBanner.vue';
+import ParentGameLink from '@/Components/shared/ParentGameLink.vue';
 import KeyFeedbackSection from '@/Components/keys/KeyFeedbackSection.vue';
 import SharedByCard from '@/Components/keys/SharedByCard.vue';
 import ConfirmModal from '@/Components/ui/ConfirmModal.vue';
-import { KeyData, KeyFeedback } from '@/types/generated';
+import { GameData, KeyData, KeyFeedback } from '@/types/generated';
 import { claim as claimRoute, feedback as feedbackRoute, show as showRoute } from '@/routes/keys';
 import { useCountdown } from '@/Composables/useCountdown';
 import PlatformIcon from '@/Components/shared/PlatformIcon.vue';
@@ -14,12 +15,13 @@ import { InformationCircleIcon, ExclamationTriangleIcon, ClockIcon, ClipboardDoc
 
 interface Props {
   keyData: KeyData;
+  parentGame?: GameData | null;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  parentGame: null,
+});
 const keyData = computed(() => props.keyData);
-const page = usePage();
-const flash = page.props.flash;
 const copied = ref(false);
 
 const form = useForm({ id: keyData.value.id });
@@ -66,28 +68,16 @@ const deleteKey = () => {
 </script>
 
 <template>
-  <AppLayout
-    v-if="keyData"
-    :title="keyData.game?.name || 'Key'"
-  >
+  <AppLayout v-if="keyData">
     <Head :title="`${keyData.game?.name || 'Key'} - ${keyData.platform?.name || 'Key'}`" />
-    <div class="max-w-7xl mx-auto px-4 py-6">
-      <div
-        v-if="flash.error"
-        class="mb-6 bg-red-900/50 border border-red-700 rounded-lg p-4 text-red-300"
-      >
-        {{ flash.error }}
-      </div>
-      <div
-        v-if="flash.message"
-        class="mb-6 bg-green-900/50 border border-green-700 rounded-lg p-4 text-green-300"
-      >
-        {{ flash.message }}
-      </div>
+    <div class="space-y-5">
+      <ParentGameLink
+        v-if="parentGame"
+        :parent-game="parentGame"
+      />
 
       <div
         v-if="keyData.game"
-        class="mb-8"
       >
         <GameBanner
           :game="keyData.game"
@@ -97,22 +87,22 @@ const deleteKey = () => {
         />
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        <div class="lg:col-span-2 bg-dark-800 rounded-lg border border-dark-700 p-6">
-          <div class="flex items-center justify-between mb-4">
-            <h2 class="text-xl font-bold text-white">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div class="lg:col-span-2 surface p-5 sm:p-6">
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <h2 class="text-xs font-medium uppercase tracking-wider text-white/40">
               Key Details
             </h2>
             <div
               v-if="keyData.platform?.name"
-              class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary-600/20 border border-primary-600/30 rounded-lg"
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/5"
             >
               <PlatformIcon
                 :icon="keyData.platform.icon"
-                size="md"
-                class="text-primary-400"
+                size="sm"
+                class="text-white/70"
               />
-              <span class="text-primary-300 font-semibold">{{ keyData.platform.name }}</span>
+              <span class="text-sm font-medium text-white/80">{{ keyData.platform.name }}</span>
             </div>
           </div>
 
@@ -122,9 +112,9 @@ const deleteKey = () => {
           >
             <div v-if="keyData.can?.claim">
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Key Code</label>
+                <label class="block text-sm font-medium text-gray-300 mb-1.5">Key Code</label>
                 <input
-                  class="border border-dark-600 rounded-lg bg-dark-900 text-gray-100 px-4 py-3 w-full opacity-60 cursor-not-allowed font-mono text-lg tracking-wider"
+                  class="w-full rounded-lg border border-white/10 bg-dark-950 px-3 py-2 text-sm font-mono tracking-wider text-gray-100 opacity-60 cursor-not-allowed"
                   type="text"
                   value="*****-*****-*****-*****"
                   disabled
@@ -132,7 +122,7 @@ const deleteKey = () => {
               </div>
               <button
                 type="submit"
-                class="w-full mt-4 bg-accent-600 hover:bg-accent-700 active:bg-accent-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg shadow-accent-600/20 hover:shadow-xl hover:shadow-accent-600/30 hover:-translate-y-0.5 active:translate-y-0"
+                class="w-full mt-4 btn-primary"
               >
                 Claim Key
               </button>
@@ -143,9 +133,9 @@ const deleteKey = () => {
 
             <div v-else-if="keyData.can?.claimDeniedReason === 'own_key' || keyData.can?.claimDeniedReason === 'karma_too_low' || keyData.can?.claimDeniedReason === 'cooldown_active' || keyData.can?.claimDeniedReason === 'already_owns_game'">
               <div>
-                <label class="block text-sm font-medium text-gray-500 mb-2">Key Code</label>
+                <label class="block text-sm font-medium text-gray-500 mb-1.5">Key Code</label>
                 <input
-                  class="border border-dark-700 rounded-lg bg-dark-900/50 text-gray-600 px-4 py-3 w-full opacity-40 cursor-not-allowed font-mono text-lg tracking-wider"
+                  class="w-full rounded-lg border border-white/10 bg-dark-950/50 px-3 py-2 text-sm font-mono tracking-wider text-gray-500 opacity-40 cursor-not-allowed"
                   type="text"
                   value="*****-*****-*****-*****"
                   disabled
@@ -163,7 +153,7 @@ const deleteKey = () => {
                       This is your key
                     </p>
                     <p class="text-gray-400 text-sm mt-1">
-                      You shared this key — you can't claim your own.
+                      You shared this key, so you can't claim your own.
                     </p>
                   </div>
                 </div>
@@ -172,7 +162,7 @@ const deleteKey = () => {
               <button
                 v-if="keyData.can?.delete"
                 type="button"
-                class="w-full mt-4 inline-flex items-center justify-center gap-2 bg-dark-700 hover:bg-danger text-gray-300 hover:text-white font-medium py-3 px-6 rounded-lg transition-all duration-200"
+                class="btn-danger w-full mt-4"
                 @click="showDeleteModal = true"
               >
                 <TrashIcon class="w-5 h-5" />
@@ -240,18 +230,18 @@ const deleteKey = () => {
 
             <div v-else-if="keyData.key">
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Your Key Code</label>
+                <label class="block text-sm font-medium text-gray-300 mb-1.5">Your Key Code</label>
                 <div class="relative">
                   <input
                     :id="`keycode-${keyData.id}`"
                     readonly
-                    class="border border-dark-600 rounded-lg bg-dark-900 text-gray-100 px-4 py-3 pr-12 w-full font-mono text-lg tracking-wider cursor-text select-all"
+                    class="w-full rounded-lg border border-white/10 bg-dark-950 px-3 py-2 pr-11 text-sm font-mono tracking-wider text-gray-100 cursor-text select-all focus:outline-none focus:border-cyan focus:ring-1 focus:ring-cyan"
                     type="text"
                     :value="keyData.key"
                   >
                   <button
                     type="button"
-                    class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-dark-700 hover:bg-dark-600 text-gray-300 hover:text-white p-2 rounded-lg transition-colors"
+                    class="absolute right-1.5 top-1/2 -translate-y-1/2 p-1.5 rounded-md text-white/45 hover:text-white hover:bg-white/5 transition-colors"
                     :title="copied ? 'Copied!' : 'Copy to clipboard'"
                     @click="copyKeyCode"
                   >
@@ -270,7 +260,7 @@ const deleteKey = () => {
                 v-if="keyData.platform?.name === 'Steam'"
                 :href="`https://store.steampowered.com/account/registerkey?key=${keyData.key}`"
                 target="_blank"
-                class="block w-full mt-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 text-center shadow-lg shadow-primary-600/20 hover:shadow-xl hover:shadow-primary-600/30 hover:-translate-y-0.5"
+                class="btn-secondary w-full mt-4 text-center"
               >
                 Redeem on Steam
               </a>
@@ -284,9 +274,9 @@ const deleteKey = () => {
 
             <div v-else>
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Key Code</label>
+                <label class="block text-sm font-medium text-gray-300 mb-1.5">Key Code</label>
                 <input
-                  class="border border-dark-600 rounded-lg bg-dark-900 text-gray-100 px-4 py-3 w-full opacity-60 cursor-not-allowed font-mono text-lg tracking-wider"
+                  class="w-full rounded-lg border border-white/10 bg-dark-950 px-3 py-2 text-sm font-mono tracking-wider text-gray-100 opacity-60 cursor-not-allowed"
                   type="text"
                   value="*****-*****-*****-*****"
                   disabled
@@ -294,7 +284,7 @@ const deleteKey = () => {
               </div>
               <button
                 type="submit"
-                class="w-full mt-4 bg-accent-600 text-white font-semibold py-3 px-6 rounded-lg opacity-50 cursor-not-allowed"
+                class="btn-primary w-full mt-4"
                 disabled
               >
                 Claim Key
@@ -315,12 +305,12 @@ const deleteKey = () => {
 
       <div
         v-if="keyData.message"
-        class="bg-dark-800 rounded-lg border border-dark-700 p-6"
+        class="surface p-5 sm:p-6"
       >
-        <h2 class="text-xl font-bold text-white mb-3">
+        <h2 class="text-xs font-medium uppercase tracking-wider text-white/40 mb-2">
           Message from Sharer
         </h2>
-        <p class="text-gray-300 leading-relaxed">
+        <p class="text-sm text-white/70 leading-relaxed">
           {{ keyData.message }}
         </p>
       </div>
@@ -329,7 +319,7 @@ const deleteKey = () => {
     <ConfirmModal
       :open="showDeleteModal"
       title="Delete key"
-      message="Are you sure you want to delete this key? This action cannot be undone."
+      message="This permanently deletes the key code. Anyone who hasn't claimed it yet will lose access. This cannot be undone."
       confirm-label="Delete key"
       variant="danger"
       @confirm="deleteKey"
@@ -341,10 +331,10 @@ const deleteKey = () => {
     v-else
     title="Loading..."
   >
-    <div class="max-w-7xl mx-auto px-4 py-6">
-      <div class="bg-dark-800 rounded-lg border border-dark-700 p-12 text-center">
-        <div class="inline-flex flex-col items-center space-y-4">
-          <div class="w-16 h-16 border-4 border-accent-600 border-t-transparent rounded-full animate-spin" />
+    <div>
+      <div class="surface p-8 text-center">
+        <div class="inline-flex flex-col items-center gap-3">
+          <div class="w-8 h-8 border-2 border-accent-500 border-t-transparent rounded-full animate-spin" />
           <p class="text-gray-400">
             Loading key...
           </p>

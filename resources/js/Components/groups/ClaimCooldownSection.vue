@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import FormInput from '@/Components/ui/FormInput.vue';
-import { ClockIcon } from '@heroicons/vue/24/outline';
 
 interface Props {
   modelValue: number | string | null;
@@ -15,13 +14,10 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="border-t border-dark-700 pt-6">
-    <div class="flex items-center gap-3 mb-4">
-      <ClockIcon class="w-5 h-5 text-primary-400" />
-      <h3 class="text-sm font-semibold text-white">
-        Claim Cooldown
-      </h3>
-    </div>
+  <div class="border-t border-white/10 pt-5">
+    <h3 class="text-xs font-medium uppercase tracking-wider text-white/40 mb-3">
+      Claim Cooldown
+    </h3>
     <FormInput
       id="claim_cooldown_minutes"
       :model-value="modelValue"

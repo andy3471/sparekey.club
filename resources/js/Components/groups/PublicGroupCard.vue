@@ -13,7 +13,7 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div class="bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-accent-600/50 transition-all">
+  <div class="surface p-5 hover:border-white/20 transition-colors">
     <div class="flex items-start gap-3 mb-3">
       <GroupAvatar
         :avatar="group.avatar"

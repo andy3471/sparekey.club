@@ -60,14 +60,23 @@ class HandleInertiaRequests extends Middleware
             return null;
         }
 
-        $group = Group::with('media')->find($groupId);
+        $user->loadMissing('groups');
+        $membership = $user->groups->firstWhere('id', $groupId);
 
-        if (! $group || ! $group->hasMember($user)) {
+        if (! $membership) {
             $request->session()->forget('active_group_id');
 
             return null;
         }
 
-        return GroupData::fromModel($group, $group->memberRole($user)?->value);
+        $group = Group::with('media')->find($groupId);
+
+        if (! $group) {
+            $request->session()->forget('active_group_id');
+
+            return null;
+        }
+
+        return GroupData::fromModel($group, $membership->pivot->role);
     }
 }

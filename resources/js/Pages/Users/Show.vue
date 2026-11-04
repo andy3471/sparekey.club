@@ -12,7 +12,6 @@ import {
   PencilSquareIcon,
   CheckBadgeIcon,
   ShareIcon,
-  UserGroupIcon,
 } from '@heroicons/vue/24/outline';
 
 interface Props {
@@ -28,51 +27,46 @@ const isOwnProfile = auth.user?.id === props.user.id;
 </script>
 
 <template>
-  <AppLayout :title="user.name">
+  <AppLayout>
     <Head :title="user.name" />
-    <div class="max-w-7xl mx-auto px-4 py-6">
-      <div class="bg-gradient-to-r from-dark-800 via-dark-700 to-dark-800 rounded-lg border border-dark-700 p-8 mb-6 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-          <div
-            class="absolute inset-0"
-            style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(139, 92, 246, 0.1) 10px, rgba(139, 92, 246, 0.1) 20px);"
-          />
-        </div>
 
-        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-6">
+    <div class="max-w-3xl mx-auto space-y-5">
+      <div class="surface p-5 sm:p-6">
+        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
           <UserAvatar
             :avatar="user.avatar"
             :name="user.name"
             :karma="user.karma"
             :karma-colour="user.karma_colour"
-            size="xl"
+            size="lg"
           />
 
-          <div class="flex-1">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <div>
-                <h1 class="text-4xl font-bold text-white mb-2">
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+              <div class="min-w-0">
+                <h1 class="text-xl sm:text-2xl font-semibold tracking-tight text-white break-words">
                   {{ user.name }}
                 </h1>
                 <p
                   v-if="user.bio"
-                  class="text-gray-300 text-lg leading-relaxed max-w-2xl"
+                  class="mt-1.5 text-sm text-white/60 leading-relaxed"
                 >
                   {{ user.bio }}
                 </p>
                 <p
                   v-else
-                  class="text-gray-500 italic"
+                  class="mt-1.5 text-sm text-white/40"
                 >
                   No bio yet
                 </p>
               </div>
+
               <Link
                 v-if="isOwnProfile"
                 :href="users.edit.url(user.id)"
-                class="bg-accent-600 hover:bg-accent-700 active:bg-accent-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg shadow-accent-600/20 hover:shadow-xl hover:shadow-accent-600/30 hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center whitespace-nowrap"
+                class="btn-primary shrink-0 self-start"
               >
-                <PencilSquareIcon class="w-5 h-5 mr-2" />
+                <PencilSquareIcon class="w-4 h-4" />
                 Edit Profile
               </Link>
             </div>
@@ -82,61 +76,56 @@ const isOwnProfile = auth.user?.id === props.user.id;
 
       <div
         v-if="isOwnProfile"
-        class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"
+        class="grid grid-cols-1 sm:grid-cols-2 gap-3"
       >
         <Link
           :href="keys.claimed.index.url()"
-          class="bg-dark-800 rounded-lg border border-dark-700 p-6 hover:border-accent-500 hover:shadow-lg hover:shadow-accent-500/20 transition-all duration-200 group"
+          class="surface p-4 hover:border-white/20 transition-colors"
         >
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between gap-3">
             <div>
-              <h3 class="text-lg font-semibold text-gray-300 mb-1 group-hover:text-white transition-colors">
+              <h2 class="text-sm font-medium text-white">
                 Claimed Keys
-              </h3>
-              <p class="text-sm text-gray-500">
-                View your claimed game keys
+              </h2>
+              <p class="text-xs text-white/45 mt-0.5">
+                Keys you’ve claimed
               </p>
             </div>
-            <div class="bg-accent-600/20 rounded-lg p-4 group-hover:bg-accent-600/30 transition-colors">
-              <CheckBadgeIcon class="w-8 h-8 text-accent-400" />
-            </div>
+            <CheckBadgeIcon class="w-5 h-5 text-accent-400 shrink-0" />
           </div>
         </Link>
 
         <Link
           :href="keys.shared.index.url()"
-          class="bg-dark-800 rounded-lg border border-dark-700 p-6 hover:border-accent-500 hover:shadow-lg hover:shadow-accent-500/20 transition-all duration-200 group"
+          class="surface p-4 hover:border-white/20 transition-colors"
         >
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between gap-3">
             <div>
-              <h3 class="text-lg font-semibold text-gray-300 mb-1 group-hover:text-white transition-colors">
+              <h2 class="text-sm font-medium text-white">
                 Shared Keys
-              </h3>
-              <p class="text-sm text-gray-500">
-                View your shared game keys
+              </h2>
+              <p class="text-xs text-white/45 mt-0.5">
+                Keys you’ve shared
               </p>
             </div>
-            <div class="bg-primary-600/20 rounded-lg p-4 group-hover:bg-primary-600/30 transition-colors">
-              <ShareIcon class="w-8 h-8 text-primary-400" />
-            </div>
+            <ShareIcon class="w-5 h-5 text-accent-400 shrink-0" />
           </div>
         </Link>
       </div>
 
       <div
         v-if="groups.length > 0"
-        class="bg-dark-800 rounded-lg border border-dark-700 p-6"
+        class="surface p-5 sm:p-6"
       >
-        <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-          <UserGroupIcon class="w-5 h-5 text-accent-400" />
+        <h2 class="text-xs font-medium uppercase tracking-wider text-white/40 mb-3">
           Groups
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <Link
             v-for="group in groups"
             :key="group.id"
             :href="groupRoutes.show.url(group.id)"
-            class="flex items-center gap-3 p-3 rounded-lg border border-dark-600 hover:border-accent-500 hover:bg-dark-700 transition-all duration-200 group"
+            class="flex items-center gap-3 rounded-lg border border-white/10 px-3 py-2.5 hover:border-white/20 hover:bg-white/[0.03] transition-colors"
           >
             <GroupAvatar
               :avatar="group.avatar"
@@ -144,19 +133,13 @@ const isOwnProfile = auth.user?.id === props.user.id;
               size="md"
             />
             <div class="flex-1 min-w-0">
-              <p class="text-sm font-medium text-white truncate group-hover:text-accent-400 transition-colors">
+              <p class="text-sm font-medium text-white truncate">
                 {{ group.name }}
               </p>
-              <p class="text-xs text-gray-500">
+              <p class="text-xs text-white/45">
                 {{ group.member_count }} {{ group.member_count === 1 ? 'member' : 'members' }}
-                <span
-                  v-if="group.is_public"
-                  class="ml-1 text-green-500"
-                >· Public</span>
-                <span
-                  v-else
-                  class="ml-1 text-yellow-500"
-                >· Private</span>
+                <span class="text-white/30"> · </span>
+                {{ group.is_public ? 'Public' : 'Private' }}
               </p>
             </div>
           </Link>

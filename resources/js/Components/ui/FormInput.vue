@@ -38,7 +38,7 @@ const emit = defineEmits<{
     <label
       v-if="label"
       :for="id"
-      class="block text-sm font-medium text-gray-300 mb-2"
+      class="block text-sm font-medium text-gray-300 mb-1.5"
     >
       {{ label }}
       <span
@@ -59,7 +59,7 @@ const emit = defineEmits<{
         :disabled="disabled"
         :autocomplete="autocomplete"
         :maxlength="maxlength"
-        class="w-full bg-dark-900 border border-dark-600 rounded-lg px-4 py-2.5 text-white placeholder-gray-500 focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        class="w-full bg-dark-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 focus:border-cyan focus:ring-1 focus:ring-cyan transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         :class="[
           error ? 'border-danger focus:ring-danger' : '',
           inputClass,

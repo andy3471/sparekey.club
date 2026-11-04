@@ -34,6 +34,6 @@ class ConfirmGroupInviteController extends Controller
         session()->forget('pending_invite_code');
 
         return to_route('groups.show', $group)
-            ->with('message', 'You have joined the group.');
+            ->with('message', 'You\'re in '.$group->name.'.');
     }
 }

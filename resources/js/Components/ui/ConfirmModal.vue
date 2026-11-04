@@ -25,9 +25,9 @@ const emit = defineEmits<{
 }>();
 
 const variantClasses: Record<string, string> = {
-  danger: 'bg-danger-600 hover:bg-danger-700 shadow-danger-600/20',
-  warning: 'bg-warning hover:bg-yellow-600 shadow-warning/20',
-  default: 'bg-accent-600 hover:bg-accent-700 shadow-accent-600/20',
+  danger: 'btn-danger',
+  warning: 'border-2 border-warning bg-warning text-dark-950 hover:bg-warning-dark',
+  default: 'btn-primary',
 };
 
 const variantIconClasses: Record<string, string> = {
@@ -40,9 +40,10 @@ const variantIconClasses: Record<string, string> = {
 <template>
   <AppDialog
     :open="open"
+    :title="title"
     @close="emit('cancel')"
   >
-    <div class="flex items-start gap-4">
+    <div class="flex items-start gap-4 mt-1">
       <div
         class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center"
         :class="variantIconClasses[variant]"
@@ -58,12 +59,9 @@ const variantIconClasses: Record<string, string> = {
       </div>
 
       <div class="flex-1 min-w-0">
-        <h3 class="text-lg font-semibold text-white">
-          {{ title }}
-        </h3>
         <p
           v-if="message"
-          class="mt-1.5 text-sm text-gray-400"
+          class="text-sm text-gray-400"
         >
           {{ message }}
         </p>
@@ -74,14 +72,13 @@ const variantIconClasses: Record<string, string> = {
     <div class="flex justify-end gap-3 mt-6">
       <button
         type="button"
-        class="px-4 py-2 bg-dark-700 hover:bg-dark-600 text-gray-300 hover:text-white text-sm font-medium rounded-lg transition-colors"
+        class="btn-ghost"
         @click="emit('cancel')"
       >
         {{ cancelLabel }}
       </button>
       <button
         type="button"
-        class="px-4 py-2 text-white text-sm font-medium rounded-lg transition-all duration-200 shadow-lg"
         :class="variantClasses[variant]"
         @click="emit('confirm')"
       >

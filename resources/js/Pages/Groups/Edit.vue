@@ -48,14 +48,10 @@ const deleteGroup = () => {
 <template>
   <AppLayout title="Edit Group">
     <Head :title="`Edit ${group.name}`" />
-    <div class="max-w-2xl mx-auto px-4 py-6 space-y-6">
-      <div class="bg-dark-800 rounded-xl p-6 border border-dark-700">
-        <h2 class="text-xl font-display font-bold text-white mb-6">
-          Group Settings
-        </h2>
-
+    <div class="max-w-2xl mx-auto space-y-5">
+      <div class="surface p-5 sm:p-6">
         <form
-          class="space-y-6"
+          class="space-y-5"
           @submit.prevent="submit"
         >
           <AvatarUpload
@@ -110,11 +106,11 @@ const deleteGroup = () => {
             @update:model-value="form.claim_cooldown_minutes = $event ? Number($event) : null"
           />
 
-          <div class="flex justify-end">
+          <div class="flex justify-end pt-1">
             <button
               type="submit"
               :disabled="form.processing"
-              class="inline-flex items-center px-6 py-2.5 bg-accent-600 hover:bg-accent-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors"
+              class="btn-primary"
             >
               Save Changes
             </button>

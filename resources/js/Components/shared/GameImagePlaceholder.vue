@@ -17,7 +17,7 @@ const sizeClasses: Record<string, string> = {
 </script>
 
 <template>
-  <div class="w-full h-full min-h-[80px] flex items-center justify-center bg-gradient-to-br from-dark-800 via-dark-700 to-dark-800 border border-dark-700 rounded-lg">
+  <div class="w-full h-full min-h-[80px] flex items-center justify-center bg-dark-950 border border-white/10 rounded-lg">
     <TicketIcon
       class="text-accent-500/50"
       :class="sizeClasses[size]"

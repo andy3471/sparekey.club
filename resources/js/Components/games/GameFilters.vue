@@ -71,12 +71,12 @@ watch(() => props.selectedPlatforms, (newValue) => {
 </script>
 
 <template>
-  <div class="bg-dark-800 rounded-lg border border-dark-700 p-4 mb-6">
-    <div class="flex flex-wrap items-center gap-4">
+  <div class="surface p-4 mb-5">
+    <div class="flex flex-wrap items-end gap-3">
       <div class="flex-1 min-w-[200px]">
-        <label class="block text-sm font-medium text-gray-300 mb-2">Platforms</label>
+        <label class="block text-sm font-medium text-gray-300 mb-1.5">Platforms</label>
         <Popover class="relative">
-          <PopoverButton class="w-full bg-dark-700 border border-dark-600 rounded-lg px-4 py-2 text-left text-sm text-gray-300 hover:border-accent-500 transition-colors flex items-center justify-between">
+          <PopoverButton class="w-full bg-dark-950 border border-white/10 rounded-lg px-3 py-2 text-left text-sm text-gray-300 hover:border-white/20 transition-colors flex items-center justify-between focus:outline-none focus:ring-1 focus:ring-cyan focus:border-cyan">
             <span
               v-if="selected.length === 0"
               class="text-gray-500"
@@ -85,7 +85,7 @@ watch(() => props.selectedPlatforms, (newValue) => {
               v-else
               class="text-white"
             >{{ selected.length }} selected</span>
-            <ChevronDownIcon class="h-5 w-5 transition-transform duration-200" />
+            <ChevronDownIcon class="h-4 w-4 text-white/40" />
           </PopoverButton>
 
           <transition
@@ -96,24 +96,24 @@ watch(() => props.selectedPlatforms, (newValue) => {
             leave-from-class="opacity-100 translate-y-0"
             leave-to-class="opacity-0 translate-y-1"
           >
-            <PopoverPanel class="absolute z-50 mt-2 w-full bg-dark-800 border border-dark-700 rounded-lg shadow-xl max-h-64 overflow-y-auto">
-              <div class="p-2">
+            <PopoverPanel class="absolute z-50 mt-2 w-full surface max-h-64 overflow-y-auto">
+              <div class="p-1.5">
                 <label
                   v-for="platform in platforms"
                   :key="platform.id"
-                  class="flex items-center px-3 py-2 rounded hover:bg-dark-700 cursor-pointer"
+                  class="flex items-center px-2.5 py-1.5 rounded-md hover:bg-white/5 cursor-pointer"
                 >
                   <input
                     type="checkbox"
                     :value="platform.id"
                     :checked="selected.includes(platform.id)"
-                    class="w-4 h-4 text-accent-600 bg-dark-700 border-dark-600 rounded focus:ring-accent-500 focus:ring-2"
+                    class="w-4 h-4 text-accent-600 bg-dark-950 border-white/20 rounded focus:ring-cyan focus:ring-1"
                     @change="togglePlatform(platform.id)"
                   >
                   <PlatformIcon
                     :icon="platform.icon"
                     size="sm"
-                    class="ml-3 text-gray-400"
+                    class="ml-2.5 text-white/50"
                   />
                   <span class="ml-2 text-sm text-gray-300">{{ platform.name }}</span>
                 </label>
@@ -123,27 +123,24 @@ watch(() => props.selectedPlatforms, (newValue) => {
         </Popover>
       </div>
 
-      <div
+      <button
         v-if="selected.length > 0"
-        class="flex items-center gap-2"
+        type="button"
+        class="btn-ghost"
+        @click="clearFilters"
       >
-        <button
-          class="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors"
-          @click="clearFilters"
-        >
-          Clear filters
-        </button>
-      </div>
+        Clear filters
+      </button>
     </div>
 
     <div
       v-if="selected.length > 0"
-      class="mt-3 flex flex-wrap gap-2"
+      class="mt-3 flex flex-wrap gap-1.5"
     >
       <span
         v-for="platformId in selected"
         :key="platformId"
-        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-accent-600/20 text-accent-400 border border-accent-600/30"
+        class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-accent-600/15 text-accent-400 border border-accent-600/25"
       >
         <PlatformIcon
           :icon="getPlatformIcon(platformId)"
@@ -151,7 +148,9 @@ watch(() => props.selectedPlatforms, (newValue) => {
         />
         {{ getPlatformName(platformId) }}
         <button
-          class="ml-2 hover:text-white transition-colors"
+          type="button"
+          class="hover:text-white transition-colors"
+          :aria-label="`Remove ${getPlatformName(platformId)} filter`"
           @click="removePlatform(platformId)"
         >
           <XMarkIcon class="w-3 h-3" />

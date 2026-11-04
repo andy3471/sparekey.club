@@ -4,12 +4,89 @@
 
 @layer base {
     body {
-        @apply bg-dark-950 text-gray-100 font-sans;
+        @apply min-h-screen font-sans text-gray-100 antialiased;
+        background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+        background-attachment: fixed;
+    }
+
+    :focus-visible {
+        outline: 2px solid #06b6d4;
+        outline-offset: 2px;
+    }
+}
+
+@layer components {
+    .brand-logo {
+        @apply font-marker inline-block;
+        /* Permanent Marker ink hangs past the em box; leading-none clips it */
+        line-height: 1.2;
+        padding-block: 0.12em;
+        overflow: visible;
+        background-image: linear-gradient(135deg, #a78bfa, #7c3aed, #2563eb);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes marker-wiggle {
+        0%, 100% { transform: rotate(-2deg); }
+        50% { transform: rotate(2.5deg); }
+    }
+
+    .marker-wiggle:hover {
+        animation: marker-wiggle 0.45s ease-in-out;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-accent-600 bg-accent-600 px-3 py-1.5 text-sm font-medium text-white transition-colors duration-200 hover:border-accent-500 hover:bg-accent-500 disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-accent-500 px-3 py-1.5 text-sm font-medium text-accent-400 transition-colors duration-200 hover:bg-accent-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-transparent px-3 py-1.5 text-sm font-medium text-gray-300 transition-colors duration-200 hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    .btn-danger {
+        @apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-danger-600 bg-danger-600 px-3 py-1.5 text-sm font-medium text-white transition-colors duration-200 hover:border-danger-500 hover:bg-danger-500 disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    .surface {
+        @apply rounded-lg border border-white/10 bg-dark-900;
+    }
+
+    .nav-chip {
+        @apply rounded-lg px-2.5 py-1.5 text-sm font-medium text-gray-300 transition-colors duration-200 hover:bg-white/5 hover:text-white;
+    }
+
+    .nav-chip-active {
+        @apply bg-accent-600/10 text-accent-400;
     }
 }
 
 @layer utilities {
     .text-balance {
         text-wrap: balance;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        background-attachment: scroll;
+    }
+
+    .marker-wiggle:hover {
+        animation: none;
+    }
+
+    .animate-spin,
+    .animate-pulse {
+        animation: none !important;
+    }
+
+    .animate-pulse {
+        opacity: 0.6;
     }
 }

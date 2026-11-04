@@ -15,15 +15,16 @@ const confirmDelete = () => {
 </script>
 
 <template>
-  <div class="bg-dark-800 rounded-xl p-6 border border-danger-600/30">
-    <h2 class="text-lg font-semibold text-danger-400 mb-2">
+  <div class="surface p-5 sm:p-6 border-danger-600/30">
+    <h2 class="text-sm font-medium text-danger-400 mb-1.5">
       Danger Zone
     </h2>
-    <p class="text-gray-400 text-sm mb-4">
+    <p class="text-white/45 text-sm mb-4">
       Deleting the group will permanently remove all data associated with it. Keys shared within this group will become ungrouped.
     </p>
     <button
-      class="px-4 py-2 bg-danger-600 hover:bg-danger-500 text-white text-sm font-medium rounded-lg transition-colors"
+      type="button"
+      class="btn-danger"
       @click="showDeleteModal = true"
     >
       Delete Group
@@ -32,7 +33,7 @@ const confirmDelete = () => {
     <ConfirmModal
       :open="showDeleteModal"
       title="Delete group"
-      message="Are you sure you want to permanently delete this group? All keys and members will be removed. This action cannot be undone."
+      message="Members will be removed and keys shared in this group will become ungrouped. This cannot be undone."
       confirm-label="Delete group"
       variant="danger"
       @confirm="confirmDelete"

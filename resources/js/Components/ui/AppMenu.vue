@@ -30,7 +30,7 @@ withDefaults(defineProps<Props>(), {
       leave-to-class="opacity-0 scale-95"
     >
       <MenuItems
-        class="absolute mt-2 bg-dark-800 rounded-lg shadow-xl border border-dark-700 overflow-hidden z-50 focus:outline-none"
+        class="absolute mt-2 surface overflow-hidden z-50 focus:outline-none"
         :class="[width, align === 'right' ? 'right-0' : 'left-0']"
       >
         <div class="py-1">

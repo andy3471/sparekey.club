@@ -6,8 +6,8 @@ import GameBanner from '@/Components/shared/GameBanner.vue';
 import ScreenshotGallery from '@/Components/games/ScreenshotGallery.vue';
 import GameList from '@/Components/games/GameList.vue';
 import KeyCard from '@/Components/keys/KeyCard.vue';
-import GameImagePlaceholder from '@/Components/shared/GameImagePlaceholder.vue';
 import EmptyState from '@/Components/shared/EmptyState.vue';
+import ParentGameLink from '@/Components/shared/ParentGameLink.vue';
 import type { GameData, KeyData } from '@/types/generated';
 import type { AuthUser, Paginated } from '@/types/global';
 import gamesRoute from '@/routes/games';
@@ -48,35 +48,23 @@ watch(cooldownExpired, (expired) => {
 </script>
 
 <template>
-  <AppLayout :title="game.name">
+  <AppLayout>
     <Head :title="game.name" />
-    <div class="max-w-7xl mx-auto px-4 py-6">
-      <div
-        v-if="parentGame"
-        class="mb-6"
-      >
-        <div class="bg-dark-800 rounded-lg border border-dark-700 p-4 flex items-center gap-4">
-          <span class="text-sm text-gray-400">DLC for:</span>
-          <Link
-            :href="gamesRoute.show.url(parentGame.id)"
-            class="flex items-center gap-3 hover:opacity-80 transition-opacity"
-          >
-            <img
-              v-if="parentGame.image"
-              :src="parentGame.image"
-              :alt="parentGame.name"
-              class="w-12 h-16 rounded object-cover border border-dark-700"
-            >
-            <div
-              v-else
-              class="w-12 h-16"
-            >
-              <GameImagePlaceholder size="sm" />
-            </div>
-            <span class="text-white font-medium">{{ parentGame.name }}</span>
-          </Link>
-        </div>
+
+    <div class="space-y-5">
+      <div class="flex items-center justify-between gap-3">
+        <Link
+          :href="gamesRoute.index.url()"
+          class="text-xs text-white/45 hover:text-white transition-colors"
+        >
+          All games
+        </Link>
       </div>
+
+      <ParentGameLink
+        v-if="parentGame"
+        :parent-game="parentGame"
+      />
 
       <GameBanner
         :game="game"
@@ -84,14 +72,14 @@ watch(cooldownExpired, (expired) => {
         show-genres
       />
 
-      <div class="flex items-center justify-between mb-4 mt-8">
-        <h2 class="text-2xl font-bold text-white">
+      <div class="flex items-center justify-between gap-3 pt-1">
+        <h2 class="text-sm font-medium uppercase tracking-wider text-white/40">
           Available Keys
         </h2>
         <Link
           v-if="auth.user"
           :href="keysRoute.create.url({ query: { game_id: game.id } })"
-          class="inline-flex items-center gap-2 bg-accent-600 hover:bg-accent-700 active:bg-accent-800 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200 shadow-lg shadow-accent-600/20 hover:shadow-xl hover:shadow-accent-600/30 hover:-translate-y-0.5 active:translate-y-0"
+          class="btn-primary"
         >
           <PlusIcon class="w-4 h-4" />
           Add a Key
@@ -100,12 +88,12 @@ watch(cooldownExpired, (expired) => {
 
       <div
         v-if="cooldownEndsAt && !cooldownExpired"
-        class="bg-primary-600/10 border border-primary-600/30 rounded-lg p-4 mb-4"
+        class="rounded-lg border border-accent-600/25 bg-accent-600/10 p-3"
       >
-        <div class="flex items-center gap-3">
-          <ClockIcon class="w-5 h-5 text-primary-400 flex-shrink-0" />
-          <p class="text-gray-300 text-sm">
-            Claim cooldown active — you can claim another key in <span class="text-white font-semibold tabular-nums">{{ cooldownFormatted }}</span>
+        <div class="flex items-center gap-2.5">
+          <ClockIcon class="w-4 h-4 text-accent-400 shrink-0" />
+          <p class="text-sm text-white/70">
+            Claim cooldown active. You can claim another key in <span class="text-white font-semibold tabular-nums">{{ cooldownFormatted }}</span>
           </p>
         </div>
       </div>
@@ -116,13 +104,13 @@ watch(cooldownExpired, (expired) => {
         message="Be the first to share a key for this game!"
       >
         <template #icon>
-          <KeyIcon class="w-16 h-16 text-gray-600" />
+          <KeyIcon class="w-10 h-10 text-white/25" />
         </template>
       </EmptyState>
 
       <div
         v-else
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"
       >
         <KeyCard
           v-for="keyItem in keys"
@@ -133,9 +121,9 @@ watch(cooldownExpired, (expired) => {
 
       <div
         v-if="childGames && childGames.data && childGames.data.length > 0"
-        class="mt-8"
+        class="pt-2 space-y-3"
       >
-        <h2 class="text-2xl font-bold text-white mb-4">
+        <h2 class="text-sm font-medium uppercase tracking-wider text-white/40">
           DLC / Expansions
         </h2>
         <GameList

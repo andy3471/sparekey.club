@@ -30,6 +30,6 @@ class JoinGroupController extends Controller
         }
 
         return to_route('groups.show', $group)
-            ->with('message', 'You have joined the group.');
+            ->with('message', 'You\'re in '.$group->name.'.');
     }
 }

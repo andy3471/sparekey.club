@@ -57,30 +57,21 @@ defineProps<Props>();
 
 <style scoped>
 .game-card {
-    @apply relative w-full bg-dark-800 rounded-lg border border-dark-700 flex justify-center items-center transition-all duration-300 overflow-hidden;
-    @apply hover:border-accent-500 hover:shadow-xl hover:shadow-accent-500/30 hover:-translate-y-1;
+    @apply relative w-full bg-dark-900 rounded-lg border border-white/10 flex justify-center items-center transition-colors duration-200 overflow-hidden;
+    @apply hover:border-white/25;
     aspect-ratio: 3 / 4;
 }
 
-.game-card:hover .game-overlay {
-    @apply opacity-100 translate-y-0;
-    min-height: 50%;
-}
-
-.game-card:hover .game-image {
-    @apply scale-110;
-}
-
 .game-image {
-    @apply block w-full h-full object-cover rounded-lg transition-transform duration-500;
+    @apply block w-full h-full object-cover rounded-lg;
 }
 
 .game-image-placeholder {
-    @apply min-h-full relative w-full bg-dark-800;
+    @apply min-h-full relative w-full bg-dark-900;
 }
 
 .game-overlay {
-    @apply absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/80 to-transparent text-white transition-all duration-300 opacity-90 translate-y-0 text-sm font-medium text-center px-3 py-4 flex items-end justify-center rounded-b-lg break-words overflow-hidden;
+    @apply absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent text-white text-sm font-medium text-center px-3 py-4 flex items-end justify-center rounded-b-lg break-words overflow-hidden;
     min-height: 40%;
 }
 </style>

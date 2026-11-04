@@ -13,9 +13,9 @@ withDefaults(defineProps<Props>(), {
 const sizeClasses: Record<string, string> = {
   xs: 'w-4 h-4 rounded text-[8px]',
   sm: 'w-5 h-5 rounded text-[10px]',
-  md: 'w-10 h-10 rounded-lg text-sm',
-  lg: 'w-16 h-16 rounded-xl text-2xl',
-  xl: 'w-28 h-28 rounded-2xl text-4xl',
+  md: 'w-10 h-10 rounded-lg text-sm border border-white/10',
+  lg: 'w-16 h-16 rounded-lg text-xl border border-white/10',
+  xl: 'w-20 h-20 rounded-lg text-2xl border border-white/10',
 };
 </script>
 

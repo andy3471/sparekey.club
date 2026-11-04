@@ -39,12 +39,9 @@ const submit = () => {
       :group="pendingGroup"
     />
 
-    <h2 class="text-xl font-semibold text-white mb-1">
-      Sign In
+    <h2 class="text-xl font-semibold text-white mb-6">
+      Sign in
     </h2>
-    <p class="text-gray-400 text-sm mb-6">
-      Sign in to your account
-    </p>
 
     <SocialLoginButtons
       v-if="providers.length"
@@ -56,10 +53,10 @@ const submit = () => {
       class="relative my-6"
     >
       <div class="absolute inset-0 flex items-center">
-        <div class="w-full border-t border-dark-600" />
+        <div class="w-full border-t border-white/10" />
       </div>
       <div class="relative flex justify-center text-sm">
-        <span class="bg-dark-800 px-3 text-gray-500">or continue with email</span>
+        <span class="bg-dark-900 px-3 text-gray-500">or continue with email</span>
       </div>
     </div>
 
@@ -94,7 +91,7 @@ const submit = () => {
           <input
             v-model="form.remember"
             type="checkbox"
-            class="w-4 h-4 rounded bg-dark-700 border-dark-600 text-accent-600 focus:ring-accent-500"
+            class="w-4 h-4 rounded bg-dark-950 border-white/10 text-accent-600 focus:ring-cyan"
           >
           <span class="ml-2 text-sm text-gray-400">Remember me</span>
         </label>
@@ -109,7 +106,7 @@ const submit = () => {
       <button
         type="submit"
         :disabled="form.processing"
-        class="w-full bg-accent-600 hover:bg-accent-700 active:bg-accent-800 text-white font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg shadow-accent-600/20 disabled:opacity-50 disabled:cursor-not-allowed"
+        class="w-full btn-primary"
       >
         <span
           v-if="form.processing"

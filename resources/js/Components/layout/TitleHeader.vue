@@ -7,10 +7,11 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div
-    class="border-b-2 border-dark-700 mx-4 mt-0 mb-6 h-auto text-center py-6 text-3xl sm:text-4xl font-display font-bold bg-gradient-to-r from-transparent via-accent-600/10 to-transparent overflow-hidden break-words"
-    style="text-shadow: 0 0 20px rgba(217, 70, 239, 0.3);"
-  >
-    {{ title }}
+  <div class="border-b border-white/10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
+      <h1 class="text-xl sm:text-2xl font-semibold tracking-tight text-white break-words">
+        {{ title }}
+      </h1>
+    </div>
   </div>
 </template>

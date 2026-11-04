@@ -14,7 +14,6 @@ import {
   ClipboardDocumentIcon,
   ArrowPathIcon,
   UserGroupIcon,
-  LinkIcon,
   EyeIcon,
   EyeSlashIcon,
   UserMinusIcon,
@@ -86,108 +85,99 @@ const regenerateCode = () => {
 const roleBadgeClasses: Record<string, string> = {
   owner: 'bg-accent-600/20 text-accent-400',
   admin: 'bg-primary-600/20 text-primary-400',
-  member: 'bg-dark-600 text-gray-400',
+  member: 'bg-white/5 text-white/45',
 };
 </script>
 
 <template>
-  <AppLayout :title="group.name">
+  <AppLayout>
     <Head :title="group.name" />
-    <div class="max-w-7xl mx-auto px-4 py-6">
-      <div class="bg-gradient-to-r from-dark-800 via-dark-700 to-dark-800 rounded-lg border border-dark-700 p-8 mb-6 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-          <div
-            class="absolute inset-0"
-            style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(139, 92, 246, 0.1) 10px, rgba(139, 92, 246, 0.1) 20px);"
-          />
-        </div>
 
-        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-6">
+    <div class="max-w-3xl mx-auto space-y-5">
+      <div class="surface p-5 sm:p-6">
+        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
           <GroupAvatar
             :avatar="group.avatar"
             :name="group.name"
-            size="xl"
-            class="border-4 border-dark-600 shadow-xl"
+            size="lg"
           />
 
-          <div class="flex-1">
-            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
               <div class="min-w-0">
-                <div class="flex flex-wrap items-center gap-3 mb-2">
-                  <h1 class="text-4xl font-bold text-white break-words min-w-0">
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                  <h1 class="text-xl sm:text-2xl font-semibold tracking-tight text-white break-words">
                     {{ group.name }}
                   </h1>
                   <span
-                    v-if="group.is_public"
-                    class="text-xs px-2.5 py-1 rounded-full bg-green-600/20 text-green-400 font-medium"
+                    class="text-xs px-2 py-0.5 rounded-md font-medium"
+                    :class="group.is_public
+                      ? 'bg-success/15 text-success'
+                      : 'bg-warning/15 text-warning'"
                   >
-                    Public
-                  </span>
-                  <span
-                    v-else
-                    class="text-xs px-2.5 py-1 rounded-full bg-yellow-600/20 text-yellow-400 font-medium"
-                  >
-                    Private
+                    {{ group.is_public ? 'Public' : 'Private' }}
                   </span>
                 </div>
                 <p
                   v-if="group.description"
-                  class="text-gray-300 text-lg leading-relaxed max-w-2xl mb-3"
+                  class="text-sm text-white/60 leading-relaxed"
                 >
                   {{ group.description }}
                 </p>
-                <div class="flex items-center gap-2 text-sm text-gray-400">
-                  <UserGroupIcon class="w-4 h-4" />
-                  <span>{{ group.member_count }} {{ group.member_count === 1 ? 'member' : 'members' }}</span>
-                </div>
+                <p class="mt-2 flex items-center gap-1.5 text-xs text-white/45">
+                  <UserGroupIcon class="w-3.5 h-3.5" />
+                  {{ group.member_count }} {{ group.member_count === 1 ? 'member' : 'members' }}
+                </p>
               </div>
 
-              <div class="flex flex-wrap gap-2">
+              <div class="flex flex-wrap gap-2 shrink-0">
                 <template v-if="isMember">
                   <button
                     v-if="!isActive"
-                    class="bg-accent-600 hover:bg-accent-700 active:bg-accent-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg shadow-accent-600/20 hover:shadow-xl hover:shadow-accent-600/30 hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center whitespace-nowrap"
+                    type="button"
+                    class="btn-primary"
                     @click="switchToGroup"
                   >
-                    <ArrowsRightLeftIcon class="w-5 h-5 mr-2" />
+                    <ArrowsRightLeftIcon class="w-4 h-4" />
                     Switch to Group
                   </button>
                   <span
                     v-else
-                    class="inline-flex items-center py-3 px-6 bg-accent-600/20 text-accent-400 font-semibold rounded-lg whitespace-nowrap"
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-accent-400 rounded-lg border border-accent-600/25 bg-accent-600/10"
                   >
-                    <CheckIcon class="w-5 h-5 mr-2" />
-                    Active Group
+                    <CheckIcon class="w-4 h-4" />
+                    Active
                   </span>
 
                   <Link
                     v-if="group.can?.update"
                     :href="groups.edit.url(group.id)"
-                    class="inline-flex items-center py-3 px-5 bg-dark-600 hover:bg-dark-500 text-gray-300 hover:text-white font-medium rounded-lg transition-all duration-200 whitespace-nowrap"
+                    class="btn-ghost"
                   >
-                    <Cog6ToothIcon class="w-5 h-5 mr-2" />
+                    <Cog6ToothIcon class="w-4 h-4" />
                     Settings
                   </Link>
 
                   <button
                     v-if="group.can?.leave"
-                    class="inline-flex items-center py-3 px-5 bg-dark-600 hover:bg-danger text-gray-300 hover:text-white font-medium rounded-lg transition-all duration-200 whitespace-nowrap"
+                    type="button"
+                    class="btn-ghost text-danger hover:bg-danger/10"
                     @click="showLeaveModal = true"
                   >
-                    <ArrowRightStartOnRectangleIcon class="w-5 h-5 mr-2" />
+                    <ArrowRightStartOnRectangleIcon class="w-4 h-4" />
                     Leave
                   </button>
                 </template>
 
-                <template v-else-if="group.is_public">
-                  <button
-                    class="bg-accent-600 hover:bg-accent-700 active:bg-accent-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg shadow-accent-600/20 hover:shadow-xl hover:shadow-accent-600/30 hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center whitespace-nowrap"
-                    @click="joinGroup"
-                  >
-                    <UserGroupIcon class="w-5 h-5 mr-2" />
-                    Join Group
-                  </button>
-                </template>
+                <button
+                  v-else-if="group.is_public"
+                  type="button"
+                  class="btn-primary"
+                  @click="joinGroup"
+                >
+                  <UserGroupIcon class="w-4 h-4" />
+                  Join Group
+                </button>
               </div>
             </div>
           </div>
@@ -196,46 +186,50 @@ const roleBadgeClasses: Record<string, string> = {
 
       <div
         v-if="group.can?.invite"
-        class="bg-dark-800 rounded-lg border border-dark-700 p-6 mb-6"
+        class="surface p-5 sm:p-6"
       >
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-xl font-bold text-white flex items-center gap-2">
-            <LinkIcon class="w-5 h-5 text-accent-400" />
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xs font-medium uppercase tracking-wider text-white/40">
             Invite Link
           </h2>
           <button
-            class="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors"
+            type="button"
+            class="inline-flex items-center gap-1.5 text-xs text-white/45 hover:text-white transition-colors"
             @click="showInviteCode = !showInviteCode"
           >
             <EyeSlashIcon
               v-if="showInviteCode"
-              class="w-4 h-4"
+              class="w-3.5 h-3.5"
             />
             <EyeIcon
               v-else
-              class="w-4 h-4"
+              class="w-3.5 h-3.5"
             />
             {{ showInviteCode ? 'Hide' : 'Show' }}
           </button>
         </div>
-        <div v-if="showInviteCode">
+
+        <div
+          v-if="showInviteCode"
+          class="space-y-2"
+        >
           <div class="flex items-center gap-2">
-            <div class="relative flex-1">
+            <div class="relative flex-1 min-w-0">
               <input
                 type="text"
                 :value="inviteUrl"
                 readonly
-                class="w-full bg-dark-900 border border-dark-600 rounded-lg px-4 py-2.5 pr-12 text-gray-300 text-sm font-mono focus:outline-none select-all cursor-text"
+                class="w-full bg-dark-950 border border-white/10 rounded-lg px-3 py-2 pr-10 text-white/70 text-sm font-mono focus:outline-none focus:border-cyan focus:ring-1 focus:ring-cyan select-all cursor-text"
               >
               <button
                 type="button"
-                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-dark-700 hover:bg-dark-600 text-gray-300 hover:text-white p-2 rounded-lg transition-colors"
+                class="absolute right-1.5 top-1/2 -translate-y-1/2 p-1.5 rounded-md text-white/45 hover:text-white hover:bg-white/5 transition-colors"
                 :title="copied ? 'Copied!' : 'Copy to clipboard'"
                 @click="copyInviteLink"
               >
                 <CheckIcon
                   v-if="copied"
-                  class="w-4 h-4 text-green-400"
+                  class="w-4 h-4 text-success"
                 />
                 <ClipboardDocumentIcon
                   v-else
@@ -244,32 +238,30 @@ const roleBadgeClasses: Record<string, string> = {
               </button>
             </div>
             <button
-              class="inline-flex items-center gap-2 px-4 py-2.5 bg-dark-700 hover:bg-dark-600 text-gray-300 text-sm font-medium rounded-lg transition-colors whitespace-nowrap"
+              type="button"
+              class="btn-ghost shrink-0"
               @click="showRegenerateModal = true"
             >
               <ArrowPathIcon class="w-4 h-4" />
               Regenerate
             </button>
           </div>
-          <p class="text-xs text-gray-500 mt-2">
-            Share this link with anyone you want to invite to the group.
+          <p class="text-xs text-white/40">
+            Share this link with anyone you want to invite.
           </p>
         </div>
       </div>
 
-      <div class="bg-dark-800 rounded-lg border border-dark-700 p-6">
-        <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-          <UserGroupIcon class="w-5 h-5 text-accent-400" />
+      <div class="surface p-5 sm:p-6">
+        <h2 class="text-xs font-medium uppercase tracking-wider text-white/40 mb-3">
           Members
-          <span class="text-sm font-normal text-gray-500">
-            ({{ members.length }})
-          </span>
+          <span class="normal-case tracking-normal text-white/30">({{ members.length }})</span>
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div
             v-for="member in members"
             :key="member.id"
-            class="flex items-center justify-between p-3 rounded-lg border border-dark-600 hover:border-dark-500 hover:bg-dark-700/50 transition-all duration-200"
+            class="flex items-center justify-between gap-2 rounded-lg border border-white/10 px-3 py-2.5"
           >
             <Link
               :href="users.show.url(member.id)"
@@ -286,7 +278,7 @@ const roleBadgeClasses: Record<string, string> = {
                   {{ member.name }}
                 </p>
                 <span
-                  class="inline-block text-xs font-medium px-2 py-0.5 rounded-full mt-0.5"
+                  class="inline-block text-xs font-medium px-1.5 py-0.5 rounded-md mt-0.5"
                   :class="roleBadgeClasses[member.role] ?? roleBadgeClasses.member"
                 >
                   {{ member.role }}
@@ -295,7 +287,8 @@ const roleBadgeClasses: Record<string, string> = {
             </Link>
             <button
               v-if="group.can?.manageMembers && member.role !== 'owner'"
-              class="flex-shrink-0 ml-2 p-1.5 text-gray-500 hover:text-danger hover:bg-danger/10 rounded-lg transition-colors"
+              type="button"
+              class="shrink-0 p-1.5 text-white/40 hover:text-danger hover:bg-danger/10 rounded-md transition-colors"
               title="Remove member"
               @click="confirmRemoveMember(member.id)"
             >
@@ -309,7 +302,7 @@ const roleBadgeClasses: Record<string, string> = {
     <ConfirmModal
       :open="showLeaveModal"
       title="Leave group"
-      message="Are you sure you want to leave this group? You'll lose access to all keys shared within it."
+      message="You'll lose access to every key shared in this group. Rejoining later may require a new invite."
       confirm-label="Leave group"
       variant="danger"
       @confirm="leaveGroup"
@@ -329,7 +322,7 @@ const roleBadgeClasses: Record<string, string> = {
     <ConfirmModal
       :open="showRegenerateModal"
       title="Regenerate invite link"
-      message="This will invalidate the existing invite link. Anyone with the old link will no longer be able to join."
+      message="The current invite URL will stop working immediately. Anyone with the old link will need the new one."
       confirm-label="Regenerate"
       variant="warning"
       @confirm="regenerateCode"

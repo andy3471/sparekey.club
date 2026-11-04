@@ -26,9 +26,9 @@ class ActiveGroup
             return null;
         }
 
-        $group = Group::query()->find($groupId);
+        $user->loadMissing('groups');
 
-        if (! $group instanceof Group || ! $group->hasMember($user)) {
+        if (! $user->groups->contains('id', $groupId)) {
             $request->session()->forget('active_group_id');
 
             return null;

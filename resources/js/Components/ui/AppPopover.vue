@@ -27,7 +27,7 @@ withDefaults(defineProps<Props>(), {
       leave-to-class="opacity-0 translate-y-1"
     >
       <PopoverPanel
-        class="absolute z-50 mt-2 bg-dark-800 border border-dark-700 rounded-lg shadow-xl max-h-64 overflow-y-auto"
+        class="absolute z-50 mt-2 surface max-h-64 overflow-y-auto"
         :class="[width, align === 'right' ? 'right-0' : 'left-0']"
       >
         <slot />

@@ -1,65 +1,46 @@
-<script setup lang="ts">
-import { UserPlusIcon, PaperAirplaneIcon, TicketIcon, UsersIcon } from '@heroicons/vue/24/outline';
-</script>
-
 <template>
-  <section class="relative py-20 sm:py-28">
+  <section class="bg-white/[0.02] py-16 sm:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl sm:text-4xl font-display font-bold text-white mb-4">
-          Everything Your Group Needs
+      <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-14">
+        <h2 class="text-xl sm:text-2xl font-semibold text-white tracking-tight mb-3">
+          Built for small groups
         </h2>
-        <p class="text-gray-400 text-lg max-w-2xl mx-auto">
-          A simple, organized way to manage and share game keys within your community.
+        <p class="text-white/55 text-sm sm:text-base leading-relaxed">
+          Sparekey is for friends who already share keys: Discord servers, Steam crews, people who buy too many bundles.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="group relative bg-dark-900/60 border border-dark-700 rounded-xl p-8 transition-all duration-300 hover:border-warning/50 hover:shadow-lg hover:shadow-warning/10">
-          <div class="w-12 h-12 rounded-lg bg-warning/15 flex items-center justify-center mb-5">
-            <UserPlusIcon class="w-6 h-6 text-warning" />
-          </div>
-          <h3 class="text-xl font-semibold text-white mb-3">
-            Create Groups
+      <div class="max-w-4xl mx-auto space-y-8 sm:space-y-10">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 md:items-baseline">
+          <h3 class="md:col-span-4 text-base font-medium text-white">
+            Groups and invites
           </h3>
-          <p class="text-gray-400 leading-relaxed">
-            Set up a group for your friends, your Discord server, or any gaming community. Invite members and start sharing instantly.
+          <p class="md:col-span-8 text-sm text-white/55 leading-relaxed">
+            Create a private or public group, send a link, and keep the pool scoped to people you trust.
           </p>
         </div>
-
-        <div class="group relative bg-dark-900/60 border border-dark-700 rounded-xl p-8 transition-all duration-300 hover:border-accent-500/50 hover:shadow-lg hover:shadow-accent-500/10">
-          <div class="w-12 h-12 rounded-lg bg-accent-600/15 flex items-center justify-center mb-5">
-            <PaperAirplaneIcon class="w-6 h-6 text-accent-400" />
-          </div>
-          <h3 class="text-xl font-semibold text-white mb-3">
-            Share Keys
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 md:items-baseline">
+          <h3 class="md:col-span-4 md:col-start-2 text-base font-medium text-white">
+            Keys with game details
           </h3>
-          <p class="text-gray-400 leading-relaxed">
-            Easily add your extra game keys. Sparekey.club automatically looks up game details and cover art so everything looks great.
+          <p class="md:col-span-7 text-sm text-white/55 leading-relaxed">
+            Paste a key, pick the platform, and Sparekey pulls cover art and metadata so the shelf stays readable.
           </p>
         </div>
-
-        <div class="group relative bg-dark-900/60 border border-dark-700 rounded-xl p-8 transition-all duration-300 hover:border-primary-500/50 hover:shadow-lg hover:shadow-primary-500/10">
-          <div class="w-12 h-12 rounded-lg bg-primary-600/15 flex items-center justify-center mb-5">
-            <TicketIcon class="w-6 h-6 text-primary-400" />
-          </div>
-          <h3 class="text-xl font-semibold text-white mb-3">
-            Claim Games
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 md:items-baseline">
+          <h3 class="md:col-span-4 text-base font-medium text-white">
+            Claim when you want it
           </h3>
-          <p class="text-gray-400 leading-relaxed">
-            Browse available keys and claim the games you want. Keys are revealed only after claiming, so no one can snipe them.
+          <p class="md:col-span-8 text-sm text-white/55 leading-relaxed">
+            Keys stay hidden until claimed. No screenshots flying around before someone else redeems them.
           </p>
         </div>
-
-        <div class="group relative bg-dark-900/60 border border-dark-700 rounded-xl p-8 transition-all duration-300 hover:border-success/50 hover:shadow-lg hover:shadow-success/10">
-          <div class="w-12 h-12 rounded-lg bg-success/15 flex items-center justify-center mb-5">
-            <UsersIcon class="w-6 h-6 text-success" />
-          </div>
-          <h3 class="text-xl font-semibold text-white mb-3">
-            Community Karma
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 md:items-baseline">
+          <h3 class="md:col-span-4 md:col-start-2 text-base font-medium text-white">
+            Karma keeps it fair
           </h3>
-          <p class="text-gray-400 leading-relaxed">
-            A built-in karma system keeps things fair. The more you share, the more karma you earn within your group.
+          <p class="md:col-span-7 text-sm text-white/55 leading-relaxed">
+            Sharing raises your karma in the group. Optional thresholds stop drive-by claiming when you want balance.
           </p>
         </div>
       </div>

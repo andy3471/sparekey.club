@@ -29,10 +29,10 @@ const switchToGroup = (groupId: string | null) => {
     class="relative"
   >
     <MenuButton
-      class="flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200"
+      class="flex items-center gap-1.5 px-2.5 py-1.5 text-sm font-medium rounded-lg border transition-colors duration-200"
       :class="activeGroup
-        ? 'bg-accent-600/20 text-accent-400 hover:bg-accent-600/30 border border-accent-600/30'
-        : 'text-gray-400 hover:text-white hover:bg-dark-800 border border-dark-700'"
+        ? 'bg-accent-600/10 text-accent-400 hover:bg-accent-600/15 border-accent-600/25'
+        : 'text-gray-400 hover:text-white hover:bg-white/5 border-white/10'"
     >
       <GroupAvatar
         v-if="activeGroup"
@@ -58,13 +58,13 @@ const switchToGroup = (groupId: string | null) => {
       leave-from-class="opacity-100 scale-100"
       leave-to-class="opacity-0 scale-95"
     >
-      <MenuItems class="absolute right-0 mt-2 w-56 bg-dark-800 rounded-lg shadow-xl border border-dark-700 overflow-hidden z-50 focus:outline-none">
+      <MenuItems class="absolute right-0 mt-2 w-56 surface overflow-hidden z-50 focus:outline-none">
         <div class="py-1">
           <MenuItem v-slot="{ active }">
             <button
               class="w-full text-left px-4 py-2 text-sm transition-colors flex items-center gap-2"
               :class="[
-                !activeGroup ? 'text-accent-400 bg-dark-700' : '',
+                !activeGroup ? 'text-accent-400 bg-white/5' : '',
                 active && activeGroup ? 'bg-accent-600 text-white' : '',
                 !active && activeGroup ? 'text-gray-300' : '',
               ]"
@@ -81,7 +81,7 @@ const switchToGroup = (groupId: string | null) => {
 
           <div
             v-if="userGroups.length > 0"
-            class="border-t border-dark-700 my-1"
+            class="border-t border-white/10 my-1"
           />
 
           <MenuItem
@@ -92,7 +92,7 @@ const switchToGroup = (groupId: string | null) => {
             <button
               class="w-full text-left px-4 py-2 text-sm transition-colors flex items-center gap-2"
               :class="[
-                activeGroup?.id === group.id ? 'text-accent-400 bg-dark-700' : '',
+                activeGroup?.id === group.id ? 'text-accent-400 bg-white/5' : '',
                 active && activeGroup?.id !== group.id ? 'bg-accent-600 text-white' : '',
                 !active && activeGroup?.id !== group.id ? 'text-gray-300' : '',
               ]"
@@ -111,7 +111,7 @@ const switchToGroup = (groupId: string | null) => {
             </button>
           </MenuItem>
 
-          <div class="border-t border-dark-700 my-1" />
+          <div class="border-t border-white/10 my-1" />
 
           <MenuItem v-slot="{ active }">
             <a

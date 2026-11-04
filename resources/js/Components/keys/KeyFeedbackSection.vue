@@ -17,57 +17,53 @@ const emit = defineEmits<{
 <template>
   <div
     v-if="canFeedback"
-    class="pt-4 border-t border-dark-700"
+    class="pt-4 border-t border-white/10"
   >
-    <p class="text-sm text-gray-400 mb-3 text-center">
+    <p class="text-sm text-white/45 mb-3 text-center">
       Did this key work?
     </p>
 
     <div
       v-if="feedback === null"
-      class="flex items-center justify-center gap-4"
+      class="flex items-center justify-center gap-2.5"
     >
       <button
         type="button"
-        class="group relative flex items-center gap-2 px-5 py-2.5 bg-success/10 border border-success/30 rounded-lg text-success hover:bg-success/20 hover:border-success/50 transition-all duration-200"
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-success/10 border border-success/30 rounded-lg text-success hover:bg-success/20 transition-colors text-sm font-medium"
+        title="The key redeemed successfully"
         @click="emit('submit', 'worked')"
       >
-        <HandThumbUpIcon class="w-5 h-5" />
-        <span class="font-medium text-sm">It worked</span>
-        <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-dark-700 text-gray-200 text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg border border-dark-600">
-          The key redeemed successfully
-        </span>
+        <HandThumbUpIcon class="w-4 h-4" />
+        It worked
       </button>
       <button
         type="button"
-        class="group relative flex items-center gap-2 px-5 py-2.5 bg-danger/10 border border-danger/30 rounded-lg text-danger hover:bg-danger/20 hover:border-danger/50 transition-all duration-200"
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-danger/10 border border-danger/30 rounded-lg text-danger hover:bg-danger/20 transition-colors text-sm font-medium"
+        title="The key was invalid or already used"
         @click="emit('submit', 'did_not_work')"
       >
-        <HandThumbDownIcon class="w-5 h-5" />
-        <span class="font-medium text-sm">It didn't work</span>
-        <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-dark-700 text-gray-200 text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg border border-dark-600">
-          The key was invalid or already used
-        </span>
+        <HandThumbDownIcon class="w-4 h-4" />
+        It didn't work
       </button>
     </div>
 
     <div
       v-else
-      class="flex items-center justify-center gap-2"
+      class="flex items-center justify-center"
     >
       <div
         v-if="feedback === 'worked'"
-        class="flex items-center gap-2 px-4 py-2 bg-success/10 border border-success/30 rounded-lg text-success"
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-success/10 border border-success/30 rounded-lg text-success text-sm font-medium"
       >
-        <HandThumbUpIcon class="w-5 h-5" />
-        <span class="text-sm font-medium">You marked this key as working</span>
+        <HandThumbUpIcon class="w-4 h-4" />
+        You marked this key as working
       </div>
       <div
         v-else
-        class="flex items-center gap-2 px-4 py-2 bg-danger/10 border border-danger/30 rounded-lg text-danger"
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-danger/10 border border-danger/30 rounded-lg text-danger text-sm font-medium"
       >
-        <HandThumbDownIcon class="w-5 h-5" />
-        <span class="text-sm font-medium">You reported this key as not working</span>
+        <HandThumbDownIcon class="w-4 h-4" />
+        You reported this key as not working
       </div>
     </div>
   </div>

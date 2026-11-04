@@ -22,9 +22,9 @@ withDefaults(defineProps<Props>(), {
 
 const sizeClasses: Record<string, string> = {
   sm: 'w-5 h-5',
-  md: 'w-10 h-10 border-2 border-dark-600',
-  lg: 'w-24 h-24 border-2 border-dark-600',
-  xl: 'w-32 h-32 border-4 border-dark-600 shadow-xl',
+  md: 'w-10 h-10 border border-white/10',
+  lg: 'w-20 h-20 border border-white/10',
+  xl: 'w-24 h-24 border border-white/10',
 };
 
 const badgePositionClasses: Record<string, string> = {

@@ -47,7 +47,7 @@ onUnmounted(() => { window.removeEventListener('keydown', handleKeyDown); });
   >
     <div class="relative flex items-center justify-center">
       <button
-        class="absolute -top-2 -right-2 text-white hover:text-accent-400 transition-colors z-10 bg-dark-800/80 backdrop-blur-sm rounded-full p-1.5"
+        class="absolute -top-2 -right-2 text-white hover:text-accent-400 transition-colors z-10 bg-dark-950/90 backdrop-blur-sm rounded-md p-1.5"
         @click="emit('close')"
       >
         <XMarkIcon class="w-6 h-6" />

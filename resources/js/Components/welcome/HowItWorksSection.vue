@@ -1,52 +1,50 @@
 <template>
-  <section class="relative py-20 sm:py-28 border-t border-dark-800">
+  <section class="border-t border-white/10 py-20 sm:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl sm:text-4xl font-display font-bold text-white mb-4">
-          How It Works
+      <div class="max-w-2xl mx-auto text-center mb-12 sm:mb-14">
+        <h2 class="text-xl sm:text-2xl font-semibold text-white tracking-tight mb-3">
+          Three steps
         </h2>
-        <p class="text-gray-400 text-lg max-w-2xl mx-auto">
-          Get started in minutes. It's as simple as 1-2-3.
+        <p class="text-white/55 text-sm sm:text-base leading-relaxed">
+          No onboarding tour. Sign up, make a group, share a key.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
-        <div class="text-center">
-          <div class="w-14 h-14 rounded-full bg-gradient-to-br from-accent-500 to-accent-700 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-accent-600/30">
-            <span class="text-white font-display font-bold text-xl">1</span>
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-2">
-            Create a Group
+      <ol class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 max-w-5xl mx-auto">
+        <li class="text-center md:text-left">
+          <span class="inline-flex w-7 h-7 rounded-md border border-white/15 text-accent-400 font-medium text-sm items-center justify-center mb-3">
+            1
+          </span>
+          <h3 class="text-base font-medium text-white mb-1.5">
+            Make a group
           </h3>
-          <p class="text-gray-400 text-sm leading-relaxed">
-            Sign up, create a group for your friends, and invite them with a link.
+          <p class="text-sm text-white/55 leading-relaxed">
+            Invite friends with a link. Public groups can be joined from the directory; private ones stay invite-only.
           </p>
-        </div>
-
-        <div class="text-center">
-          <div class="w-14 h-14 rounded-full bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-primary-600/30">
-            <span class="text-white font-display font-bold text-xl">2</span>
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-2">
-            Share Your Keys
+        </li>
+        <li class="text-center md:text-left">
+          <span class="inline-flex w-7 h-7 rounded-md border border-white/15 text-accent-400 font-medium text-sm items-center justify-center mb-3">
+            2
+          </span>
+          <h3 class="text-base font-medium text-white mb-1.5">
+            Add spare keys
           </h3>
-          <p class="text-gray-400 text-sm leading-relaxed">
-            Search for the game, select the platform, and paste your key. Done.
+          <p class="text-sm text-white/55 leading-relaxed">
+            Search the game, choose Steam / Epic / whatever platform, paste the key.
           </p>
-        </div>
-
-        <div class="text-center">
-          <div class="w-14 h-14 rounded-full bg-gradient-to-br from-success to-success-dark flex items-center justify-center mx-auto mb-5 shadow-lg shadow-success/30">
-            <span class="text-white font-display font-bold text-xl">3</span>
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-2">
-            Friends Claim
+        </li>
+        <li class="text-center md:text-left">
+          <span class="inline-flex w-7 h-7 rounded-md border border-white/15 text-accent-400 font-medium text-sm items-center justify-center mb-3">
+            3
+          </span>
+          <h3 class="text-base font-medium text-white mb-1.5">
+            Friends claim
           </h3>
-          <p class="text-gray-400 text-sm leading-relaxed">
-            Your friends browse available games and claim the keys they want.
+          <p class="text-sm text-white/55 leading-relaxed">
+            Browse what’s available, claim a game, redeem it yourself. Cooldowns and karma rules are optional per group.
           </p>
-        </div>
-      </div>
+        </li>
+      </ol>
     </div>
   </section>
 </template>

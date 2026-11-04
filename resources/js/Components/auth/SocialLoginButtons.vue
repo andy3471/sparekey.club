@@ -22,7 +22,7 @@ defineProps<{
       v-for="provider in providers"
       :key="provider.name"
       :href="provider.url"
-      class="flex-1 min-w-[calc(50%-0.375rem)] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-white transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
+      class="flex-1 min-w-[calc(50%-0.375rem)] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-white transition-opacity duration-200 hover:opacity-90"
       :style="{ backgroundColor: provider.color }"
     >
       <!-- Steam -->

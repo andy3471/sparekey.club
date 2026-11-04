@@ -8,7 +8,7 @@ import CtaSection from '@/Components/welcome/CtaSection.vue';
 </script>
 
 <template>
-  <Head title="Share Game Keys With Friends" />
+  <Head title="Share game keys with friends" />
 
   <GuestLayout>
     <HeroSection />

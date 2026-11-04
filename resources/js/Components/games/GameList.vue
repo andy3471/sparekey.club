@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
     :data="props.scrollProp"
     preserve-url
   >
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 mt-6">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
       <GameCard
         v-for="game in games.data"
         :key="game.id"
@@ -44,12 +44,12 @@ const props = withDefaults(defineProps<Props>(), {
       message="Try adjusting your search or filters, or add a key to get started."
     >
       <template #icon>
-        <FaceFrownIcon class="w-24 h-24 text-gray-600" />
+        <FaceFrownIcon class="w-10 h-10 text-white/25" />
       </template>
       <template #action>
         <Link
           :href="createKeyRoute.url()"
-          class="inline-flex items-center gap-2 mt-4 px-5 py-2.5 bg-accent-600 hover:bg-accent-500 text-white text-sm font-medium rounded-lg transition-colors"
+          class="btn-primary mt-3"
         >
           <PlusIcon class="w-4 h-4" />
           Add a Key
@@ -62,11 +62,11 @@ const props = withDefaults(defineProps<Props>(), {
     v-else
     class="col-span-full"
   >
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
       <div
         v-for="i in 12"
         :key="i"
-        class="relative w-full bg-dark-700 rounded-lg animate-pulse"
+        class="relative w-full bg-white/5 border border-white/10 rounded-lg animate-pulse"
         style="aspect-ratio: 3/4;"
       />
     </div>

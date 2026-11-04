@@ -67,7 +67,7 @@ const maxWidthClasses: Record<string, string> = {
             class="relative w-full"
             :class="[
               maxWidthClasses[maxWidth],
-              bare ? '' : 'bg-dark-800 rounded-xl shadow-2xl shadow-dark-950/50 border border-dark-700 p-6',
+              bare ? '' : 'surface p-6',
             ]"
           >
             <DialogTitle

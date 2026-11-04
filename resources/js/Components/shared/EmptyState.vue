@@ -10,16 +10,16 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="bg-dark-800 rounded-lg border border-dark-700 p-12 text-center">
-    <div class="inline-flex flex-col items-center space-y-4">
+  <div class="surface p-8 text-center">
+    <div class="inline-flex flex-col items-center gap-3">
       <slot name="icon" />
       <div>
-        <p class="text-xl font-medium text-gray-300">
+        <p class="text-base font-medium text-white">
           {{ title }}
         </p>
         <p
           v-if="message"
-          class="text-sm text-gray-500 mt-1"
+          class="text-sm text-white/45 mt-1"
         >
           {{ message }}
         </p>

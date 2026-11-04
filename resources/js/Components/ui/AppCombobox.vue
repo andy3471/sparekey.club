@@ -15,6 +15,7 @@ interface Props {
   url: string;
   modelValue?: ComboboxItem | null;
   inputClass?: string;
+  ariaLabel?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -22,7 +23,8 @@ const props = withDefaults(defineProps<Props>(), {
   name: '',
   placeholder: '',
   modelValue: null,
-  inputClass: 'border border-dark-600 rounded-lg bg-dark-900 text-gray-100 px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-all duration-200 placeholder-gray-500 w-full',
+  inputClass: 'border border-white/10 rounded-lg bg-dark-950 text-gray-100 text-sm px-3 py-2 pr-10 focus:outline-none focus:ring-1 focus:ring-cyan focus:border-cyan transition-colors placeholder-gray-500 w-full',
+  ariaLabel: '',
 });
 
 const emit = defineEmits<{
@@ -134,6 +136,7 @@ onUnmounted(() => {
           :name="name"
           :placeholder="placeholder"
           :class="inputClass"
+          :aria-label="ariaLabel || undefined"
           :display-value="(item: unknown) => (item as ComboboxItem)?.name ?? query"
           autocomplete="off"
           @change="handleQueryChange"
@@ -175,7 +178,7 @@ onUnmounted(() => {
       >
         <ComboboxOptions
           v-if="results.length > 0"
-          class="absolute z-50 w-full mt-2 bg-dark-800 border border-dark-600 rounded-lg overflow-hidden shadow-xl max-h-60 overflow-auto"
+          class="absolute z-50 w-full mt-2 surface overflow-hidden max-h-60 overflow-auto"
         >
           <ComboboxOption
             v-for="result in results"
@@ -185,8 +188,8 @@ onUnmounted(() => {
             as="template"
           >
             <li
-              class="px-4 py-3 cursor-pointer transition-colors"
-              :class="active ? 'bg-accent-600 text-white' : 'text-gray-300 hover:bg-dark-700 hover:text-white'"
+              class="px-3 py-2 text-sm cursor-pointer transition-colors"
+              :class="active ? 'bg-accent-600 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'"
             >
               <div class="font-medium">
                 {{ result.name }}
@@ -206,9 +209,9 @@ onUnmounted(() => {
       >
         <div
           v-if="!loading && query.length >= 2 && results.length === 0 && !modelValue"
-          class="absolute z-50 w-full mt-2 bg-dark-800 border border-dark-600 rounded-lg p-4 shadow-xl"
+          class="absolute z-50 w-full mt-2 surface p-4"
         >
-          <p class="text-gray-400 text-sm text-center">
+          <p class="text-white/45 text-sm text-center">
             No games found. Try a different search term.
           </p>
         </div>
