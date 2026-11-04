@@ -10,7 +10,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="surface p-8 text-center">
+  <div class="border border-dashed border-white/15 bg-dark-950/40 px-6 py-10 text-center">
     <div class="inline-flex flex-col items-center gap-3">
       <slot name="icon" />
       <div>
@@ -19,7 +19,7 @@ withDefaults(defineProps<Props>(), {
         </p>
         <p
           v-if="message"
-          class="text-sm text-white/45 mt-1"
+          class="mt-1 text-sm text-white/45"
         >
           {{ message }}
         </p>

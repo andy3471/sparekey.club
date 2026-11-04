@@ -40,8 +40,8 @@ const props = withDefaults(defineProps<Props>(), {
 
     <EmptyState
       v-if="games.data.length === 0"
-      title="No Games Found"
-      message="Try adjusting your search or filters, or add a key to get started."
+      title="Shelf is empty"
+      message="Add a spare key, or loosen the platform filter."
     >
       <template #icon>
         <FaceFrownIcon class="w-10 h-10 text-white/25" />

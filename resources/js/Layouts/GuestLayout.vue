@@ -14,7 +14,7 @@ const auth = (page.props.auth as AuthUser | undefined) ?? { user: null };
 
 <template>
   <div class="min-h-screen flex flex-col">
-    <nav class="border-b border-white/10 sticky top-0 z-50 bg-dark-950/90 backdrop-blur-sm">
+    <nav class="sticky top-0 z-50 border-b border-white/10 bg-dark-950">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-12">
           <BrandLogo

@@ -58,8 +58,8 @@ const icon = computed(() => {
   <Head :title="`${status} - ${title}`" />
 
   <div class="min-h-screen flex flex-col">
-    <div class="flex-1 flex flex-col items-center justify-center px-4 py-12">
-      <div class="text-center max-w-md w-full">
+    <div class="flex flex-1 flex-col items-center justify-center px-4 py-12">
+      <div class="w-full max-w-md text-center">
         <div class="mb-8">
           <BrandLogo
             :href="homeHref"

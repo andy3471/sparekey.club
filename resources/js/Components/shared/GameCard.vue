@@ -21,7 +21,7 @@ defineProps<Props>();
       :href="gamesRoute.show.url(game.id)"
       class="block w-full h-full relative"
     >
-      <div class="absolute top-2 left-2 z-10 flex gap-1 bg-black/60 backdrop-blur-sm rounded-md px-1.5 py-1">
+      <div class="absolute left-2 top-2 z-10 flex gap-1 rounded-sm bg-black/70 px-1.5 py-1">
         <template v-if="game.platforms?.length">
           <PlatformIcon
             v-for="platform in game.platforms"
@@ -57,21 +57,21 @@ defineProps<Props>();
 
 <style scoped>
 .game-card {
-    @apply relative w-full bg-dark-900 rounded-lg border border-white/10 flex justify-center items-center transition-colors duration-200 overflow-hidden;
-    @apply hover:border-white/25;
+    @apply relative flex w-full items-center justify-center overflow-hidden border border-white/10 bg-dark-950 transition-colors duration-200;
+    @apply hover:border-accent-500/40;
     aspect-ratio: 3 / 4;
 }
 
 .game-image {
-    @apply block w-full h-full object-cover rounded-lg;
+    @apply block h-full w-full object-cover;
 }
 
 .game-image-placeholder {
-    @apply min-h-full relative w-full bg-dark-900;
+    @apply relative min-h-full w-full bg-dark-950;
 }
 
 .game-overlay {
-    @apply absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent text-white text-sm font-medium text-center px-3 py-4 flex items-end justify-center rounded-b-lg break-words overflow-hidden;
+    @apply absolute bottom-0 left-0 right-0 flex items-end justify-center break-words overflow-hidden bg-gradient-to-t from-black/90 via-black/70 to-transparent px-3 py-4 text-center text-sm font-medium text-white;
     min-height: 40%;
 }
 </style>

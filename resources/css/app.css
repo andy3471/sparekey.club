@@ -5,8 +5,7 @@
 @layer base {
     body {
         @apply min-h-screen font-sans text-gray-100 antialiased;
-        background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
-        background-attachment: fixed;
+        background-color: #0a0a0f;
     }
 
     :focus-visible {
@@ -17,15 +16,11 @@
 
 @layer components {
     .brand-logo {
-        @apply font-marker inline-block;
+        @apply font-marker inline-block text-violet-400;
         /* Permanent Marker ink hangs past the em box; leading-none clips it */
         line-height: 1.2;
         padding-block: 0.12em;
         overflow: visible;
-        background-image: linear-gradient(135deg, #a78bfa, #7c3aed, #2563eb);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
     }
 
     @keyframes marker-wiggle {
@@ -37,32 +32,78 @@
         animation: marker-wiggle 0.45s ease-in-out;
     }
 
+    @keyframes landing-rise {
+        from {
+            opacity: 0;
+            transform: translateY(0.6rem);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes landing-plane-in {
+        from {
+            opacity: 0;
+            transform: translateY(1rem);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes shelf-cover-in {
+        from {
+            opacity: 0;
+            transform: translateY(0.4rem);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .landing-intro .brand-logo,
+    .landing-line {
+        animation: landing-rise 0.55s ease-out both;
+    }
+
+    .landing-plane {
+        animation: landing-plane-in 0.7s ease-out 180ms both;
+    }
+
+    .shelf-cover {
+        animation: shelf-cover-in 0.5s ease-out both;
+    }
+
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-accent-600 bg-accent-600 px-3 py-1.5 text-sm font-medium text-white transition-colors duration-200 hover:border-accent-500 hover:bg-accent-500 disabled:cursor-not-allowed disabled:opacity-50;
+        @apply inline-flex items-center justify-center gap-1.5 rounded-md border border-accent-600 bg-accent-600 px-3 py-1.5 text-sm font-medium text-white transition-colors duration-200 hover:border-accent-500 hover:bg-accent-500 disabled:cursor-not-allowed disabled:opacity-50;
     }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-accent-500 px-3 py-1.5 text-sm font-medium text-accent-400 transition-colors duration-200 hover:bg-accent-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-50;
+        @apply inline-flex items-center justify-center gap-1.5 rounded-md border border-accent-500 px-3 py-1.5 text-sm font-medium text-accent-400 transition-colors duration-200 hover:bg-accent-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-50;
     }
 
     .btn-ghost {
-        @apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-transparent px-3 py-1.5 text-sm font-medium text-gray-300 transition-colors duration-200 hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:opacity-50;
+        @apply inline-flex items-center justify-center gap-1.5 rounded-md border border-transparent px-3 py-1.5 text-sm font-medium text-gray-300 transition-colors duration-200 hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:opacity-50;
     }
 
     .btn-danger {
-        @apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-danger-600 bg-danger-600 px-3 py-1.5 text-sm font-medium text-white transition-colors duration-200 hover:border-danger-500 hover:bg-danger-500 disabled:cursor-not-allowed disabled:opacity-50;
+        @apply inline-flex items-center justify-center gap-1.5 rounded-md border border-danger-600 bg-danger-600 px-3 py-1.5 text-sm font-medium text-white transition-colors duration-200 hover:border-danger-500 hover:bg-danger-500 disabled:cursor-not-allowed disabled:opacity-50;
     }
 
     .surface {
-        @apply rounded-lg border border-white/10 bg-dark-900;
+        @apply rounded-md border border-white/10 bg-dark-950;
     }
 
     .nav-chip {
-        @apply rounded-lg px-2.5 py-1.5 text-sm font-medium text-gray-300 transition-colors duration-200 hover:bg-white/5 hover:text-white;
+        @apply rounded-md px-2.5 py-1.5 text-sm font-medium text-gray-300 transition-colors duration-200 hover:bg-white/5 hover:text-white;
     }
 
     .nav-chip-active {
-        @apply bg-accent-600/10 text-accent-400;
+        @apply bg-accent-500/10 text-accent-400;
     }
 }
 
@@ -73,11 +114,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    body {
-        background-attachment: scroll;
+    .marker-wiggle:hover {
+        animation: none;
     }
 
-    .marker-wiggle:hover {
+    .landing-intro .brand-logo,
+    .landing-line,
+    .landing-plane,
+    .shelf-cover {
         animation: none;
     }
 
