@@ -8,6 +8,7 @@ use App\Models\Group;
 use App\Models\Key;
 use App\Models\Platform;
 use App\Models\User;
+use Illuminate\Support\Facades\Http;
 
 it('lets a user store a key', function (): void {
     $user     = User::factory()->create();
@@ -19,7 +20,7 @@ it('lets a user store a key', function (): void {
     $this->actingAs($user)->post('/keys', [
         'platform_id' => $platform->id,
         'key'         => 'ABCD-EFGH-IJKL',
-        'igdb_id'     => $game->igdb_id,
+        'igdb_id'     => (string) $game->igdb_id,
         'group_id'    => $group->id,
     ])->assertRedirect();
 
@@ -31,6 +32,47 @@ it('lets a user store a key', function (): void {
 
     expect($key)->not->toBeNull()
         ->and($key->key)->toBe('ABCD-EFGH-IJKL');
+});
+
+it('stores a key for a new igdb game when id arrives as a string', function (): void {
+    Http::fake([
+        'id.twitch.tv/*' => Http::response([
+            'access_token' => 'test-token',
+            'expires_in'   => 3600,
+        ]),
+        'api.igdb.com/*' => Http::response([
+            [
+                'id'          => 1942,
+                'name'        => 'Fake Game',
+                'summary'     => 'A test game',
+                'parent_game' => null,
+            ],
+        ]),
+    ]);
+
+    $user     = User::factory()->create();
+    $platform = Platform::create(['name' => 'Steam']);
+    $group    = Group::factory()->create(['owner_id' => $user->id]);
+    $group->addMember($user, GroupRole::Owner);
+
+    $this->actingAs($user)->post('/keys', [
+        'platform_id' => $platform->id,
+        'key'         => 'NEW-IGDB-KEY-1',
+        'igdb_id'     => '1942',
+        'group_id'    => $group->id,
+    ])->assertRedirect();
+
+    $game = Game::query()->where('igdb_id', 1942)->first();
+    $key  = Key::query()
+        ->where('platform_id', $platform->id)
+        ->where('created_user_id', $user->id)
+        ->where('group_id', $group->id)
+        ->first();
+
+    expect($game)->not->toBeNull()
+        ->and($key)->not->toBeNull()
+        ->and($key->game_id)->toBe($game->id)
+        ->and($key->key)->toBe('NEW-IGDB-KEY-1');
 });
 
 it('lets a group member view a key', function (): void {

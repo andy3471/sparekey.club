@@ -13,11 +13,19 @@ class ExistingIgdbId implements ValidationRule
 {
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (Game::query()->where('igdb_id', $value)->exists()) {
+        if (! is_numeric($value)) {
+            $fail('Game not found');
+
             return;
         }
 
-        if (! IgdbGame::find($value)) {
+        $igdbId = (int) $value;
+
+        if (Game::query()->where('igdb_id', $igdbId)->exists()) {
+            return;
+        }
+
+        if (! IgdbGame::find($igdbId)) {
             $fail('Game not found');
         }
     }
